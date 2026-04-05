@@ -1,1145 +1,1645 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DryDelights • Premium Dry Foods</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
-        
-        :root {
-            --tw-color-primary: #d97706;
-        }
-        
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
-        .tailwind-ready * {
-            transition-duration: 0ms;
-        }
-        
-        /* Custom Tailwind animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(8deg); }
-        }
-        
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-        
-        @keyframes pop {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-        
-        .card-pop {
-            animation: pop 0.4s ease-out;
-        }
-        
-        /* 3D card tilt effect */
-        .product-card {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
-        }
-        
-        .modal {
-            animation: modalPop 0.3s ease-out;
-        }
-        
-        @keyframes modalPop {
-            0% { opacity: 0; transform: scale(0.95) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        
-        /* Falling dry food particles */
-        .particle {
-            position: absolute;
-            font-size: 2rem;
-            animation: fall linear infinite;
-            z-index: 1;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(800px) rotate(720deg);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éclat Pantry – Heritage in Every Jar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mahogany: #2A1A1A;
+    --mahogany-light: #3C2A2A;
+    --mahogany-mid: #4A3030;
+    --ivory: #F5F0E8;
+    --ivory-warm: #EDE6D6;
+    --ivory-deep: #D9CDB8;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale: #F0DFA0;
+    --gold-dark: #A07830;
+    --cream: #FAF6EE;
+    --text-dark: #1A0F0F;
+    --text-mid: #4A3525;
+    --text-muted: #8A7060;
+    --red-accent: #8B2020;
+    --green-accent: #2A5C3F;
+    --border: rgba(201,168,76,0.25);
+    --border-strong: rgba(201,168,76,0.5);
+    --glass: rgba(42,26,26,0.7);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--mahogany);
+    color: var(--ivory);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--mahogany); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ORNAMENTAL DIVIDER */
+  .ornament {
+    display: flex; align-items: center; gap: 16px;
+    justify-content: center; margin: 0 auto;
+  }
+  .ornament::before, .ornament::after {
+    content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .ornament-icon { color: var(--gold); font-size: 18px; letter-spacing: 8px; }
+
+  /* ===================== ANNOUNCEMENT BAR ===================== */
+  .announcement {
+    background: var(--gold);
+    color: var(--mahogany);
+    text-align: center;
+    padding: 9px 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .announcement span { margin: 0 18px; }
+  .announcement::before, .announcement::after {
+    content: '✦'; font-size: 10px; margin: 0 8px;
+  }
+
+  /* ===================== NAVBAR ===================== */
+  nav {
+    background: var(--mahogany);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 1000;
+    backdrop-filter: blur(20px);
+  }
+  .nav-top {
+    display: flex; align-items: center;
+    max-width: 1380px; margin: 0 auto;
+    padding: 14px 32px; gap: 28px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; flex-shrink: 0;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    background: radial-gradient(circle at 30% 30%, rgba(201,168,76,0.2), transparent);
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+  }
+  .logo-tagline {
+    font-size: 9px; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+
+  .nav-search {
+    flex: 1; max-width: 500px;
+    display: flex; align-items: center;
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .nav-search:focus-within { border-color: var(--gold); }
+  .nav-search input {
+    flex: 1; padding: 11px 16px;
+    background: none; border: none; outline: none;
+    color: var(--ivory); font-size: 13.5px;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav-search input::placeholder { color: var(--text-muted); }
+  .nav-search button {
+    padding: 11px 20px;
+    background: var(--gold);
+    border: none; cursor: pointer;
+    color: var(--mahogany);
+    font-weight: 700; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase;
+    transition: background 0.3s;
+  }
+  .nav-search button:hover { background: var(--gold-light); }
+
+  .nav-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 9px 14px;
+    background: none; border: 1px solid transparent;
+    border-radius: 4px; cursor: pointer;
+    color: var(--ivory); font-size: 13px;
+    text-decoration: none; transition: all 0.2s;
+    position: relative;
+  }
+  .nav-btn:hover { border-color: var(--border); background: var(--mahogany-light); }
+  .nav-btn .icon { font-size: 18px; }
+  .badge {
+    position: absolute; top: 4px; right: 4px;
+    width: 17px; height: 17px; border-radius: 50%;
+    background: var(--red-accent); color: #fff;
+    font-size: 9px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-btn-primary {
+    background: var(--gold);
+    color: var(--mahogany);
+    font-weight: 600; padding: 9px 18px;
+    border-color: var(--gold);
+  }
+  .nav-btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--mahogany); }
+
+  .nav-bottom {
+    border-top: 1px solid var(--border);
+    max-width: 1380px; margin: 0 auto;
+    padding: 0 32px;
+    display: flex; align-items: center; gap: 0;
+  }
+  .nav-link {
+    padding: 11px 16px;
+    color: var(--ivory-deep); text-decoration: none;
+    font-size: 12.5px; font-weight: 500;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s; white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .nav-link.categories {
+    background: var(--gold);
+    color: var(--mahogany);
+    font-weight: 700; padding: 11px 20px;
+    border-bottom: none;
+    margin-right: 8px;
+  }
+  .nav-link.categories:hover { background: var(--gold-light); color: var(--mahogany); }
+  .nav-badge {
+    display: inline-block;
+    background: var(--red-accent); color: #fff;
+    font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 2px;
+    margin-left: 5px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    position: relative;
+    min-height: 580px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(139,32,32,0.12) 0%, transparent 50%),
+      linear-gradient(135deg, var(--mahogany) 0%, #1A0808 50%, #220E0E 100%);
+    z-index: 0;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(201,168,76,0.04) 79px, rgba(201,168,76,0.04) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(201,168,76,0.04) 79px, rgba(201,168,76,0.04) 80px);
+    z-index: 0;
+  }
+  .hero-left {
+    position: relative; z-index: 2;
+    padding: 60px 40px 60px 64px;
+    display: flex; flex-direction: column;
+    justify-content: center; gap: 20px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border-strong);
+    padding: 7px 16px; border-radius: 2px;
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    width: fit-content; background: rgba(201,168,76,0.07);
+  }
+  .hero-badge::before { content: '◆'; font-size: 8px; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 1.05;
+    color: var(--ivory);
+    font-weight: 800;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--ivory-deep);
+    max-width: 420px; line-height: 1.7;
+  }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px;
+    background: var(--gold);
+    color: var(--mahogany);
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    border: 1px solid var(--border-strong);
+    color: var(--ivory); font-size: 13px;
+    font-weight: 500; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.3s; background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 28px; padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat { display: flex; flex-direction: column; }
+  .hero-stat strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; color: var(--gold);
+  }
+  .hero-stat span { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .hero-product-showcase {
+    position: relative; width: 380px; height: 480px;
+  }
+  .hero-jar-main {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    font-size: 160px;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
+    animation: float 4s ease-in-out infinite;
+    z-index: 3;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -55%) translateY(0); }
+    50% { transform: translate(-50%, -55%) translateY(-15px); }
+  }
+  .hero-glow {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)} }
+  .hero-tag {
+    position: absolute;
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    padding: 10px 14px; border-radius: 6px;
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+    animation: float2 5s ease-in-out infinite;
+  }
+  @keyframes float2 {0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hero-tag-1 { top: 70px; left: -10px; animation-delay: 0s; }
+  .hero-tag-2 { bottom: 130px; right: -10px; animation-delay: 1.5s; }
+  .hero-tag-3 { bottom: 60px; left: 30px; animation-delay: 0.8s; }
+  .hero-tag strong { display: block; color: var(--gold); font-size: 13px; }
+  .hero-tag span { color: var(--text-muted); font-size: 10.5px; }
+
+  /* Slides */
+  .hero-slide { display: none; }
+  .hero-slide.active { display: contents; }
+  .hero-dots { display: flex; gap: 8px; }
+  .hero-dot {
+    width: 24px; height: 3px; border-radius: 2px;
+    background: rgba(201,168,76,0.3); cursor: pointer;
+    transition: all 0.3s; border: none;
+  }
+  .hero-dot.active { background: var(--gold); width: 36px; }
+
+  /* ===================== CATEGORY STRIP ===================== */
+  .cat-strip {
+    background: var(--mahogany-light);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .cat-strip-inner {
+    max-width: 1380px; margin: 0 auto;
+    padding: 0 32px;
+    display: flex; overflow-x: auto; gap: 0;
+    scrollbar-width: none;
+  }
+  .cat-strip-inner::-webkit-scrollbar { display: none; }
+  .cat-item {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px; padding: 16px 24px;
+    text-decoration: none; color: var(--ivory-deep);
+    border-right: 1px solid var(--border);
+    transition: all 0.25s; white-space: nowrap;
+    border-bottom: 2px solid transparent; min-width: 100px;
+  }
+  .cat-item:hover { color: var(--gold); background: rgba(201,168,76,0.07); border-bottom-color: var(--gold); }
+  .cat-item:first-child { border-left: none; }
+  .cat-item-icon { font-size: 28px; line-height: 1; }
+  .cat-item-name { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* ===================== SECTION HEADERS ===================== */
+  .section { padding: 70px 0; }
+  .section-inner { max-width: 1380px; margin: 0 auto; padding: 0 32px; }
+  .section-head {
+    text-align: center; margin-bottom: 50px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+    padding: 0 20px; position: relative;
+  }
+  .section-label::before, .section-label::after {
+    content: ''; position: absolute; top: 50%;
+    width: 40px; height: 1px; background: var(--gold-dark);
+  }
+  .section-label::before { right: 100%; margin-right: -20px; }
+  .section-label::after { left: 100%; margin-left: -20px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    color: var(--ivory); font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--text-muted);
+    max-width: 550px; margin: 0 auto;
+  }
+
+  /* ===================== FLASH SALE ===================== */
+  .flash-sale-bar {
+    background: linear-gradient(135deg, #1A0808, var(--mahogany-light));
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 20px 28px;
+    display: flex; align-items: center; gap: 24px;
+    flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .flash-icon { font-size: 28px; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .flash-text { flex: 1; }
+  .flash-text strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--gold);
+    display: block; margin-bottom: 2px;
+  }
+  .flash-text span { font-size: 13px; color: var(--text-muted); }
+  .countdown { display: flex; gap: 8px; align-items: center; }
+  .count-box {
+    text-align: center;
+    background: var(--mahogany);
+    border: 1px solid var(--border-strong);
+    padding: 10px 14px; border-radius: 4px; min-width: 52px;
+  }
+  .count-box strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; color: var(--gold); line-height: 1;
+  }
+  .count-box span { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+  .count-sep { font-size: 22px; color: var(--gold); font-weight: bold; margin-top: -8px; }
+
+  /* ===================== PRODUCT GRID ===================== */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .product-card {
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    transition: all 0.35s; position: relative;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.1);
+  }
+  .product-card-img {
+    position: relative; height: 200px;
+    background: linear-gradient(135deg, #1A0808, #2A1818);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px; overflow: hidden;
+  }
+  .product-card-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 70%, rgba(201,168,76,0.1), transparent 70%);
+  }
+  .product-tags {
+    position: absolute; top: 10px; left: 10px;
+    display: flex; flex-direction: column; gap: 5px; z-index: 2;
+  }
+  .tag-new { background: var(--green-accent); color: #fff; font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
+  .tag-sale { background: var(--red-accent); color: #fff; font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
+  .tag-bulk { background: var(--gold-dark); color: var(--ivory); font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
+  .product-actions {
+    position: absolute; top: 10px; right: 10px;
+    display: flex; flex-direction: column; gap: 6px;
+    opacity: 0; transform: translateX(10px);
+    transition: all 0.3s;
+  }
+  .product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
+  .act-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--mahogany);
+    border: 1px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .act-btn:hover { background: var(--gold); border-color: var(--gold); }
+  .stock-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 6px 12px; background: rgba(26,8,8,0.9);
+    font-size: 10.5px; color: var(--gold);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .stock-dots { display: flex; gap: 3px; }
+  .stock-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-muted); }
+  .stock-dot.filled { background: var(--gold); }
+  .product-body { padding: 16px; }
+  .product-origin {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10.5px; color: var(--text-muted);
+    letter-spacing: 0.5px; margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: var(--ivory);
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .product-weight {
+    display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .weight-opt {
+    font-size: 10px; padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 2px; color: var(--text-muted); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .weight-opt:hover, .weight-opt.active { border-color: var(--gold); color: var(--gold); }
+  .product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .price-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--gold); font-weight: 700;
+  }
+  .price-old {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .price-discount { font-size: 11px; color: var(--red-accent); font-weight: 600; }
+  .product-stars { display: flex; gap: 2px; align-items: center; margin-bottom: 12px; }
+  .star { color: var(--gold); font-size: 12px; }
+  .star.empty { color: var(--border); }
+  .star-count { font-size: 11.5px; color: var(--text-muted); margin-left: 4px; }
+  .btn-add-cart {
+    width: 100%; padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--gold); font-size: 12px;
+    font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-add-cart:hover { background: var(--gold); color: var(--mahogany); border-color: var(--gold); }
+
+  /* ===================== BENTO GRID ===================== */
+  .bento {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 16px; margin-top: 0;
+  }
+  .bento-card {
+    border-radius: 8px; overflow: hidden; position: relative;
+    display: flex; align-items: flex-end;
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    transition: all 0.35s; cursor: pointer;
+  }
+  .bento-card:hover { border-color: var(--gold-dark); transform: scale(1.01); }
+  .bento-card.span-2 { grid-row: span 2; align-items: center; justify-content: center; flex-direction: column; }
+  .bento-card.span-col-2 { grid-column: span 2; }
+  .bento-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 120px; opacity: 0.25;
+    transition: all 0.35s;
+  }
+  .bento-card:hover .bento-bg { opacity: 0.4; font-size: 140px; }
+  .bento-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,8,8,0.9) 0%, transparent 60%);
+  }
+  .bento-content {
+    position: relative; z-index: 2;
+    padding: 20px;
+  }
+  .bento-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+  .bento-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    color: var(--ivory); margin-bottom: 6px;
+  }
+  .bento-price { font-size: 13px; color: var(--gold-light); }
+  .bento-card.span-2 .bento-content { text-align: center; }
+  .bento-card.span-2 .bento-bg { font-size: 180px; opacity: 0.2; }
+  .bento-card.span-2 .bento-title { font-size: clamp(22px, 2.5vw, 32px); }
+  .bento-card.span-2 .bento-overlay { background: radial-gradient(ellipse at center, rgba(26,8,8,0.3), rgba(26,8,8,0.8)); }
+
+  /* ===================== BULK DEALS ===================== */
+  .bulk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .bulk-card {
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 32px;
+    display: flex; gap: 24px; align-items: center;
+    transition: all 0.3s; cursor: pointer;
+  }
+  .bulk-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .bulk-emoji { font-size: 56px; flex-shrink: 0; }
+  .bulk-info { flex: 1; }
+  .bulk-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--ivory); margin-bottom: 6px;
+  }
+  .bulk-tiers { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tier-badge {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--border-strong);
+    padding: 4px 10px; border-radius: 2px;
+    font-size: 11px; color: var(--gold); font-weight: 600;
+  }
+  .bulk-note { font-size: 12px; color: var(--text-muted); }
+  .bulk-action {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--gold); font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===================== TESTIMONIALS ===================== */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .testi-card {
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 28px;
+    transition: all 0.3s;
+  }
+  .testi-card:hover { border-color: var(--gold-dark); }
+  .testi-quote { font-size: 36px; color: var(--gold-dark); line-height: 1; margin-bottom: 10px; font-family: serif; }
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; color: var(--ivory-deep);
+    line-height: 1.7; margin-bottom: 18px;
+    font-style: italic;
+  }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--mahogany);
+    border: 1.5px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .testi-name { font-size: 13px; font-weight: 600; color: var(--ivory); }
+  .testi-role { font-size: 11px; color: var(--text-muted); }
+  .testi-stars { display: flex; gap: 2px; margin-bottom: 3px; }
+
+  /* ===================== WHY US ===================== */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .why-card {
+    text-align: center; padding: 30px 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px; background: var(--mahogany-light);
+    transition: all 0.3s;
+  }
+  .why-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .why-icon { font-size: 36px; margin-bottom: 14px; }
+  .why-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ivory); margin-bottom: 8px; }
+  .why-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===================== NEWSLETTER ===================== */
+  .newsletter-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #1A0808, var(--mahogany-light));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .newsletter-inner {
+    max-width: 600px; margin: 0 auto; padding: 0 32px;
+    text-align: center;
+  }
+  .newsletter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; color: var(--ivory); margin-bottom: 10px;
+  }
+  .newsletter-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
+  .newsletter-form { display: flex; gap: 0; max-width: 460px; margin: 0 auto; }
+  .newsletter-input {
+    flex: 1; padding: 14px 20px;
+    background: var(--mahogany);
+    border: 1px solid var(--border-strong);
+    border-right: none; color: var(--ivory);
+    font-size: 14px; outline: none;
+    border-radius: 3px 0 0 3px;
+    font-family: 'Inter', sans-serif;
+  }
+  .newsletter-btn {
+    padding: 14px 24px;
+    background: var(--gold); color: var(--mahogany);
+    border: none; cursor: pointer; font-weight: 700;
+    font-size: 12px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 0 3px 3px 0;
+    transition: background 0.3s;
+  }
+  .newsletter-btn:hover { background: var(--gold-light); }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: #120808;
+    border-top: 1px solid var(--border);
+    padding: 60px 0 0;
+  }
+  .footer-inner {
+    max-width: 1380px; margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+  }
+  .footer-brand { }
+  .footer-brand .logo { margin-bottom: 16px; display: inline-flex; }
+  .footer-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; text-decoration: none;
+    color: var(--text-muted); transition: all 0.25s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px; color: var(--ivory);
+    margin-bottom: 18px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-links a {
+    font-size: 13.5px; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-contact-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin-bottom: 12px; font-size: 13px; color: var(--text-muted);
+  }
+  .footer-contact-item .icon { color: var(--gold); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .footer-payments { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .pay-badge {
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    padding: 5px 10px; border-radius: 3px;
+    font-size: 11px; color: var(--text-muted); font-weight: 600;
+  }
+  .footer-bottom {
+    margin-top: 48px;
+    padding: 16px 32px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1380px; margin-left: auto; margin-right: auto;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  /* ===================== CHAT FLOAT ===================== */
+  .chat-float {
+    position: fixed; bottom: 28px; right: 28px;
+    z-index: 999;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+  }
+  .chat-options {
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0; transform: translateY(10px);
+    pointer-events: none; transition: all 0.3s;
+  }
+  .chat-float:hover .chat-options { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .chat-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; border-radius: 25px;
+    font-size: 12.5px; font-weight: 600; text-decoration: none;
+    color: #fff; white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+  }
+  .chat-option:hover { transform: scale(1.05); }
+  .chat-option.wa { background: #25D366; }
+  .chat-option.fb { background: #1877F2; }
+  .chat-option.ig { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45); }
+  .chat-main-btn {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--gold); color: var(--mahogany);
+    font-size: 24px; border: none; cursor: pointer;
+    box-shadow: 0 6px 24px rgba(201,168,76,0.5);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .chat-main-btn:hover { background: var(--gold-light); transform: scale(1.1); }
+
+  /* ===================== TOP PROMO STRIP ===================== */
+  .promo-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 50px;
+  }
+  .promo-card {
+    background: var(--mahogany-light);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 22px 24px;
+    display: flex; gap: 16px; align-items: center;
+    transition: all 0.3s;
+  }
+  .promo-card:hover { border-color: var(--gold-dark); }
+  .promo-card.hot { border-left: 3px solid var(--red-accent); }
+  .promo-card.new-arr { border-left: 3px solid var(--green-accent); }
+  .promo-card.bulk-p { border-left: 3px solid var(--gold-dark); }
+  .promo-emoji { font-size: 36px; }
+  .promo-info strong { display: block; font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ivory); margin-bottom: 4px; }
+  .promo-info span { font-size: 12.5px; color: var(--text-muted); }
+  .promo-link { margin-left: auto; font-size: 12px; color: var(--gold); font-weight: 600; text-decoration: none; white-space: nowrap; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 1100px) {
+    .bento { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .bento-card.span-2 { grid-row: auto; grid-column: 1 / -1; height: 280px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 40px 24px; }
+    .product-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .bulk-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .nav-top { padding: 12px 16px; }
+    .section-inner { padding: 0 16px; }
+    .nav-bottom { display: none; }
+    .promo-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ORNATE FRAME DECORATION */
+  .frame-deco {
+    text-align: center; padding: 12px 0;
+    color: var(--gold-dark); font-size: 13px;
+    letter-spacing: 6px;
+  }
+</style>
 </head>
-<body class="tailwind-ready font-sans">
-    <!-- NAVBAR -->
-    <nav class="bg-white border-b border-amber-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center h-16">
-                
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🥜</div>
-                    <h1 class="text-3xl font-bold tracking-tighter text-amber-950" style="font-family: 'Playfair Display', serif;">DryDelights</h1>
-                </div>
+<body>
 
-                <!-- Menu -->
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a onclick="navigateTo('home')" class="cursor-pointer flex items-center gap-1 hover:text-amber-600 nav-link" id="nav-home">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Home</span>
-                    </a>
-                    <a onclick="navigateTo('shop')" class="cursor-pointer flex items-center gap-1 hover:text-amber-600 nav-link" id="nav-shop">
-                        <i class="fa-solid fa-store"></i>
-                        <span>Shop</span>
-                    </a>
-                    <a onclick="navigateTo('categories')" class="cursor-pointer flex items-center gap-1 hover:text-amber-600 nav-link" id="nav-categories">
-                        <i class="fa-solid fa-tags"></i>
-                        <span>Categories</span>
-                    </a>
-                    <a href="#" class="cursor-pointer flex items-center gap-1 hover:text-amber-600">
-                        <i class="fa-solid fa-truck"></i>
-                        <span>Track Order</span>
-                    </a>
-                </div>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">
+  <span>✦ Free Shipping on Orders Over ৳2,000</span>
+  <span>|</span>
+  <span>Premium Saffron — Now 15% Off</span>
+  <span>|</span>
+  <span>Wholesale Inquiries: +880-1800-ECLAT</span>
+</div>
 
-                <div class="flex items-center gap-5">
-                    <!-- Search -->
-                    <div onclick="navigateTo('shop'); document.getElementById('shop-search').focus()" 
-                         class="hidden sm:flex items-center bg-amber-50 text-amber-900 px-4 h-10 rounded-3xl text-sm border border-amber-100 cursor-pointer hover:bg-amber-100">
-                        <i class="fa-solid fa-magnifying-glass mr-2"></i>
-                        Search premium dry foods...
-                    </div>
-
-                    <!-- Cart -->
-                    <div onclick="toggleCart()" class="relative cursor-pointer">
-                        <i class="fa-solid fa-shopping-bag text-2xl text-amber-950"></i>
-                        <span id="cart-count-badge" 
-                              class="absolute -top-1 -right-1 bg-amber-600 text-white text-[10px] font-bold w-5 h-5 rounded-2xl flex items-center justify-center">0</span>
-                    </div>
-
-                    <!-- Account -->
-                    <div class="flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-circle-user text-3xl text-amber-800"></i>
-                        <div class="hidden md:block">
-                            <p class="text-xs font-medium text-amber-950">Rehena</p>
-                            <p class="text-[10px] text-amber-600 -mt-1">Dhaka, BD</p>
-                        </div>
-                    </div>
-
-                    <!-- Mobile menu -->
-                    <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 py-4">
-            <a onclick="navigateTo('home');toggleMobileMenu()" class="block py-3 text-lg font-medium">🏠 Home</a>
-            <a onclick="navigateTo('shop');toggleMobileMenu()" class="block py-3 text-lg font-medium">🛒 Shop All</a>
-            <a onclick="navigateTo('categories');toggleMobileMenu()" class="block py-3 text-lg font-medium">🏷️ Categories</a>
-            <div class="pt-4 border-t text-sm flex justify-between items-center">
-                <span class="font-medium">Free shipping on orders over ৳2000</span>
-                <i class="fa-solid fa-leaf text-emerald-500"></i>
-            </div>
-        </div>
-    </nav>
-
-    <!-- PAGE CONTAINER -->
-    <div id="page-home" class="page">
-        <!-- HERO SECTION - Animated 2D/3D feel -->
-        <div class="hero-bg relative overflow-hidden min-h-[640px] flex items-center">
-            
-            <!-- Floating particles / 2D animation -->
-            <div id="particles" class="absolute inset-0 pointer-events-none"></div>
-            
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-                
-                <div class="space-y-8">
-                    <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-2 rounded-3xl text-sm font-medium shadow-md">
-                        🌍 Fresh from Bangladesh &amp; beyond
-                        <span class="bg-emerald-400 text-white text-xs px-3 py-px rounded-2xl">NEW SEASON</span>
-                    </div>
-                    
-                    <h1 class="text-7xl md:text-8xl font-bold leading-none tracking-tighter text-amber-950" style="font-family: 'Playfair Display', serif;">
-                        Nature's<br>Crunchiest<br>Treasures
-                    </h1>
-                    
-                    <p class="max-w-md text-2xl text-amber-800">Premium dry fruits, nuts &amp; snacks delivered fresh. 100% natural • Zero added sugar • Direct from farms.</p>
-                    
-                    <div class="flex items-center gap-4">
-                        <button onclick="navigateTo('shop')" 
-                                class="bg-amber-600 hover:bg-amber-700 text-white px-10 py-6 rounded-3xl text-2xl font-semibold flex items-center gap-3 shadow-xl shadow-amber-300">
-                            Shop Now 
-                            <i class="fa-solid fa-arrow-right text-3xl"></i>
-                        </button>
-                        
-                        <button onclick="watchVideo()" 
-                                class="flex items-center gap-3 border-2 border-amber-800 hover:bg-amber-100 text-amber-950 px-8 py-6 rounded-3xl text-xl font-medium">
-                            <i class="fa-solid fa-play-circle text-4xl"></i>
-                            <div>
-                                <div class="font-semibold">Watch how we dry</div>
-                                <div class="text-xs">2:14 min</div>
-                            </div>
-                        </button>
-                    </div>
-                    
-                    <!-- Trust signals -->
-                    <div class="flex items-center gap-8 text-sm">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-medal text-amber-500"></i>
-                            <div>
-                                <div class="font-semibold">FSSAI Certified</div>
-                                <div class="text-amber-600 text-xs">Quality guaranteed</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-truck-fast text-emerald-500"></i>
-                            <div>
-                                <div class="font-semibold">Ships same day</div>
-                                <div class="text-amber-600 text-xs">Dhaka • Chittagong • Sylhet</div>
-                            </div>
-                        </div>
-                        <div>⭐️ 4.98 <span class="text-xs">(1,284 reviews)</span></div>
-                    </div>
-                </div>
-                
-                <!-- Hero visual with 3D-like floating products -->
-                <div class="relative hidden md:flex justify-center">
-                    <div class="relative w-[420px] h-[420px]">
-                        <!-- Main hero product -->
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white rounded-[4rem] shadow-2xl rotate-12 flex items-center justify-center text-8xl animate-float z-10 border border-amber-100">
-                            🥭
-                        </div>
-                        
-                        <!-- Floating smaller items -->
-                        <div class="absolute top-12 right-12 text-6xl animate-float" style="animation-delay: 0.8s;">🥜</div>
-                        <div class="absolute bottom-12 left-12 text-6xl animate-float" style="animation-delay: 1.4s;">🌰</div>
-                        <div class="absolute top-28 left-8 text-5xl animate-float" style="animation-delay: 2.1s;">🍇</div>
-                        <div class="absolute bottom-20 right-8 text-5xl animate-float" style="animation-delay: 0.3s;">🌴</div>
-                        
-                        <!-- 3D glowing orb effect -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-amber-400/30 to-transparent rounded-[5rem] blur-3xl -z-10"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bottom banner -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-8 bg-white/70 backdrop-blur-lg px-8 py-4 rounded-3xl shadow-xl text-sm font-medium">
-                <div class="flex items-center gap-3">
-                    <span class="text-4xl">🥜</span>
-                    <div>12,394 happy customers</div>
-                </div>
-                <div class="h-4 w-px bg-amber-300"></div>
-                <div>Free delivery in Dhaka Division today</div>
-                <div class="h-4 w-px bg-amber-300"></div>
-                <div class="flex -space-x-4">
-                    <span class="text-3xl">🌰</span>
-                    <span class="text-3xl">🥭</span>
-                    <span class="text-3xl">🍒</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- CATEGORIES BAR -->
-        <div class="bg-white py-6 border-b">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex overflow-x-auto gap-6 pb-2 hide-scrollbar">
-                    <div onclick="filterCategory('all')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🌟</div>
-                        <p class="text-xs mt-2 font-medium">All</p>
-                    </div>
-                    <div onclick="filterCategory('nuts')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🥜</div>
-                        <p class="text-xs mt-2 font-medium">Nuts</p>
-                    </div>
-                    <div onclick="filterCategory('fruits')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🥭</div>
-                        <p class="text-xs mt-2 font-medium">Dried Fruits</p>
-                    </div>
-                    <div onclick="filterCategory('seeds')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🌻</div>
-                        <p class="text-xs mt-2 font-medium">Seeds</p>
-                    </div>
-                    <div onclick="filterCategory('mixes')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🥣</div>
-                        <p class="text-xs mt-2 font-medium">Mixes &amp; Snacks</p>
-                    </div>
-                    <div onclick="filterCategory('spices')" class="category-pill cursor-pointer flex-shrink-0 flex flex-col items-center">
-                        <div class="w-14 h-14 bg-amber-100 text-4xl rounded-3xl flex items-center justify-center">🌶️</div>
-                        <p class="text-xs mt-2 font-medium">Spices</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FEATURED PRODUCTS ON HOME -->
-        <div class="max-w-7xl mx-auto px-6 py-12">
-            <div class="flex justify-between items-baseline mb-8">
-                <h2 class="text-4xl font-semibold text-amber-950">Our Best Sellers 🔥</h2>
-                <a onclick="navigateTo('shop')" class="text-amber-600 flex items-center gap-2 hover:gap-3">See entire collection <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-            
-            <div id="featured-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-        
-        <!-- WHY CHOOSE US -->
-        <div class="bg-amber-950 text-white py-16">
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
-                <div class="flex gap-6">
-                    <div class="text-5xl">🌱</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold">Farm-to-jar freshness</h3>
-                        <p class="mt-2 opacity-80">Sourced directly from Bangladeshi farms and trusted international growers. Sun-dried naturally.</p>
-                    </div>
-                </div>
-                <div class="flex gap-6">
-                    <div class="text-5xl">♻️</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold">Eco-friendly packaging</h3>
-                        <p class="mt-2 opacity-80">100% recyclable jars &amp; zero-plastic pouches. Your crunch comes with a clean conscience.</p>
-                    </div>
-                </div>
-                <div class="flex gap-6">
-                    <div class="text-5xl">🧪</div>
-                    <div>
-                        <h3 class="text-2xl font-semibold">Lab tested purity</h3>
-                        <p class="mt-2 opacity-80">Every batch is tested for aflatoxins, heavy metals &amp; moisture. You get only the best.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-top">
+    <a href="#" class="logo">
+      <div class="logo-icon">🫙</div>
+      <div class="logo-text">
+        <span class="logo-name">Éclat Pantry</span>
+        <span class="logo-tagline">Heritage in Every Jar</span>
+      </div>
+    </a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search saffron, nuts, spices, herbs…">
+      <button>Search</button>
     </div>
-    
-    <!-- SHOP PAGE -->
-    <div id="page-shop" class="page hidden max-w-7xl mx-auto px-6 py-10">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-5xl font-semibold text-amber-950">Shop All Dry Delights</h1>
-            
-            <div class="flex items-center gap-4">
-                <input id="shop-search" 
-                       onkeyup="if(event.keyCode===13) filterProducts()"
-                       placeholder="Search almonds, mango, dates..." 
-                       class="bg-white border border-amber-200 focus:border-amber-400 w-80 rounded-3xl px-6 py-4 text-sm outline-none">
-                
-                <select id="sort-select" onchange="filterProducts()" class="bg-white border border-amber-200 rounded-3xl px-6 py-4 text-sm">
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="name">A to Z</option>
-                </select>
-            </div>
-        </div>
-        
-        <div class="flex gap-8">
-            <!-- Filters -->
-            <div class="w-64 hidden lg:block">
-                <h4 class="font-semibold mb-4">Categories</h4>
-                <div onclick="toggleFilter(this)" data-category="nuts" class="filter-item flex justify-between cursor-pointer py-3 border-b">
-                    <span>Nuts</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-3 rounded-2xl flex items-center">14</span>
-                </div>
-                <div onclick="toggleFilter(this)" data-category="fruits" class="filter-item flex justify-between cursor-pointer py-3 border-b">
-                    <span>Dried Fruits</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-3 rounded-2xl flex items-center">9</span>
-                </div>
-                <div onclick="toggleFilter(this)" data-category="seeds" class="filter-item flex justify-between cursor-pointer py-3 border-b">
-                    <span>Seeds</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-3 rounded-2xl flex items-center">6</span>
-                </div>
-                <div onclick="toggleFilter(this)" data-category="mixes" class="filter-item flex justify-between cursor-pointer py-3 border-b">
-                    <span>Mixes &amp; Snacks</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-3 rounded-2xl flex items-center">8</span>
-                </div>
-                <div onclick="toggleFilter(this)" data-category="spices" class="filter-item flex justify-between cursor-pointer py-3 border-b">
-                    <span>Spices</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-3 rounded-2xl flex items-center">5</span>
-                </div>
-                
-                <div class="mt-10">
-                    <h4 class="font-semibold mb-4">Price Range</h4>
-                    <div class="flex gap-4 items-center">
-                        <input type="text" id="price-min" value="200" class="w-24 text-center border rounded-2xl py-3">
-                        <span class="text-amber-400">—</span>
-                        <input type="text" id="price-max" value="2500" class="w-24 text-center border rounded-2xl py-3">
-                    </div>
-                    <button onclick="filterProducts()" class="mt-6 w-full py-4 text-white bg-amber-600 rounded-3xl">Apply Filter</button>
-                </div>
-            </div>
-            
-            <!-- Products Grid -->
-            <div id="shop-grid" class="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Populated by JS -->
-            </div>
-        </div>
+    <div class="nav-actions">
+      <a href="#" class="nav-btn"><span class="icon">🌐</span></a>
+      <a href="#" class="nav-btn"><span class="icon">🤍</span> Wishlist</a>
+      <a href="#" class="nav-btn" style="position:relative;"><span class="icon">🛒</span> Cart <span class="badge">3</span></a>
+      <a href="#" class="nav-btn nav-btn-primary">Sign In</a>
     </div>
-    
-    <!-- CATEGORIES PAGE -->
-    <div id="page-categories" class="page hidden max-w-7xl mx-auto px-6 py-12">
-        <h1 class="text-5xl font-semibold mb-10">Explore by Category</h1>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Populated by JS with larger cards -->
-        </div>
+  </div>
+  <div class="nav-bottom" style="max-width:1380px;margin:0 auto;">
+    <a href="#" class="nav-link categories">☰ All Categories</a>
+    <a href="#" class="nav-link active">Home</a>
+    <a href="#" class="nav-link">Shop</a>
+    <a href="#" class="nav-link">Flash Sale <span class="nav-badge">HOT</span></a>
+    <a href="#" class="nav-link">Bulk Orders</a>
+    <a href="#" class="nav-link">Saffron Collection</a>
+    <a href="#" class="nav-link">Spices & Herbs</a>
+    <a href="#" class="nav-link">Nuts & Dried Fruits</a>
+    <a href="#" class="nav-link">Truffles <span class="nav-badge">NEW</span></a>
+    <a href="#" class="nav-link">Blog</a>
+    <a href="#" class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- CATEGORY STRIP -->
+<div class="cat-strip">
+  <div class="cat-strip-inner">
+    <a href="#" class="cat-item"><span class="cat-item-icon">🌸</span><span class="cat-item-name">Saffron</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🌶️</span><span class="cat-item-name">Spices</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🫘</span><span class="cat-item-name">Lentils</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🥜</span><span class="cat-item-name">Nuts</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🍇</span><span class="cat-item-name">Dried Fruits</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🌿</span><span class="cat-item-name">Herbs</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🍄</span><span class="cat-item-name">Truffles</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🫙</span><span class="cat-item-name">Pantry</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🧂</span><span class="cat-item-name">Sea Salts</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🌰</span><span class="cat-item-name">Chestnuts</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🫖</span><span class="cat-item-name">Herbal Tea</span></a>
+    <a href="#" class="cat-item"><span class="cat-item-icon">🍯</span><span class="cat-item-name">Honey</span></a>
+  </div>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-badge">New Season Collection 2026</div>
+    <h1 class="hero-title">
+      Rare Flavours,
+      <em>Ancient Origins</em>
+      Exquisite Pantry
+    </h1>
+    <p class="hero-desc">
+      Sourced from the finest estates across Kashmir, Persia, Anatolia &amp; the Mediterranean — every jar carries centuries of culinary heritage.
+    </p>
+    <div class="hero-cta">
+      <a href="#" class="btn-gold">Explore Collection →</a>
+      <a href="#" class="btn-outline">Wholesale Enquiry</a>
     </div>
-    
-    <!-- PRODUCT DETAIL MODAL -->
-    <div onclick="if(event.target.id === 'product-modal')hideProductModal()" 
-         id="product-modal"
-         class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center">
-        
-        <div onclick="event.stopImmediatePropagation()" 
-             class="modal bg-white max-w-4xl w-full mx-4 rounded-3xl overflow-hidden shadow-2xl">
-            
-            <div class="flex">
-                <!-- Image -->
-                <div id="modal-image" class="w-2/5 bg-amber-50 flex items-center justify-center text-[180px]"></div>
-                
-                <!-- Content -->
-                <div class="flex-1 p-8">
-                    <div class="flex justify-between">
-                        <div>
-                            <span id="modal-category-badge" class="uppercase text-xs font-bold tracking-widest bg-amber-100 text-amber-700 px-4 py-1 rounded-3xl"></span>
-                            <h1 id="modal-name" class="text-4xl font-semibold mt-3"></h1>
-                        </div>
-                        <button onclick="hideProductModal()" class="text-4xl text-amber-300 hover:text-amber-600">×</button>
-                    </div>
-                    
-                    <div id="modal-price" class="text-5xl font-semibold text-amber-600 mt-2"></div>
-                    
-                    <p id="modal-description" class="mt-6 text-amber-700 leading-relaxed"></p>
-                    
-                    <div class="mt-8 grid grid-cols-3 gap-3 text-sm">
-                        <div class="border rounded-2xl p-4">
-                            <div class="text-emerald-500 text-xs font-bold">PROTEIN</div>
-                            <div id="modal-protein" class="font-mono text-3xl">18g</div>
-                        </div>
-                        <div class="border rounded-2xl p-4">
-                            <div class="text-emerald-500 text-xs font-bold">FIBER</div>
-                            <div id="modal-fiber" class="font-mono text-3xl">7g</div>
-                        </div>
-                        <div class="border rounded-2xl p-4">
-                            <div class="text-emerald-500 text-xs font-bold">ENERGY</div>
-                            <div id="modal-energy" class="font-mono text-3xl">420kcal</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quantity -->
-                    <div class="mt-8 flex items-center gap-8">
-                        <div class="font-medium">Quantity</div>
-                        <div class="flex border border-amber-300 rounded-3xl">
-                            <button onclick="changeQty(-1)" class="px-6 py-4 text-2xl font-light hover:bg-amber-100 rounded-l-3xl">-</button>
-                            <div id="modal-qty" class="w-14 flex items-center justify-center font-semibold text-xl">1</div>
-                            <button onclick="changeQty(1)" class="px-6 py-4 text-2xl font-light hover:bg-amber-100 rounded-r-3xl">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="flex gap-4 mt-8">
-                        <button onclick="addCurrentToCart()" 
-                                class="flex-1 py-7 text-xl font-semibold bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-3xl flex items-center justify-center gap-4 shadow-inner">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            ADD TO CART — <span id="modal-total-price"></span>
-                        </button>
-                        
-                        <button onclick="hideProductModal()" 
-                                class="flex-1 border-2 border-amber-300 text-amber-900 font-semibold rounded-3xl">Save for later</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="hero-dots">
+      <button class="hero-dot active"></button>
+      <button class="hero-dot"></button>
+      <button class="hero-dot"></button>
     </div>
-    
-    <!-- CART DRAWER -->
-    <div onclick="if(event.target.id === 'cart-drawer')toggleCart()" 
-         id="cart-drawer"
-         class="hidden fixed inset-0 bg-black/60 z-[10000] flex justify-end">
-        
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white w-full max-w-lg h-full shadow-2xl flex flex-col">
-            
-            <div class="px-8 py-6 border-b flex justify-between items-center">
-                <h2 class="text-3xl font-semibold">Your Cart</h2>
-                <button onclick="toggleCart()" class="text-3xl">×</button>
-            </div>
-            
-            <div id="cart-items" class="flex-1 overflow-auto p-8 space-y-6">
-                <!-- JS injected items -->
-            </div>
-            
-            <div class="p-8 border-t mt-auto">
-                <div class="flex justify-between text-xl mb-2">
-                    <span class="font-medium">Subtotal</span>
-                    <span id="cart-subtotal" class="font-semibold">৳0</span>
-                </div>
-                <div class="text-xs text-emerald-600 flex items-center gap-1">
-                    <i class="fa-solid fa-truck"></i>
-                    FREE shipping applied
-                </div>
-                
-                <button onclick="checkout()" 
-                        class="mt-8 w-full py-8 text-2xl font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-3xl">
-                    PROCEED TO CHECKOUT
-                </button>
-                
-                <p onclick="toggleCart()" class="text-center mt-6 text-sm cursor-pointer opacity-70 hover:opacity-100">Continue shopping</p>
-            </div>
-        </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>500+</strong><span>Artisan Products</span></div>
+      <div class="hero-stat"><strong>32</strong><span>Countries Sourced</span></div>
+      <div class="hero-stat"><strong>12K+</strong><span>Happy Customers</span></div>
     </div>
-    
-    <!-- FOOTER -->
-    <footer class="bg-amber-950 text-amber-300 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-y-10">
-            <div>
-                <div class="flex items-center gap-3 text-white mb-6">
-                    <div class="text-4xl">🥜</div>
-                    <h3 class="text-3xl font-bold tracking-tighter">DryDelights</h3>
-                </div>
-                <p class="text-sm max-w-xs">Handpicked dry foods from the best farms in Bangladesh and the world. Delivered with love.</p>
-                <div class="flex gap-4 mt-8 text-2xl">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-tiktok"></i>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold text-white mb-4">Quick Links</h4>
-                <div class="space-y-3 text-sm">
-                    <div onclick="navigateTo('home')" class="cursor-pointer">Home</div>
-                    <div onclick="navigateTo('shop')" class="cursor-pointer">Shop All</div>
-                    <div>Our Story</div>
-                    <div>Blog • How we dry</div>
-                    <div>Contact Us</div>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="font-semibold text-white mb-4">Support</h4>
-                <div class="space-y-3 text-sm">
-                    <div>Track your order</div>
-                    <div>Shipping policy</div>
-                    <div>Return policy (30 days)</div>
-                    <div>FAQ</div>
-                    <div>Call us: +880 1711-123456</div>
-                </div>
-            </div>
-            
-            <div class="text-sm">
-                <div class="bg-white/10 rounded-3xl p-6">
-                    <i class="fa-solid fa-envelope text-2xl mb-4 block"></i>
-                    Get 15% off your first order
-                    <input type="email" placeholder="your@email.com" 
-                           class="bg-white text-amber-950 w-full mt-4 rounded-2xl px-5 py-4 text-sm outline-none">
-                    <button onclick="alert('🎟️ Coupon sent! (demo)')" 
-                            class="mt-4 w-full py-4 bg-white text-amber-950 font-semibold rounded-2xl">Subscribe</button>
-                </div>
-            </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-product-showcase">
+      <div class="hero-glow"></div>
+      <div class="hero-jar-main">🫙</div>
+      <div class="hero-tag hero-tag-1">
+        <strong>Kashmir Saffron</strong>
+        <span>Grade A · ৳4,800 / gram</span>
+      </div>
+      <div class="hero-tag hero-tag-2">
+        <strong>✓ Origin Certified</strong>
+        <span>Lab tested &amp; verified</span>
+      </div>
+      <div class="hero-tag hero-tag-3">
+        <strong>⚡ Flash Deal</strong>
+        <span>15% Off Today</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO STRIP -->
+<section style="padding: 32px 0; background: var(--mahogany-light); border-bottom: 1px solid var(--border);">
+  <div class="section-inner">
+    <div class="promo-grid">
+      <div class="promo-card hot">
+        <span class="promo-emoji">🔥</span>
+        <div class="promo-info">
+          <strong>Flash Sale — Up to 40% Off</strong>
+          <span>Limited stock, seasonal specials</span>
         </div>
-        
-        <div class="text-center text-xs mt-16 opacity-60">
-            © 2026 DryDelights • Made with ❤️ in Dhaka, Bangladesh • All rights reserved
+        <a href="#" class="promo-link">View →</a>
+      </div>
+      <div class="promo-card new-arr">
+        <span class="promo-emoji">✨</span>
+        <div class="promo-info">
+          <strong>New Arrivals This Week</strong>
+          <span>Truffle salt, Persian herbs &amp; more</span>
         </div>
-    </footer>
-    
-    <script>
-        /**
-         * MAIN JS - Single file e-commerce for DryDelights
-         * Fully functional demo with Tailwind, animations & 2D/3D effects
-         * All pages in ONE HTML file
-         */
-        
-        // Tailwind initialization
-        function initTailwind() {
-            tailwind.config = {
-                content: [],
-                theme: {
-                    extend: {}
-                }
-            }
-        }
-        
-        // Demo products - Dry foods only
-        let productsDB = [
-            {
-                id: 1,
-                name: "Roasted Almonds (500g)",
-                price: 890,
-                category: "nuts",
-                emoji: "🥜",
-                description: "Premium California almonds lightly roasted with sea salt. Rich in vitamin E and healthy fats.",
-                protein: "21g",
-                fiber: "12g",
-                energy: "580kcal"
-            },
-            {
-                id: 2,
-                name: "Dried Mango Slices (400g)",
-                price: 650,
-                category: "fruits",
-                emoji: "🥭",
-                description: "Sweet & tangy Bangladeshi mangoes naturally sun-dried. No added sugar.",
-                protein: "3g",
-                fiber: "8g",
-                energy: "320kcal"
-            },
-            {
-                id: 3,
-                name: "Cashew Nuts (300g)",
-                price: 720,
-                category: "nuts",
-                emoji: "🌰",
-                description: "Whole creamy cashews from Vietnam. Perfect for snacking and cooking.",
-                protein: "18g",
-                fiber: "4g",
-                energy: "550kcal"
-            },
-            {
-                id: 4,
-                name: "Pistachios (250g)",
-                price: 950,
-                category: "nuts",
-                emoji: "🥜",
-                description: "Iranian green pistachios. Lightly salted. Super crunchy.",
-                protein: "20g",
-                fiber: "10g",
-                energy: "570kcal"
-            },
-            {
-                id: 5,
-                name: "Golden Raisins (500g)",
-                price: 320,
-                category: "fruits",
-                emoji: "🍇",
-                description: "Sweet Turkish raisins packed with antioxidants.",
-                protein: "3g",
-                fiber: "6g",
-                energy: "300kcal"
-            },
-            {
-                id: 6,
-                name: "Walnuts Halves (400g)",
-                price: 780,
-                category: "nuts",
-                emoji: "🌰",
-                description: "Brain food! Chilean walnuts rich in Omega-3.",
-                protein: "15g",
-                fiber: "7g",
-                energy: "650kcal"
-            },
-            {
-                id: 7,
-                name: "Dates (Khajur) 1kg",
-                price: 420,
-                category: "fruits",
-                emoji: "🌴",
-                description: "Premium Ajwa & Medjool dates from Saudi Arabia & local farms.",
-                protein: "6g",
-                fiber: "14g",
-                energy: "280kcal"
-            },
-            {
-                id: 8,
-                name: "Pumpkin Seeds (300g)",
-                price: 450,
-                category: "seeds",
-                emoji: "🎃",
-                description: "Roasted & salted. High in magnesium and zinc.",
-                protein: "30g",
-                fiber: "12g",
-                energy: "550kcal"
-            },
-            {
-                id: 9,
-                name: "Trail Mix Deluxe (500g)",
-                price: 680,
-                category: "mixes",
-                emoji: "🥣",
-                description: "Nuts, seeds, dried berries & chocolate chunks. Ultimate energy mix.",
-                protein: "12g",
-                fiber: "9g",
-                energy: "480kcal"
-            },
-            {
-                id: 10,
-                name: "Sunflower Seeds (400g)",
-                price: 280,
-                category: "seeds",
-                emoji: "🌻",
-                description: "Fresh roasted sunflower kernels. Great for salads too.",
-                protein: "21g",
-                fiber: "11g",
-                energy: "600kcal"
-            },
-            {
-                id: 11,
-                name: "Dried Apricots (350g)",
-                price: 590,
-                category: "fruits",
-                emoji: "🍑",
-                description: "Turkish soft dried apricots. Naturally sweet.",
-                protein: "4g",
-                fiber: "7g",
-                energy: "240kcal"
-            },
-            {
-                id: 12,
-                name: "Chia Seeds (500g)",
-                price: 380,
-                category: "seeds",
-                emoji: "🌾",
-                description: "Organic black chia seeds from Peru. Superfood.",
-                protein: "17g",
-                fiber: "34g",
-                energy: "490kcal"
-            },
-            {
-                id: 13,
-                name: "Mixed Nuts Premium (450g)",
-                price: 1100,
-                category: "mixes",
-                emoji: "🥜",
-                description: "Almonds, cashews, pistachios & walnuts in one jar.",
-                protein: "19g",
-                fiber: "9g",
-                energy: "620kcal"
-            },
-            {
-                id: 14,
-                name: "Turmeric Powder (250g)",
-                price: 220,
-                category: "spices",
-                emoji: "🌶️",
-                description: "Pure Bangladeshi turmeric. Lab tested curcumin 4%.",
-                protein: "8g",
-                fiber: "22g",
-                energy: "310kcal"
-            },
-            {
-                id: 15,
-                name: "Cinnamon Sticks (200g)",
-                price: 340,
-                category: "spices",
-                emoji: "🌿",
-                description: "Ceylon cinnamon. True cinnamon – not cassia.",
-                protein: "4g",
-                fiber: "53g",
-                energy: "250kcal"
-            }
-        ]
-        
-        let cart = []
-        let currentProduct = null
-        let modalQty = 1
-        
-        // Render product card (used on both home & shop)
-        function createProductCard(product, isFeatured = false) {
-            const card = document.createElement('div')
-            card.className = `product-card bg-white rounded-3xl overflow-hidden border border-amber-100 shadow-sm hover:shadow-2xl cursor-pointer group ${isFeatured ? 'card-pop' : ''}`
-            card.innerHTML = `
-                <div class="h-48 flex items-center justify-center text-8xl bg-gradient-to-br from-amber-50 to-yellow-100 relative">
-                    ${product.emoji}
-                    <div class="absolute top-4 right-4 bg-white text-amber-600 text-xs font-bold px-3 py-1 rounded-3xl shadow flex items-center gap-1">
-                        <i class="fa-solid fa-fire"></i>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <div class="uppercase text-[10px] tracking-[1px] font-bold text-amber-600">${product.category}</div>
-                    <h3 class="font-semibold text-lg mt-1 leading-tight">${product.name}</h3>
-                    <div class="flex justify-between items-end mt-4">
-                        <div>
-                            <span class="text-3xl font-semibold text-amber-700">৳</span>
-                            <span class="text-3xl font-semibold text-amber-700">${product.price}</span>
-                        </div>
-                        <button onclick="event.stopImmediatePropagation(); quickAddToCart(${product.id});" 
-                                class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-6 py-3 rounded-3xl flex items-center gap-2">
-                            <i class="fa-solid fa-cart-plus"></i> ADD
-                        </button>
-                    </div>
-                </div>
-            `
-            card.onclick = () => showProductDetail(product.id)
-            return card
-        }
-        
-        // Render featured products on home
-        function renderFeatured() {
-            const container = document.getElementById('featured-grid')
-            container.innerHTML = ''
-            
-            // Show 8 random products on homepage
-            const shuffled = [...productsDB].sort(() => 0.5 - Math.random())
-            shuffled.slice(0, 8).forEach(product => {
-                container.appendChild(createProductCard(product, true))
-            })
-        }
-        
-        // Render full shop grid
-        function renderShopGrid(filteredProducts) {
-            const container = document.getElementById('shop-grid')
-            container.innerHTML = ''
-            
-            if (filteredProducts.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-20 text-amber-400">😕 No products found. Try different filters.</div>`
-                return
-            }
-            
-            filteredProducts.forEach(product => {
-                container.appendChild(createProductCard(product))
-            })
-        }
-        
-        // Show single product in modal
-        function showProductDetail(id) {
-            currentProduct = productsDB.find(p => p.id === id)
-            if (!currentProduct) return
-            
-            modalQty = 1
-            
-            document.getElementById('modal-image').innerHTML = `<span class="text-[200px]">${currentProduct.emoji}</span>`
-            document.getElementById('modal-name').textContent = currentProduct.name
-            document.getElementById('modal-category-badge').textContent = currentProduct.category.toUpperCase()
-            document.getElementById('modal-price').innerHTML = `৳<span class="text-5xl">${currentProduct.price}</span>`
-            document.getElementById('modal-description').textContent = currentProduct.description
-            document.getElementById('modal-protein').textContent = currentProduct.protein
-            document.getElementById('modal-fiber').textContent = currentProduct.fiber
-            document.getElementById('modal-energy').textContent = currentProduct.energy
-            updateModalPrice()
-            
-            const modal = document.getElementById('product-modal')
-            modal.classList.remove('hidden')
-            modal.classList.add('flex')
-        }
-        
-        function hideProductModal() {
-            const modal = document.getElementById('product-modal')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
-            currentProduct = null
-        }
-        
-        function changeQty(delta) {
-            modalQty = Math.max(1, modalQty + delta)
-            document.getElementById('modal-qty').textContent = modalQty
-            updateModalPrice()
-        }
-        
-        function updateModalPrice() {
-            if (!currentProduct) return
-            const total = currentProduct.price * modalQty
-            document.getElementById('modal-total-price').innerHTML = `৳${total}`
-        }
-        
-        function addCurrentToCart() {
-            if (!currentProduct) return
-            addToCart(currentProduct.id, modalQty)
-            hideProductModal()
-        }
-        
-        // Quick add from card
-        function quickAddToCart(id) {
-            event.stopImmediatePropagation()
-            addToCart(id, 1)
-        }
-        
-        function addToCart(id, qty = 1) {
-            const product = productsDB.find(p => p.id === id)
-            if (!product) return
-            
-            const existing = cart.find(item => item.id === id)
-            
-            if (existing) {
-                existing.quantity += qty
-            } else {
-                cart.push({
-                    ...product,
-                    quantity: qty
-                })
-            }
-            
-            updateCartCount()
-            
-            // Little pop animation
-            const badge = document.getElementById('cart-count-badge')
-            badge.classList.add('animate-pop')
-            setTimeout(() => badge.classList.remove('animate-pop'), 600)
-            
-            // Toast
-            showToast(`${qty} × ${product.name} added to cart!`)
-        }
-        
-        function updateCartCount() {
-            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
-            document.getElementById('cart-count-badge').textContent = totalItems
-        }
-        
-        function toggleCart() {
-            const drawer = document.getElementById('cart-drawer')
-            
-            if (drawer.classList.contains('hidden')) {
-                renderCart()
-                drawer.classList.remove('hidden')
-                drawer.classList.add('flex')
-            } else {
-                drawer.classList.add('hidden')
-                drawer.classList.remove('flex')
-            }
-        }
-        
-        function renderCart() {
-            const container = document.getElementById('cart-items')
-            container.innerHTML = ''
-            
-            if (cart.length === 0) {
-                container.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-full py-20 text-amber-300">
-                    <div class="text-7xl mb-6">🛍️</div>
-                    <h3 class="text-2xl">Your cart is empty</h3>
-                    <p class="text-center mt-4 max-w-[200px]">When you add products to your cart, they’ll appear here</p>
-                </div>`
-                document.getElementById('cart-subtotal').innerHTML = `৳0`
-                return
-            }
-            
-            let subtotal = 0
-            
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity
-                subtotal += itemTotal
-                
-                const row = document.createElement('div')
-                row.className = 'flex gap-4 border-b pb-6'
-                row.innerHTML = `
-                    <div class="text-5xl flex-shrink-0">${item.emoji}</div>
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h4 class="font-medium">${item.name}</h4>
-                            <span onclick="removeFromCart(${index});" class="text-red-400 cursor-pointer text-xl">×</span>
-                        </div>
-                        <div class="text-sm text-amber-600">৳${item.price} × ${item.quantity}</div>
-                        <div class="flex justify-between mt-3">
-                            <div class="flex border rounded-3xl text-sm">
-                                <button onclick="updateCartItem(${index}, -1)" class="px-3">-</button>
-                                <div class="px-4 font-semibold">${item.quantity}</div>
-                                <button onclick="updateCartItem(${index}, 1)" class="px-3">+</button>
-                            </div>
-                            <div class="font-semibold">৳${itemTotal}</div>
-                        </div>
-                    </div>
-                `
-                container.append(row)
-            })
-            
-            document.getElementById('cart-subtotal').innerHTML = `৳${subtotal}`
-        }
-        
-        function updateCartItem(index, delta) {
-            if (!cart[index]) return
-            cart[index].quantity = Math.max(1, cart[index].quantity + delta)
-            renderCart()
-            updateCartCount()
-        }
-        
-        function removeFromCart(index) {
-            if (confirm('Remove this item?')) {
-                cart.splice(index, 1)
-                renderCart()
-                updateCartCount()
-            }
-        }
-        
-        function checkout() {
-            if (cart.length === 0) return
-            toggleCart()
-            setTimeout(() => {
-                alert('🎉 Thank you! This is a demo – your order has been placed (in imagination). Total: ৳' + cart.reduce((sum, i) => sum + i.price * i.quantity, 0))
-                cart = []
-                updateCartCount()
-            }, 800)
-        }
-        
-        // Simple toast notification
-        function showToast(message) {
-            const toast = document.createElement('div')
-            toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#451a03; color:white; padding:16px 24px; border-radius:9999px; box-shadow: 25px 25px 30px -15px rgb(180 83 9); z-index:99999;'
-            toast.innerHTML = message
-            document.body.appendChild(toast)
-            setTimeout(() => {
-                toast.style.transform = 'translateY(100px)'
-                toast.style.opacity = '0'
-                setTimeout(() => toast.remove(), 400)
-            }, 2600)
-        }
-        
-        // Filter products for shop
-        function filterProducts() {
-            let filtered = [...productsDB]
-            
-            // Search
-            const searchTerm = document.getElementById('shop-search').value.toLowerCase().trim()
-            if (searchTerm) {
-                filtered = filtered.filter(p => 
-                    p.name.toLowerCase().includes(searchTerm) || 
-                    p.description.toLowerCase().includes(searchTerm)
-                )
-            }
-            
-            // Category filters (active pills)
-            const activeFilters = Array.from(document.querySelectorAll('.filter-item.active')).map(el => el.dataset.category)
-            if (activeFilters.length > 0 && !activeFilters.includes('all')) {
-                filtered = filtered.filter(p => activeFilters.includes(p.category))
-            }
-            
-            // Price range
-            const minPrice = parseInt(document.getElementById('price-min').value) || 0
-            const maxPrice = parseInt(document.getElementById('price-max').value) || 99999
-            filtered = filtered.filter(p => p.price >= minPrice && p.price <= maxPrice)
-            
-            // Sort
-            const sortMode = document.getElementById('sort-select').value
-            if (sortMode === 'price-low') {
-                filtered.sort((a, b) => a.price - b.price)
-            } else if (sortMode === 'price-high') {
-                filtered.sort((a, b) => b.price - a.price)
-            } else if (sortMode === 'name') {
-                filtered.sort((a, b) => a.name.localeCompare(b.name))
-            }
-            
-            renderShopGrid(filtered)
-        }
-        
-        function toggleFilter(el) {
-            el.classList.toggle('active')
-            el.style.backgroundColor = el.classList.contains('active') ? '#fefce8' : ''
-            filterProducts()
-        }
-        
-        // Simple category filter on home
-        function filterCategory(cat) {
-            navigateTo('shop')
-            // Reset and apply filter
-            setTimeout(() => {
-                document.querySelectorAll('.filter-item').forEach(item => {
-                    if (item.dataset.category === cat) {
-                        item.classList.add('active')
-                        item.style.backgroundColor = '#fefce8'
-                    }
-                })
-                filterProducts()
-            }, 300)
-        }
-        
-        // Navigation between pages
-        function navigateTo(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'))
-            const target = document.getElementById('page-' + page)
-            if (target) target.classList.remove('hidden')
-            
-            // Highlight nav
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('text-amber-600', 'font-semibold'))
-            const activeNav = document.getElementById('nav-' + page)
-            if (activeNav) activeNav.classList.add('text-amber-600', 'font-semibold')
-            
-            if (page === 'shop') {
-                renderShopGrid(productsDB)
-            } else if (page === 'categories') {
-                renderCategoriesPage()
-            }
-        }
-        
-        function renderCategoriesPage() {
-            const container = document.getElementById('page-categories')
-            const grid = container.querySelector('div')
-            if (!grid) return
-            
-            grid.innerHTML = ''
-            
-            const cats = [
-                {name: 'Nuts', emoji: '🥜', count: 14, color: 'amber'},
-                {name: 'Dried Fruits', emoji: '🥭', count: 9, color: 'orange'},
-                {name: 'Seeds', emoji: '🌻', count: 6, color: 'emerald'},
-                {name: 'Mixes & Snacks', emoji: '🥣', count: 8, color: 'yellow'},
-                {name: 'Spices', emoji: '🌶️', count: 5, color: 'red'}
-            ]
-            
-            cats.forEach(cat => {
-                const div = document.createElement('div')
-                div.className = `rounded-3xl bg-white border border-${cat.color}-200 p-8 flex flex-col items-center hover:scale-105 cursor-pointer`
-                div.innerHTML = `
-                    <div class="text-8xl mb-6">${cat.emoji}</div>
-                    <h3 class="font-semibold text-3xl">${cat.name}</h3>
-                    <div class="text-xs uppercase mt-2 bg-${cat.color}-100 text-${cat.color}-700 px-6 py-1 rounded-3xl">${cat.count} products</div>
-                `
-                div.onclick = () => {
-                    navigateTo('shop')
-                    setTimeout(() => {
-                        document.querySelectorAll('.filter-item').forEach(f => {
-                            if (f.dataset.category === cat.name.toLowerCase().replace('&', '').replace(' ', '')) {
-                                f.classList.add('active')
-                            }
-                        })
-                        filterProducts()
-                    }, 400)
-                }
-                grid.appendChild(div)
-            })
-        }
-        
-        // Create floating falling particles in hero
-        function createHeroParticles() {
-            const container = document.getElementById('particles')
-            const emojis = ['🥜', '🥭', '🌰', '🍇', '🌴', '🎃', '🌻']
-            
-            for (let i = 0; i < 28; i++) {
-                const particle = document.createElement('div')
-                particle.className = 'particle'
-                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)]
-                particle.style.left = Math.random() * 100 + '%'
-                particle.style.animationDuration = (Math.random() * 8 + 9) + 's'
-                particle.style.animationDelay = '-' + Math.random() * 15 + 's'
-                particle.style.fontSize = (Math.random() * 22 + 18) + 'px'
-                particle.style.opacity = Math.random() * 0.6 + 0.3
-                container.appendChild(particle)
-                
-                // Remove after animation ends to prevent memory leak
-                setTimeout(() => {
-                    if (particle.parentNode) particle.parentNode.removeChild(particle)
-                }, 20000)
-            }
-        }
-        
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu')
-            menu.classList.toggle('hidden')
-        }
-        
-        function watchVideo() {
-            alert('🎥 (Demo video would play here)\n\nImagine beautiful timelapse of mangoes being sun-dried in a Bangladeshi village 🌞🥭')
-        }
-        
-        // Initialize everything
-        function initializeApp() {
-            initTailwind()
-            renderFeatured()
-            createHeroParticles()
-            updateCartCount()
-            
-            console.log('%c✅ DryDelights single-file e-commerce ready! (Animated 2D/3D effects + Tailwind + Full JS)', 'background:#d97706;color:white;padding:2px 6px;border-radius:4px')
-            
-            // Keyboard shortcut hint
-            console.log('%cPress "/" to jump to shop', 'font-size:10px;color:#d97706')
-        }
-        
-        // Start the app
-        window.onload = initializeApp
-    </script>
+        <a href="#" class="promo-link">View →</a>
+      </div>
+      <div class="promo-card bulk-p">
+        <span class="promo-emoji">📦</span>
+        <div class="promo-info">
+          <strong>Wholesale Bulk Orders</strong>
+          <span>Tiered pricing from 1kg to 100kg+</span>
+        </div>
+        <a href="#" class="promo-link">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLASH SALE SECTION -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="section-inner">
+    <div class="flash-sale-bar">
+      <span class="flash-icon">⚡</span>
+      <div class="flash-text">
+        <strong>Today's Flash Sale</strong>
+        <span>Handpicked daily deals — ends at midnight</span>
+      </div>
+      <div class="countdown">
+        <div class="count-box"><strong id="h">08</strong><span>Hours</span></div>
+        <span class="count-sep">:</span>
+        <div class="count-box"><strong id="m">34</strong><span>Mins</span></div>
+        <span class="count-sep">:</span>
+        <div class="count-box"><strong id="s">22</strong><span>Secs</span></div>
+      </div>
+      <a href="#" class="btn-gold" style="white-space:nowrap;">All Deals →</a>
+    </div>
+
+    <!-- FLASH PRODUCTS -->
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-sale">-40%</span></div>
+          <div class="product-actions">
+            <button class="act-btn" title="Wishlist">🤍</button>
+            <button class="act-btn" title="Quick View">👁</button>
+            <button class="act-btn" title="Compare">⚖️</button>
+          </div>
+          🌸
+          <div class="stock-bar">
+            <div class="stock-dots">
+              <div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot"></div><div class="stock-dot"></div>
+            </div>
+            Only 3 jars left
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇮🇳 Kashmir, India</div>
+          <div class="product-name">Premium Kashmiri Saffron — Grade AAA</div>
+          <div class="product-weight">
+            <span class="weight-opt active">1g</span>
+            <span class="weight-opt">2g</span>
+            <span class="weight-opt">5g</span>
+            <span class="weight-opt">10g</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳4,800</span>
+            <span class="price-old">৳8,000</span>
+            <span class="price-discount">-40%</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(147)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-new">New</span><span class="tag-bulk">Bulk</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+            <button class="act-btn">⚖️</button>
+          </div>
+          🍄
+          <div class="stock-bar">
+            <div class="stock-dots">
+              <div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot"></div>
+            </div>
+            8 units left
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇫🇷 Périgord, France</div>
+          <div class="product-name">Black Périgord Truffle — Shaved Flakes</div>
+          <div class="product-weight">
+            <span class="weight-opt active">10g</span>
+            <span class="weight-opt">25g</span>
+            <span class="weight-opt">50g</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳12,500</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+            <span class="star-count">(63)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-sale">-25%</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+            <button class="act-btn">⚖️</button>
+          </div>
+          🥜
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇮🇷 Isfahan, Iran</div>
+          <div class="product-name">Persian Pistachios — Roasted & Salted</div>
+          <div class="product-weight">
+            <span class="weight-opt active">250g</span>
+            <span class="weight-opt">500g</span>
+            <span class="weight-opt">1kg</span>
+            <span class="weight-opt">5kg</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳1,200</span>
+            <span class="price-old">৳1,600</span>
+            <span class="price-discount">-25%</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(284)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-new">New</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+            <button class="act-btn">⚖️</button>
+          </div>
+          🌶️
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇪🇸 La Vera, Spain</div>
+          <div class="product-name">Smoked Pimentón de la Vera — Sweet</div>
+          <div class="product-weight">
+            <span class="weight-opt active">75g</span>
+            <span class="weight-opt">150g</span>
+            <span class="weight-opt">500g</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳980</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(112)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 36px;">
+      <a href="#" class="btn-outline">View All Flash Deals</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED BENTO -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <div class="section-label">Curated Collections</div>
+      <h2 class="section-title">Explore Our <em>Heritage Catalogue</em></h2>
+      <p class="section-sub">Centuries-old recipes rediscovered — from Persian bazaars to French markets</p>
+    </div>
+    <div class="bento fade-up">
+      <div class="bento-card span-2" style="background: linear-gradient(135deg, #1A0808, #2A1010);">
+        <div class="bento-bg">🌸</div>
+        <div class="bento-overlay" style="background: radial-gradient(ellipse at center, rgba(26,8,8,0.2), rgba(26,8,8,0.85));"></div>
+        <div class="bento-content">
+          <div class="bento-label">The Crown Jewel</div>
+          <div class="bento-title">Kashmir & Persian<br>Saffron Collection</div>
+          <div class="bento-price" style="font-size:15px;">From ৳4,800 · Grade AAA Certified</div>
+          <a href="#" class="btn-gold" style="margin-top:18px; display:inline-flex;">Shop Saffron →</a>
+        </div>
+      </div>
+      <div class="bento-card" style="background: linear-gradient(135deg, #0A1A10, #162A1A);">
+        <div class="bento-bg">🌿</div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-label">Herbs</div>
+          <div class="bento-title">Mediterranean Dried Herbs</div>
+          <div class="bento-price">From ৳350 / jar</div>
+        </div>
+      </div>
+      <div class="bento-card" style="background: linear-gradient(135deg, #1A1A0A, #2A2810);">
+        <div class="bento-bg">🥜</div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-label">Nuts</div>
+          <div class="bento-title">Estate Pistachios & Almonds</div>
+          <div class="bento-price">From ৳900 / 250g</div>
+        </div>
+      </div>
+      <div class="bento-card span-col-2" style="background: linear-gradient(135deg, #1A0A18, #2A1028);">
+        <div class="bento-bg">🍄</div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-label">Rare & Luxurious</div>
+          <div class="bento-title">Truffle & Wild Mushroom Collection — France & Italy</div>
+          <div class="bento-price">From ৳8,500 · Limited Seasonal Stock</div>
+        </div>
+      </div>
+      <div class="bento-card" style="background: linear-gradient(135deg, #0A1818, #102828);">
+        <div class="bento-bg">🍇</div>
+        <div class="bento-overlay"></div>
+        <div class="bento-content">
+          <div class="bento-label">Dried Fruits</div>
+          <div class="bento-title">Barberries, Apricots & Mulberries</div>
+          <div class="bento-price">From ৳650 / 200g</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BULK DEALS -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <div class="section-label">Wholesale</div>
+      <h2 class="section-title">Bulk & <em>Wholesale Pricing</em></h2>
+      <p class="section-sub">The more you order, the more you save — tiered pricing starting at 500g</p>
+    </div>
+    <div class="bulk-grid fade-up">
+      <div class="bulk-card">
+        <span class="bulk-emoji">🌸</span>
+        <div class="bulk-info">
+          <div class="bulk-name">Premium Saffron Bulk</div>
+          <div class="bulk-tiers">
+            <span class="tier-badge">5g → ৳22,000</span>
+            <span class="tier-badge">10g → ৳40,000</span>
+            <span class="tier-badge">50g → ৳180,000</span>
+          </div>
+          <div class="bulk-note">All grades: Grade-1, AAA, Super Negin available</div>
+        </div>
+        <div class="bulk-action">Order Now →</div>
+      </div>
+      <div class="bulk-card">
+        <span class="bulk-emoji">🥜</span>
+        <div class="bulk-info">
+          <div class="bulk-name">Nuts & Dried Fruits Bulk</div>
+          <div class="bulk-tiers">
+            <span class="tier-badge">1kg → 5% off</span>
+            <span class="tier-badge">5kg → 12% off</span>
+            <span class="tier-badge">25kg → 20% off</span>
+          </div>
+          <div class="bulk-note">Mixed pallet orders accepted · MOQ 1kg per SKU</div>
+        </div>
+        <div class="bulk-action">Get Quote →</div>
+      </div>
+      <div class="bulk-card">
+        <span class="bulk-emoji">🌶️</span>
+        <div class="bulk-info">
+          <div class="bulk-name">Spices & Herbs Wholesale</div>
+          <div class="bulk-tiers">
+            <span class="tier-badge">500g → 8% off</span>
+            <span class="tier-badge">2kg → 15% off</span>
+            <span class="tier-badge">10kg → 25% off</span>
+          </div>
+          <div class="bulk-note">Custom packaging & private labeling available</div>
+        </div>
+        <div class="bulk-action">Enquire →</div>
+      </div>
+      <div class="bulk-card" style="background: linear-gradient(135deg, var(--mahogany-light), #2A1E10); border-color: var(--gold-dark);">
+        <span class="bulk-emoji">📦</span>
+        <div class="bulk-info">
+          <div class="bulk-name">100kg+ Enterprise Orders</div>
+          <div class="bulk-tiers">
+            <span class="tier-badge" style="border-color:var(--gold);">Custom Pricing</span>
+            <span class="tier-badge" style="border-color:var(--gold);">Private Label</span>
+            <span class="tier-badge" style="border-color:var(--gold);">Export Ready</span>
+          </div>
+          <div class="bulk-note">Dedicated account manager · Flexible payment terms</div>
+        </div>
+        <div class="bulk-action">Contact Us →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING PRODUCTS -->
+<section class="section" style="padding-top: 0;">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <div class="section-label">Best Sellers</div>
+      <h2 class="section-title">Trending <em>This Month</em></h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-sale">Hot</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+          </div>
+          🧂
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇵🇰 Khewra, Pakistan</div>
+          <div class="product-name">Himalayan Pink Salt — Fine Ground</div>
+          <div class="product-weight">
+            <span class="weight-opt active">500g</span>
+            <span class="weight-opt">1kg</span>
+            <span class="weight-opt">5kg</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳420</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(389)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+          </div>
+          🍯
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇹🇷 Anatolian Highlands</div>
+          <div class="product-name">Raw Anatolian Thyme Honey</div>
+          <div class="product-weight">
+            <span class="weight-opt active">350g</span>
+            <span class="weight-opt">700g</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳2,200</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(201)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-new">New</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+          </div>
+          🌰
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇮🇹 Tuscany, Italy</div>
+          <div class="product-name">Organic Italian Chestnuts — Dried</div>
+          <div class="product-weight">
+            <span class="weight-opt active">200g</span>
+            <span class="weight-opt">500g</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳1,650</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
+            <span class="star-count">(78)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <div class="product-card-img">
+          <div class="product-tags"><span class="tag-bulk">Bulk</span></div>
+          <div class="product-actions">
+            <button class="act-btn">🤍</button>
+            <button class="act-btn">👁</button>
+          </div>
+          🫘
+        </div>
+        <div class="product-body">
+          <div class="product-origin">🇫🇷 Puy-en-Velay, France</div>
+          <div class="product-name">Lentilles du Puy — AOC Certified Green</div>
+          <div class="product-weight">
+            <span class="weight-opt active">500g</span>
+            <span class="weight-opt">1kg</span>
+            <span class="weight-opt">5kg</span>
+          </div>
+          <div class="product-price">
+            <span class="price-main">৳1,100</span>
+          </div>
+          <div class="product-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star-count">(155)</span>
+          </div>
+          <button class="btn-add-cart">+ Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#" class="btn-gold">View Full Catalogue →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ÉCLAT -->
+<section class="section" style="padding-top: 0; padding-bottom: 40px;">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <div class="section-label">Our Promise</div>
+      <h2 class="section-title">Why Choose <em>Éclat Pantry</em></h2>
+    </div>
+    <div class="why-grid fade-up">
+      <div class="why-card">
+        <div class="why-icon">🔬</div>
+        <div class="why-title">Lab Certified</div>
+        <div class="why-desc">Every batch tested for authenticity, purity & safety. Certificates available on request.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <div class="why-title">Origin Sourced</div>
+        <div class="why-desc">Direct from estates & co-ops across 32 countries. No middlemen, maximum freshness.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚚</div>
+        <div class="why-title">Fast Delivery</div>
+        <div class="why-desc">Same-day delivery in Dhaka. Nationwide coverage within 48–72 hours. Cash on delivery available.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <div class="why-title">Heritage Packaging</div>
+        <div class="why-desc">Apothecary-grade glass jars, sealed for maximum shelf life. Gift-ready presentation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="padding-top: 40px;">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <div class="section-label">Customer Stories</div>
+      <h2 class="section-title">Words of <em>Connoisseurs</em></h2>
+    </div>
+    <div class="testimonial-grid fade-up">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The Kashmir saffron from Éclat Pantry is unlike anything I've tasted before. The aroma, the colour — it's genuinely world-class. Our restaurant now exclusively uses it.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👨‍🍳</div>
+          <div>
+            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <div class="testi-name">Chef Arif Hossain</div>
+            <div class="testi-role">Executive Chef, Le Meridien Dhaka</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I've been ordering in bulk for my cafe for two years. The tiered pricing is fair, delivery is always on time, and the quality is extraordinarily consistent.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👩‍💼</div>
+          <div>
+            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <div class="testi-name">Sabrina Chowdhury</div>
+            <div class="testi-role">Owner, Maison Brûlée Café</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The French truffles arrived beautifully packed and smelled divine. Gifting them feels like giving someone a piece of Europe. Absolutely worth every taka.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">👨‍💻</div>
+          <div>
+            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <div class="testi-name">Rahim Uddin</div>
+            <div class="testi-role">Food Enthusiast, Chittagong</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="frame-deco">✦ ✦ ✦</div>
+    <h2 class="newsletter-title">Join the Inner Circle</h2>
+    <p class="newsletter-sub">Receive exclusive offers, seasonal arrivals & heritage recipes before everyone else.</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input class="newsletter-input" type="email" placeholder="Your email address…">
+      <button class="newsletter-btn">Subscribe</button>
+    </form>
+    <p style="font-size:11px; color:var(--text-muted); margin-top:14px;">No spam. Unsubscribe anytime. Your privacy is sacred to us.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="#">
+        <div class="logo-icon">🫙</div>
+        <div class="logo-text">
+          <span class="logo-name">Éclat Pantry</span>
+          <span class="logo-tagline">Heritage in Every Jar</span>
+        </div>
+      </a>
+      <p class="footer-desc" style="margin-top:14px;">
+        Bangladesh's premier destination for artisanal dry foods. We source from the world's finest estates so your pantry holds only the exceptional.
+      </p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📷</a>
+        <a href="#" class="social-btn">💬</a>
+        <a href="#" class="social-btn">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul class="footer-links">
+        <li><a href="#">→ Saffron Collection</a></li>
+        <li><a href="#">→ Spices & Herbs</a></li>
+        <li><a href="#">→ Nuts & Dried Fruits</a></li>
+        <li><a href="#">→ Truffles & Mushrooms</a></li>
+        <li><a href="#">→ Gourmet Lentils</a></li>
+        <li><a href="#">→ Bulk / Wholesale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul class="footer-links">
+        <li><a href="#">→ My Account</a></li>
+        <li><a href="#">→ Order History</a></li>
+        <li><a href="#">→ Track My Order</a></li>
+        <li><a href="#">→ Wishlist</a></li>
+        <li><a href="#">→ Returns & Refunds</a></li>
+        <li><a href="#">→ Coupons & Offers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="footer-contact-item">
+        <span class="icon">📍</span>
+        <span>House 42, Road 11, Banani, Dhaka-1213, Bangladesh</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">📞</span>
+        <span>+880-1800-ECLAT<br>+880-1700-PANTRY</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="icon">✉️</span>
+        <span>hello@eclatpantry.com.bd</span>
+      </div>
+      <div style="margin-top:6px; font-size:11px; color:var(--text-muted); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:8px;">Accepted Payments</div>
+      <div class="footer-payments">
+        <span class="pay-badge">bKash</span>
+        <span class="pay-badge">Nagad</span>
+        <span class="pay-badge">COD</span>
+        <span class="pay-badge">Stripe</span>
+        <span class="pay-badge">USD</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom" style="max-width:1380px;">
+    <span>© 2026 Éclat Pantry. All rights reserved. | Crafted with love in Bangladesh 🇧🇩</span>
+    <span>Privacy Policy · Terms · Sitemap</span>
+  </div>
+</footer>
+
+<!-- CHAT FLOAT -->
+<div class="chat-float">
+  <div class="chat-options">
+    <a href="#" class="chat-option wa">💬 WhatsApp</a>
+    <a href="#" class="chat-option fb">💬 Messenger</a>
+    <a href="#" class="chat-option ig">💬 Instagram</a>
+  </div>
+  <button class="chat-main-btn" title="Chat with us">💬</button>
+</div>
+
+<script>
+// COUNTDOWN
+function updateCountdown(){
+  let now = new Date();
+  let midnight = new Date(); midnight.setHours(24,0,0,0);
+  let diff = midnight - now;
+  let h = Math.floor(diff/3600000);
+  let m = Math.floor((diff%3600000)/60000);
+  let s = Math.floor((diff%60000)/1000);
+  document.getElementById('h').textContent = String(h).padStart(2,'0');
+  document.getElementById('m').textContent = String(m).padStart(2,'0');
+  document.getElementById('s').textContent = String(s).padStart(2,'0');
+}
+updateCountdown(); setInterval(updateCountdown,1000);
+
+// FADE IN ON SCROLL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
+},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// WEIGHT OPTION TOGGLE
+document.querySelectorAll('.product-weight').forEach(w=>{
+  w.querySelectorAll('.weight-opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      w.querySelectorAll('.weight-opt').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+});
+
+// ADD TO CART ANIMATION
+document.querySelectorAll('.btn-add-cart').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const orig = this.textContent;
+    this.textContent = '✓ Added!';
+    this.style.background = 'var(--gold)';
+    this.style.color = 'var(--mahogany)';
+    setTimeout(()=>{
+      this.textContent = orig;
+      this.style.background = '';
+      this.style.color = '';
+    }, 1500);
+  });
+});
+
+// HERO DOTS
+const dots = document.querySelectorAll('.hero-dot');
+let currentDot = 0;
+setInterval(()=>{
+  dots[currentDot].classList.remove('active');
+  currentDot = (currentDot+1)%dots.length;
+  dots[currentDot].classList.add('active');
+}, 3500);
+dots.forEach((d,i)=>d.addEventListener('click',()=>{
+  dots[currentDot].classList.remove('active');
+  currentDot=i; d.classList.add('active');
+}));
+
+// SMOOTH NAV ACTIVE
+document.querySelectorAll('.nav-link').forEach(link=>{
+  link.addEventListener('click',function(e){
+    document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
 </body>
 </html>
