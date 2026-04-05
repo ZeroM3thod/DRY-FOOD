@@ -2,1644 +2,1521 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Éclat Pantry – Heritage in Every Jar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>SeasonRise 📈 — Support</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --mahogany: #2A1A1A;
-    --mahogany-light: #3C2A2A;
-    --mahogany-mid: #4A3030;
-    --ivory: #F5F0E8;
-    --ivory-warm: #EDE6D6;
-    --ivory-deep: #D9CDB8;
-    --gold: #C9A84C;
-    --gold-light: #E8C96A;
-    --gold-pale: #F0DFA0;
-    --gold-dark: #A07830;
-    --cream: #FAF6EE;
-    --text-dark: #1A0F0F;
-    --text-mid: #4A3525;
-    --text-muted: #8A7060;
-    --red-accent: #8B2020;
-    --green-accent: #2A5C3F;
-    --border: rgba(201,168,76,0.25);
-    --border-strong: rgba(201,168,76,0.5);
-    --glass: rgba(42,26,26,0.7);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--mahogany);
-    color: var(--ivory);
-    overflow-x: hidden;
-    cursor: default;
-  }
+/* ═══════════════════════════════════
+   ROOT — Quiet Luxury Palette
+═══════════════════════════════════ */
+:root {
+  --ink:       #1c1c1c;
+  --cream:     #f6f1e9;
+  --parchment: #ede7da;
+  --gold:      #b8935a;
+  --gold-l:    #d4aa72;
+  --gold-d:    #9a7a47;
+  --sage:      #4a6741;
+  --sage-l:    #6a8c60;
+  --charcoal:  #2e2e2e;
+  --surface:   #faf7f2;
+  --border:    rgba(184,147,90,0.18);
+  --border-h:  rgba(184,147,90,0.35);
+  --text-sec:  #6b6459;
+  --error:     #9b3a3a;
+  --radius:    6px;
+  --sb-w:      240px;
+}
 
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--mahogany); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+*,*::before,*::after { box-sizing:border-box;margin:0;padding:0 }
+html { scroll-behavior:smooth;height:100% }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-  /* ORNAMENTAL DIVIDER */
-  .ornament {
-    display: flex; align-items: center; gap: 16px;
-    justify-content: center; margin: 0 auto;
-  }
-  .ornament::before, .ornament::after {
-    content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  }
-  .ornament-icon { color: var(--gold); font-size: 18px; letter-spacing: 8px; }
+/* Scrollbar */
+::-webkit-scrollbar { width:4px;height:4px }
+::-webkit-scrollbar-track { background:var(--parchment) }
+::-webkit-scrollbar-thumb { background:var(--gold);border-radius:10px }
 
-  /* ===================== ANNOUNCEMENT BAR ===================== */
-  .announcement {
-    background: var(--gold);
-    color: var(--mahogany);
-    text-align: center;
-    padding: 9px 20px;
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    position: relative;
-  }
-  .announcement span { margin: 0 18px; }
-  .announcement::before, .announcement::after {
-    content: '✦'; font-size: 10px; margin: 0 8px;
-  }
+/* Grain */
+body::before {
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
+  opacity:.35;
+}
 
-  /* ===================== NAVBAR ===================== */
-  nav {
-    background: var(--mahogany);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 1000;
-    backdrop-filter: blur(20px);
-  }
-  .nav-top {
-    display: flex; align-items: center;
-    max-width: 1380px; margin: 0 auto;
-    padding: 14px 32px; gap: 28px;
-  }
-  .logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none; flex-shrink: 0;
-  }
-  .logo-icon {
-    width: 42px; height: 42px;
-    border: 1.5px solid var(--gold);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    background: radial-gradient(circle at 30% 30%, rgba(201,168,76,0.2), transparent);
-  }
-  .logo-text { display: flex; flex-direction: column; line-height: 1; }
-  .logo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.5px;
-  }
-  .logo-tagline {
-    font-size: 9px; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--text-muted);
-  }
+/* ═══════════════════════════════════
+   LAYOUT
+═══════════════════════════════════ */
+.layout { display:flex;min-height:100vh;position:relative;z-index:2 }
 
-  .nav-search {
-    flex: 1; max-width: 500px;
-    display: flex; align-items: center;
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    border-radius: 4px; overflow: hidden;
-    transition: border-color 0.3s;
-  }
-  .nav-search:focus-within { border-color: var(--gold); }
-  .nav-search input {
-    flex: 1; padding: 11px 16px;
-    background: none; border: none; outline: none;
-    color: var(--ivory); font-size: 13.5px;
-    font-family: 'Inter', sans-serif;
-  }
-  .nav-search input::placeholder { color: var(--text-muted); }
-  .nav-search button {
-    padding: 11px 20px;
-    background: var(--gold);
-    border: none; cursor: pointer;
-    color: var(--mahogany);
-    font-weight: 700; font-size: 12px;
-    letter-spacing: 1px; text-transform: uppercase;
-    transition: background 0.3s;
-  }
-  .nav-search button:hover { background: var(--gold-light); }
+/* ═══════════════════════════════════
+   SIDEBAR — VaultX Dashboard Style
+═══════════════════════════════════ */
+.sidebar {
+  width:220px;
+  background:var(--cream);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  padding:28px 0 24px;
+  position:fixed;top:0;left:0;bottom:0;
+  z-index:400;
+  transition:transform .3s ease;
+}
+@media(max-width:1023px) {
+  .sidebar { transform:translateX(-100%) }
+  .sidebar.open { transform:translateX(0) }
+}
 
-  .nav-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 7px;
-    padding: 9px 14px;
-    background: none; border: 1px solid transparent;
-    border-radius: 4px; cursor: pointer;
-    color: var(--ivory); font-size: 13px;
-    text-decoration: none; transition: all 0.2s;
-    position: relative;
-  }
-  .nav-btn:hover { border-color: var(--border); background: var(--mahogany-light); }
-  .nav-btn .icon { font-size: 18px; }
-  .badge {
-    position: absolute; top: 4px; right: 4px;
-    width: 17px; height: 17px; border-radius: 50%;
-    background: var(--red-accent); color: #fff;
-    font-size: 9px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .nav-btn-primary {
-    background: var(--gold);
-    color: var(--mahogany);
-    font-weight: 600; padding: 9px 18px;
-    border-color: var(--gold);
-  }
-  .nav-btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--mahogany); }
+.sb-top {
+  padding:0 22px 28px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sb-logo-mark {
+  width:30px;height:30px;background:var(--ink);
+  border-radius:var(--radius);
+  display:inline-flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;flex-shrink:0;vertical-align:middle;
+}
+.sb-logo-mark::after {
+  content:'';position:absolute;bottom:6px;left:50%;
+  transform:translateX(-50%);width:12px;height:1.5px;
+  background:var(--gold);border-radius:2px;
+  box-shadow:0 -4px 0 var(--gold-l),0 -9px 0 var(--cream);
+}
+.sb-logo-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;
+  color:var(--ink);letter-spacing:.05em;
+  vertical-align:middle;margin-left:9px;
+}
+.sb-logo-text span { color:var(--gold) }
 
-  .nav-bottom {
-    border-top: 1px solid var(--border);
-    max-width: 1380px; margin: 0 auto;
-    padding: 0 32px;
-    display: flex; align-items: center; gap: 0;
-  }
-  .nav-link {
-    padding: 11px 16px;
-    color: var(--ivory-deep); text-decoration: none;
-    font-size: 12.5px; font-weight: 500;
-    letter-spacing: 0.5px; text-transform: uppercase;
-    border-bottom: 2px solid transparent;
-    transition: all 0.25s; white-space: nowrap;
-  }
-  .nav-link:hover, .nav-link.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .nav-link.categories {
-    background: var(--gold);
-    color: var(--mahogany);
-    font-weight: 700; padding: 11px 20px;
-    border-bottom: none;
-    margin-right: 8px;
-  }
-  .nav-link.categories:hover { background: var(--gold-light); color: var(--mahogany); }
-  .nav-badge {
-    display: inline-block;
-    background: var(--red-accent); color: #fff;
-    font-size: 9px; font-weight: 700;
-    padding: 2px 6px; border-radius: 2px;
-    margin-left: 5px; text-transform: uppercase; letter-spacing: 0.5px;
-  }
+.sb-nav {
+  flex:1;padding:20px 0;
+  display:flex;flex-direction:column;gap:2px;
+}
+.sb-section-label { display:none }
+.sb-item {
+  display:flex;align-items:center;gap:11px;
+  padding:11px 22px;
+  text-decoration:none;color:var(--text-sec);
+  font-size:.79rem;font-weight:400;letter-spacing:.04em;
+  transition:all .2s;cursor:pointer;
+  border:none;background:none;
+  font-family:'DM Sans',sans-serif;
+  position:relative;
+}
+.sb-item::before {
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:2px;height:0;background:var(--gold);
+  border-radius:0 2px 2px 0;transition:height .25s;
+}
+.sb-item svg {
+  width:16px;height:16px;flex-shrink:0;
+  opacity:.7;stroke:currentColor;fill:none;stroke-width:1.6;
+  transition:opacity .2s;
+}
+.sb-item:hover { color:var(--ink);background:rgba(184,147,90,0.06) }
+.sb-item:hover svg { opacity:1 }
+.sb-item.active { color:var(--ink);background:rgba(184,147,90,0.08) }
+.sb-item.active::before { height:20px }
+.sb-item.active svg { opacity:1 }
+.sb-badge {
+  margin-left:auto;background:var(--gold);color:var(--cream);
+  font-size:.58rem;font-weight:600;padding:2px 7px;
+  border-radius:100px;min-width:20px;text-align:center;
+}
+.sb-item.active .sb-badge { background:var(--gold-l);color:var(--ink) }
 
-  /* ===================== HERO ===================== */
-  .hero {
-    position: relative;
-    min-height: 580px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(139,32,32,0.12) 0%, transparent 50%),
-      linear-gradient(135deg, var(--mahogany) 0%, #1A0808 50%, #220E0E 100%);
-    z-index: 0;
-  }
-  .hero-pattern {
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(201,168,76,0.04) 79px, rgba(201,168,76,0.04) 80px),
-      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(201,168,76,0.04) 79px, rgba(201,168,76,0.04) 80px);
-    z-index: 0;
-  }
-  .hero-left {
-    position: relative; z-index: 2;
-    padding: 60px 40px 60px 64px;
-    display: flex; flex-direction: column;
-    justify-content: center; gap: 20px;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--border-strong);
-    padding: 7px 16px; border-radius: 2px;
-    font-size: 11px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--gold);
-    width: fit-content; background: rgba(201,168,76,0.07);
-  }
-  .hero-badge::before { content: '◆'; font-size: 8px; }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 5vw, 70px);
-    line-height: 1.05;
-    color: var(--ivory);
-    font-weight: 800;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold-light);
-    display: block;
-  }
-  .hero-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; color: var(--ivory-deep);
-    max-width: 420px; line-height: 1.7;
-  }
-  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .btn-gold {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px;
-    background: var(--gold);
-    color: var(--mahogany);
-    font-weight: 700; font-size: 13px;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all 0.3s;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 28px;
-    border: 1px solid var(--border-strong);
-    color: var(--ivory); font-size: 13px;
-    font-weight: 500; letter-spacing: 1px;
-    text-transform: uppercase; text-decoration: none;
-    transition: all 0.3s; background: transparent;
-    cursor: pointer;
-  }
-  .btn-outline:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); color: var(--gold); }
-  .hero-stats {
-    display: flex; gap: 28px; padding-top: 8px;
-    border-top: 1px solid var(--border);
-  }
-  .hero-stat { display: flex; flex-direction: column; }
-  .hero-stat strong {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; color: var(--gold);
-  }
-  .hero-stat span { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+.sb-bottom { padding:20px 22px 0;border-top:1px solid var(--border);flex-shrink:0 }
+.sb-user {
+  display:flex;align-items:center;gap:10px;
+}
+.sb-avatar {
+  width:34px;height:34px;border-radius:50%;
+  background:var(--parchment);border:1.5px solid rgba(184,147,90,0.28);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.95rem;font-weight:600;color:var(--gold);flex-shrink:0;
+}
+.sb-uname { font-size:.8rem;font-weight:500;color:var(--ink);line-height:1.2 }
+.sb-role  { font-size:.68rem;color:var(--text-sec);letter-spacing:.04em }
 
-  .hero-right {
-    position: relative; z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-    padding: 40px;
-  }
-  .hero-product-showcase {
-    position: relative; width: 380px; height: 480px;
-  }
-  .hero-jar-main {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -55%);
-    font-size: 160px;
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
-    animation: float 4s ease-in-out infinite;
-    z-index: 3;
-  }
-  @keyframes float {
-    0%, 100% { transform: translate(-50%, -55%) translateY(0); }
-    50% { transform: translate(-50%, -55%) translateY(-15px); }
-  }
-  .hero-glow {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 240px; height: 240px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)} }
-  .hero-tag {
-    position: absolute;
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    padding: 10px 14px; border-radius: 6px;
-    backdrop-filter: blur(10px);
-    font-size: 12px;
-    animation: float2 5s ease-in-out infinite;
-  }
-  @keyframes float2 {0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  .hero-tag-1 { top: 70px; left: -10px; animation-delay: 0s; }
-  .hero-tag-2 { bottom: 130px; right: -10px; animation-delay: 1.5s; }
-  .hero-tag-3 { bottom: 60px; left: 30px; animation-delay: 0.8s; }
-  .hero-tag strong { display: block; color: var(--gold); font-size: 13px; }
-  .hero-tag span { color: var(--text-muted); font-size: 10.5px; }
+/* ═══════════════════════════════════
+   MAIN AREA
+═══════════════════════════════════ */
+.main-area { flex:1;margin-left:0;min-height:100vh;display:flex;flex-direction:column }
+@media(min-width:1024px) { .main-area { margin-left:220px } }
 
-  /* Slides */
-  .hero-slide { display: none; }
-  .hero-slide.active { display: contents; }
-  .hero-dots { display: flex; gap: 8px; }
-  .hero-dot {
-    width: 24px; height: 3px; border-radius: 2px;
-    background: rgba(201,168,76,0.3); cursor: pointer;
-    transition: all 0.3s; border: none;
-  }
-  .hero-dot.active { background: var(--gold); width: 36px; }
+/* ═══════════════════════════════════
+   TOP HEADER
+═══════════════════════════════════ */
+.top-header {
+  position:sticky;top:0;z-index:300;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;height:62px;
+  display:flex;align-items:center;gap:14px;flex-shrink:0;
+}
+.ham-btn {
+  display:flex;flex-direction:column;gap:4px;
+  cursor:pointer;padding:4px;flex-shrink:0;
+}
+.ham-btn span { display:block;width:19px;height:1.5px;background:var(--ink);transition:all .3s }
+@media(min-width:1024px) { .ham-btn { display:none } }
 
-  /* ===================== CATEGORY STRIP ===================== */
-  .cat-strip {
-    background: var(--mahogany-light);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 0;
-  }
-  .cat-strip-inner {
-    max-width: 1380px; margin: 0 auto;
-    padding: 0 32px;
-    display: flex; overflow-x: auto; gap: 0;
-    scrollbar-width: none;
-  }
-  .cat-strip-inner::-webkit-scrollbar { display: none; }
-  .cat-item {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 8px; padding: 16px 24px;
-    text-decoration: none; color: var(--ivory-deep);
-    border-right: 1px solid var(--border);
-    transition: all 0.25s; white-space: nowrap;
-    border-bottom: 2px solid transparent; min-width: 100px;
-  }
-  .cat-item:hover { color: var(--gold); background: rgba(201,168,76,0.07); border-bottom-color: var(--gold); }
-  .cat-item:first-child { border-left: none; }
-  .cat-item-icon { font-size: 28px; line-height: 1; }
-  .cat-item-name { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+.back-pill {
+  display:flex;align-items:center;gap:6px;
+  background:rgba(184,147,90,.08);border:1px solid var(--border);
+  border-radius:100px;padding:5px 13px 5px 10px;
+  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--charcoal);cursor:pointer;text-decoration:none;
+  transition:all .22s;white-space:nowrap;flex-shrink:0;
+}
+.back-pill svg { width:13px;height:13px;stroke:var(--gold);stroke-width:2;fill:none }
+.back-pill:hover { border-color:var(--gold);color:var(--gold) }
 
-  /* ===================== SECTION HEADERS ===================== */
-  .section { padding: 70px 0; }
-  .section-inner { max-width: 1380px; margin: 0 auto; padding: 0 32px; }
-  .section-head {
-    text-align: center; margin-bottom: 50px;
-  }
-  .section-label {
-    display: inline-block;
-    font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 12px;
-    padding: 0 20px; position: relative;
-  }
-  .section-label::before, .section-label::after {
-    content: ''; position: absolute; top: 50%;
-    width: 40px; height: 1px; background: var(--gold-dark);
-  }
-  .section-label::before { right: 100%; margin-right: -20px; }
-  .section-label::after { left: 100%; margin-left: -20px; }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    color: var(--ivory); font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .section-title em { font-style: italic; color: var(--gold-light); }
-  .section-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; color: var(--text-muted);
-    max-width: 550px; margin: 0 auto;
-  }
+.header-page-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:500;color:var(--ink);
+  letter-spacing:.03em;white-space:nowrap;display:none;
+}
+@media(min-width:640px) { .header-page-title { display:block } }
 
-  /* ===================== FLASH SALE ===================== */
-  .flash-sale-bar {
-    background: linear-gradient(135deg, #1A0808, var(--mahogany-light));
-    border: 1px solid var(--border);
-    border-radius: 6px; padding: 20px 28px;
-    display: flex; align-items: center; gap: 24px;
-    flex-wrap: wrap; margin-bottom: 40px;
-  }
-  .flash-icon { font-size: 28px; animation: blink 1.5s infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
-  .flash-text { flex: 1; }
-  .flash-text strong {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; color: var(--gold);
-    display: block; margin-bottom: 2px;
-  }
-  .flash-text span { font-size: 13px; color: var(--text-muted); }
-  .countdown { display: flex; gap: 8px; align-items: center; }
-  .count-box {
-    text-align: center;
-    background: var(--mahogany);
-    border: 1px solid var(--border-strong);
-    padding: 10px 14px; border-radius: 4px; min-width: 52px;
-  }
-  .count-box strong {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 24px; color: var(--gold); line-height: 1;
-  }
-  .count-box span { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
-  .count-sep { font-size: 22px; color: var(--gold); font-weight: bold; margin-top: -8px; }
+.header-right { display:flex;align-items:center;gap:8px;margin-left:auto }
+.header-avatar {
+  width:32px;height:32px;border-radius:50%;
+  background:var(--parchment);box-shadow:0 0 0 2px var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:.8rem;font-weight:600;color:var(--gold);
+}
+.header-uinfo { display:none }
+@media(min-width:480px) {
+  .header-uinfo { display:block }
+  .header-uname { font-size:.78rem;font-weight:500;color:var(--ink);line-height:1.2 }
+  .header-role  { font-size:.62rem;color:var(--text-sec) }
+}
+.btn-logout {
+  padding:7px 15px;background:transparent;
+  border:1px solid var(--border);color:var(--text-sec);
+  font-family:'DM Sans',sans-serif;font-size:.7rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;border-radius:var(--radius);transition:all .22s;
+}
+.btn-logout:hover { border-color:var(--error);color:var(--error) }
+.notif-btn {
+  position:relative;width:34px;height:34px;
+  background:rgba(184,147,90,.07);border:1px solid var(--border);
+  border-radius:var(--radius);display:flex;align-items:center;
+  justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;
+}
+.notif-btn:hover { border-color:var(--gold) }
+.notif-btn svg { width:15px;height:15px;stroke:var(--charcoal);fill:none;stroke-width:1.8 }
+.notif-dot {
+  position:absolute;top:-2px;right:-2px;width:8px;height:8px;
+  border-radius:50%;background:var(--gold);border:1.5px solid var(--cream);
+}
 
-  /* ===================== PRODUCT GRID ===================== */
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-  }
-  .product-card {
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    border-radius: 6px; overflow: hidden;
-    transition: all 0.35s; position: relative;
-    cursor: pointer;
-  }
-  .product-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--gold);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,168,76,0.1);
-  }
-  .product-card-img {
-    position: relative; height: 200px;
-    background: linear-gradient(135deg, #1A0808, #2A1818);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 80px; overflow: hidden;
-  }
-  .product-card-img::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 70%, rgba(201,168,76,0.1), transparent 70%);
-  }
-  .product-tags {
-    position: absolute; top: 10px; left: 10px;
-    display: flex; flex-direction: column; gap: 5px; z-index: 2;
-  }
-  .tag-new { background: var(--green-accent); color: #fff; font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
-  .tag-sale { background: var(--red-accent); color: #fff; font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
-  .tag-bulk { background: var(--gold-dark); color: var(--ivory); font-size: 9.5px; font-weight: 700; padding: 3px 8px; letter-spacing: 1px; text-transform: uppercase; }
-  .product-actions {
-    position: absolute; top: 10px; right: 10px;
-    display: flex; flex-direction: column; gap: 6px;
-    opacity: 0; transform: translateX(10px);
-    transition: all 0.3s;
-  }
-  .product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
-  .act-btn {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--mahogany);
-    border: 1px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; cursor: pointer;
-    transition: all 0.2s;
-  }
-  .act-btn:hover { background: var(--gold); border-color: var(--gold); }
-  .stock-bar {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 6px 12px; background: rgba(26,8,8,0.9);
-    font-size: 10.5px; color: var(--gold);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .stock-dots { display: flex; gap: 3px; }
-  .stock-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-muted); }
-  .stock-dot.filled { background: var(--gold); }
-  .product-body { padding: 16px; }
-  .product-origin {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 10.5px; color: var(--text-muted);
-    letter-spacing: 0.5px; margin-bottom: 6px;
-  }
-  .product-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px; color: var(--ivory);
-    line-height: 1.3; margin-bottom: 8px;
-  }
-  .product-weight {
-    display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;
-  }
-  .weight-opt {
-    font-size: 10px; padding: 2px 8px;
-    border: 1px solid var(--border);
-    border-radius: 2px; color: var(--text-muted); cursor: pointer;
-    transition: all 0.2s;
-  }
-  .weight-opt:hover, .weight-opt.active { border-color: var(--gold); color: var(--gold); }
-  .product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .price-main {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--gold); font-weight: 700;
-  }
-  .price-old {
-    font-size: 13px; color: var(--text-muted);
-    text-decoration: line-through;
-  }
-  .price-discount { font-size: 11px; color: var(--red-accent); font-weight: 600; }
-  .product-stars { display: flex; gap: 2px; align-items: center; margin-bottom: 12px; }
-  .star { color: var(--gold); font-size: 12px; }
-  .star.empty { color: var(--border); }
-  .star-count { font-size: 11.5px; color: var(--text-muted); margin-left: 4px; }
-  .btn-add-cart {
-    width: 100%; padding: 10px;
-    background: transparent;
-    border: 1px solid var(--border-strong);
-    color: var(--gold); font-size: 12px;
-    font-weight: 600; letter-spacing: 1.5px;
-    text-transform: uppercase; cursor: pointer;
-    transition: all 0.3s;
-  }
-  .btn-add-cart:hover { background: var(--gold); color: var(--mahogany); border-color: var(--gold); }
+/* ═══════════════════════════════════
+   CONTENT
+═══════════════════════════════════ */
+.content { flex:1;padding:28px 24px 60px;max-width:1400px;width:100% }
 
-  /* ===================== BENTO GRID ===================== */
-  .bento {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
-    gap: 16px; margin-top: 0;
-  }
-  .bento-card {
-    border-radius: 8px; overflow: hidden; position: relative;
-    display: flex; align-items: flex-end;
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    transition: all 0.35s; cursor: pointer;
-  }
-  .bento-card:hover { border-color: var(--gold-dark); transform: scale(1.01); }
-  .bento-card.span-2 { grid-row: span 2; align-items: center; justify-content: center; flex-direction: column; }
-  .bento-card.span-col-2 { grid-column: span 2; }
-  .bento-bg {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 120px; opacity: 0.25;
-    transition: all 0.35s;
-  }
-  .bento-card:hover .bento-bg { opacity: 0.4; font-size: 140px; }
-  .bento-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,8,8,0.9) 0%, transparent 60%);
-  }
-  .bento-content {
-    position: relative; z-index: 2;
-    padding: 20px;
-  }
-  .bento-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
-  .bento-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(16px, 2vw, 22px);
-    color: var(--ivory); margin-bottom: 6px;
-  }
-  .bento-price { font-size: 13px; color: var(--gold-light); }
-  .bento-card.span-2 .bento-content { text-align: center; }
-  .bento-card.span-2 .bento-bg { font-size: 180px; opacity: 0.2; }
-  .bento-card.span-2 .bento-title { font-size: clamp(22px, 2.5vw, 32px); }
-  .bento-card.span-2 .bento-overlay { background: radial-gradient(ellipse at center, rgba(26,8,8,0.3), rgba(26,8,8,0.8)); }
+.sec-label {
+  font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:6px;
+}
+.sec-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.4rem,3vw,2rem);font-weight:400;line-height:1.15;color:var(--ink);
+}
+.sec-sub { font-size:.8rem;color:var(--text-sec);font-weight:300;margin-top:4px }
 
-  /* ===================== BULK DEALS ===================== */
-  .bulk-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .bulk-card {
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px 32px;
-    display: flex; gap: 24px; align-items: center;
-    transition: all 0.3s; cursor: pointer;
-  }
-  .bulk-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-  .bulk-emoji { font-size: 56px; flex-shrink: 0; }
-  .bulk-info { flex: 1; }
-  .bulk-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--ivory); margin-bottom: 6px;
-  }
-  .bulk-tiers { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
-  .tier-badge {
-    background: rgba(201,168,76,0.12);
-    border: 1px solid var(--border-strong);
-    padding: 4px 10px; border-radius: 2px;
-    font-size: 11px; color: var(--gold); font-weight: 600;
-  }
-  .bulk-note { font-size: 12px; color: var(--text-muted); }
-  .bulk-action {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 12px; color: var(--gold); font-weight: 600;
-    letter-spacing: 0.5px;
-  }
+.divider { height:1px;background:var(--border);margin:32px 0 }
 
-  /* ===================== TESTIMONIALS ===================== */
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .testi-card {
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    border-radius: 6px; padding: 28px;
-    transition: all 0.3s;
-  }
-  .testi-card:hover { border-color: var(--gold-dark); }
-  .testi-quote { font-size: 36px; color: var(--gold-dark); line-height: 1; margin-bottom: 10px; font-family: serif; }
-  .testi-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px; color: var(--ivory-deep);
-    line-height: 1.7; margin-bottom: 18px;
-    font-style: italic;
-  }
-  .testi-author { display: flex; align-items: center; gap: 12px; }
-  .testi-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--mahogany);
-    border: 1.5px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
-  }
-  .testi-name { font-size: 13px; font-weight: 600; color: var(--ivory); }
-  .testi-role { font-size: 11px; color: var(--text-muted); }
-  .testi-stars { display: flex; gap: 2px; margin-bottom: 3px; }
+/* ═══════════════════════════════════
+   SURFACE CARDS
+═══════════════════════════════════ */
+.card {
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;position:relative;
+}
+.card-body { padding:24px }
+.card-head {
+  padding:18px 22px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;
+}
+.card-icon {
+  width:34px;height:34px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.card-icon svg { width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8 }
+.card-htitle {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:400;color:var(--ink);
+}
+.card-hsub { font-size:.68rem;color:var(--text-sec);margin-top:1px }
 
-  /* ===================== WHY US ===================== */
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  .why-card {
-    text-align: center; padding: 30px 20px;
-    border: 1px solid var(--border);
-    border-radius: 6px; background: var(--mahogany-light);
-    transition: all 0.3s;
-  }
-  .why-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-  .why-icon { font-size: 36px; margin-bottom: 14px; }
-  .why-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ivory); margin-bottom: 8px; }
-  .why-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+/* ═══════════════════════════════════
+   SEARCH BAR (top of support)
+═══════════════════════════════════ */
+.support-search-wrap {
+  position:relative;max-width:540px;width:100%;
+}
+.support-search {
+  width:100%;padding:13px 18px 13px 42px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--ink);
+  outline:none;transition:border-color .2s;
+}
+.support-search:focus { border-color:var(--gold) }
+.support-search::placeholder { color:#c0b8ae }
+.support-search-icon {
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;
+}
+.support-search-icon svg { width:16px;height:16px;stroke:var(--text-sec);fill:none;stroke-width:1.8 }
+.search-clear {
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  cursor:pointer;padding:2px;display:none;
+}
+.search-clear svg { width:14px;height:14px;stroke:var(--text-sec);fill:none;stroke-width:2 }
 
-  /* ===================== NEWSLETTER ===================== */
-  .newsletter-section {
-    padding: 60px 0;
-    background: linear-gradient(135deg, #1A0808, var(--mahogany-light));
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .newsletter-inner {
-    max-width: 600px; margin: 0 auto; padding: 0 32px;
-    text-align: center;
-  }
-  .newsletter-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px; color: var(--ivory); margin-bottom: 10px;
-  }
-  .newsletter-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
-  .newsletter-form { display: flex; gap: 0; max-width: 460px; margin: 0 auto; }
-  .newsletter-input {
-    flex: 1; padding: 14px 20px;
-    background: var(--mahogany);
-    border: 1px solid var(--border-strong);
-    border-right: none; color: var(--ivory);
-    font-size: 14px; outline: none;
-    border-radius: 3px 0 0 3px;
-    font-family: 'Inter', sans-serif;
-  }
-  .newsletter-btn {
-    padding: 14px 24px;
-    background: var(--gold); color: var(--mahogany);
-    border: none; cursor: pointer; font-weight: 700;
-    font-size: 12px; letter-spacing: 1.5px;
-    text-transform: uppercase;
-    border-radius: 0 3px 3px 0;
-    transition: background 0.3s;
-  }
-  .newsletter-btn:hover { background: var(--gold-light); }
+/* ═══════════════════════════════════
+   FAQ ACCORDION
+═══════════════════════════════════ */
+.faq-list { display:flex;flex-direction:column;gap:0 }
+.faq-item {
+  border-bottom:1px solid rgba(184,147,90,.1);
+  overflow:hidden;
+}
+.faq-item:first-child { border-top:1px solid rgba(184,147,90,.1) }
+.faq-trigger {
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:17px 22px;background:transparent;border:none;
+  font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:400;
+  color:var(--ink);text-align:left;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.faq-trigger:hover { background:rgba(184,147,90,.04);color:var(--gold) }
+.faq-trigger.open { color:var(--gold);background:rgba(184,147,90,.04) }
+.faq-q-text { flex:1;line-height:1.4;letter-spacing:.01em }
+.faq-cat-tag {
+  font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;
+  background:rgba(184,147,90,.08);color:var(--gold-d);border:1px solid var(--border);
+  display:none;
+}
+@media(min-width:640px) { .faq-cat-tag { display:inline-block } }
+.faq-chevron {
+  width:18px;height:18px;flex-shrink:0;
+  stroke:var(--text-sec);fill:none;stroke-width:2;
+  transition:transform .32s cubic-bezier(.16,1,.3,1),stroke .2s;
+}
+.faq-trigger.open .faq-chevron { transform:rotate(180deg);stroke:var(--gold) }
+.faq-body {
+  max-height:0;overflow:hidden;
+  transition:max-height .38s cubic-bezier(.16,1,.3,1),padding .28s ease;
+}
+.faq-body.open { max-height:600px }
+.faq-answer {
+  padding:0 22px 18px;
+  font-size:.8rem;color:var(--text-sec);line-height:1.75;
+  border-left:2px solid var(--gold);margin:0 22px 18px;
+  padding-left:16px;
+}
+.faq-answer a { color:var(--gold);text-decoration:underline;text-underline-offset:2px }
 
-  /* ===================== FOOTER ===================== */
-  footer {
-    background: #120808;
-    border-top: 1px solid var(--border);
-    padding: 60px 0 0;
-  }
-  .footer-inner {
-    max-width: 1380px; margin: 0 auto;
-    padding: 0 32px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 48px;
-  }
-  .footer-brand { }
-  .footer-brand .logo { margin-bottom: 16px; display: inline-flex; }
-  .footer-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-  .footer-socials { display: flex; gap: 10px; }
-  .social-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; text-decoration: none;
-    color: var(--text-muted); transition: all 0.25s;
-  }
-  .social-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
-  .footer-col h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px; color: var(--ivory);
-    margin-bottom: 18px; padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .footer-links a {
-    font-size: 13.5px; color: var(--text-muted);
-    text-decoration: none; transition: color 0.2s;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-contact-item {
-    display: flex; gap: 10px; align-items: flex-start;
-    margin-bottom: 12px; font-size: 13px; color: var(--text-muted);
-  }
-  .footer-contact-item .icon { color: var(--gold); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-  .footer-payments { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .pay-badge {
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    padding: 5px 10px; border-radius: 3px;
-    font-size: 11px; color: var(--text-muted); font-weight: 600;
-  }
-  .footer-bottom {
-    margin-top: 48px;
-    padding: 16px 32px;
-    border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    max-width: 1380px; margin-left: auto; margin-right: auto;
-    font-size: 12px; color: var(--text-muted);
-  }
+/* FAQ category filter */
+.faq-filter-row { display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px }
+@media(max-width:639px) {
+  .faq-filter-row { flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none }
+  .faq-filter-row::-webkit-scrollbar { display:none }
+  .faq-pill { flex-shrink:0 }
+}
+.faq-pill {
+  padding:5px 15px;background:var(--cream);
+  border:1px solid var(--border);border-radius:100px;
+  font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--text-sec);cursor:pointer;transition:all .2s;
+}
+.faq-pill:hover { border-color:var(--gold);color:var(--gold) }
+.faq-pill.active { background:var(--ink);color:var(--gold-l);border-color:var(--ink) }
 
-  /* ===================== CHAT FLOAT ===================== */
-  .chat-float {
-    position: fixed; bottom: 28px; right: 28px;
-    z-index: 999;
-    display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
-  }
-  .chat-options {
-    display: flex; flex-direction: column; gap: 8px;
-    opacity: 0; transform: translateY(10px);
-    pointer-events: none; transition: all 0.3s;
-  }
-  .chat-float:hover .chat-options { opacity: 1; transform: translateY(0); pointer-events: all; }
-  .chat-option {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 16px; border-radius: 25px;
-    font-size: 12.5px; font-weight: 600; text-decoration: none;
-    color: #fff; white-space: nowrap;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
-  }
-  .chat-option:hover { transform: scale(1.05); }
-  .chat-option.wa { background: #25D366; }
-  .chat-option.fb { background: #1877F2; }
-  .chat-option.ig { background: linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45); }
-  .chat-main-btn {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--gold); color: var(--mahogany);
-    font-size: 24px; border: none; cursor: pointer;
-    box-shadow: 0 6px 24px rgba(201,168,76,0.5);
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.3s;
-  }
-  .chat-main-btn:hover { background: var(--gold-light); transform: scale(1.1); }
+/* FAQ no-results */
+.faq-empty {
+  padding:36px 22px;text-align:center;
+  font-size:.8rem;color:var(--text-sec);display:none;
+}
+.faq-empty svg { width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.4;margin:0 auto 10px;display:block }
 
-  /* ===================== TOP PROMO STRIP ===================== */
-  .promo-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 50px;
-  }
-  .promo-card {
-    background: var(--mahogany-light);
-    border: 1px solid var(--border);
-    border-radius: 6px; padding: 22px 24px;
-    display: flex; gap: 16px; align-items: center;
-    transition: all 0.3s;
-  }
-  .promo-card:hover { border-color: var(--gold-dark); }
-  .promo-card.hot { border-left: 3px solid var(--red-accent); }
-  .promo-card.new-arr { border-left: 3px solid var(--green-accent); }
-  .promo-card.bulk-p { border-left: 3px solid var(--gold-dark); }
-  .promo-emoji { font-size: 36px; }
-  .promo-info strong { display: block; font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ivory); margin-bottom: 4px; }
-  .promo-info span { font-size: 12.5px; color: var(--text-muted); }
-  .promo-link { margin-left: auto; font-size: 12px; color: var(--gold); font-weight: 600; text-decoration: none; white-space: nowrap; }
+/* ═══════════════════════════════════
+   SUPPORT OPTIONS
+═══════════════════════════════════ */
+.support-grid {
+  display:grid;gap:12px;
+  grid-template-columns:1fr 1fr;
+}
+@media(min-width:900px) { .support-grid { grid-template-columns:repeat(4,1fr) } }
 
-  /* ===================== RESPONSIVE ===================== */
-  @media (max-width: 1100px) {
-    .bento { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .bento-card.span-2 { grid-row: auto; grid-column: 1 / -1; height: 280px; }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 40px 24px; }
-    .product-grid { grid-template-columns: 1fr 1fr; }
-    .why-grid { grid-template-columns: 1fr 1fr; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .bulk-grid { grid-template-columns: 1fr; }
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-    .nav-top { padding: 12px 16px; }
-    .section-inner { padding: 0 16px; }
-    .nav-bottom { display: none; }
-    .promo-grid { grid-template-columns: 1fr; }
-  }
+.support-opt {
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:20px 18px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:10px;
+  cursor:pointer;text-decoration:none;
+  transition:all .28s;position:relative;overflow:hidden;
+}
+.support-opt::before {
+  content:'';position:absolute;top:0;left:0;
+  width:2px;height:0;background:var(--gold);transition:height .4s;
+}
+.support-opt:hover { border-color:rgba(184,147,90,.35);transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,147,90,.09) }
+.support-opt:hover::before { height:100% }
+.support-opt-icon {
+  width:38px;height:38px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.support-opt-icon svg { width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8 }
+.support-opt-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-weight:400;color:var(--ink);line-height:1.2;
+}
+.support-opt-desc { font-size:.68rem;color:var(--text-sec);line-height:1.5 }
+.support-opt-badge {
+  font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;
+  background:rgba(74,103,65,.1);color:var(--sage);border:1px solid rgba(74,103,65,.2);
+}
+.support-opt-badge.offline {
+  background:rgba(155,58,58,.07);color:#9b6a3a;border-color:rgba(155,58,58,.16);
+}
 
-  /* ANIMATIONS */
-  .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+/* Live dot */
+.live-dot {
+  width:6px;height:6px;border-radius:50%;background:var(--sage);
+  display:inline-block;margin-right:4px;
+  animation:blink 1.8s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.25} }
 
-  /* ORNATE FRAME DECORATION */
-  .frame-deco {
-    text-align: center; padding: 12px 0;
-    color: var(--gold-dark); font-size: 13px;
-    letter-spacing: 6px;
+/* ═══════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════ */
+.form-grid {
+  display:grid;gap:16px;
+}
+.form-row { display:grid;gap:16px;grid-template-columns:1fr }
+@media(min-width:640px) { .form-row-2 { grid-template-columns:1fr 1fr } }
+
+.form-group { display:flex;flex-direction:column;gap:6px }
+.form-label {
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-sec);font-weight:400;
+}
+.form-label span { color:var(--gold);margin-left:1px }
+.form-input, .form-select, .form-textarea {
+  padding:11px 14px;
+  background:var(--cream);border:1px solid var(--border);
+  border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--ink);
+  outline:none;transition:border-color .22s,box-shadow .22s;
+  width:100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(184,147,90,.09);
+}
+.form-input::placeholder, .form-textarea::placeholder { color:#c0b8ae }
+.form-select { appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6459' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;cursor:pointer }
+.form-textarea { resize:vertical;min-height:130px;line-height:1.6 }
+.form-hint { font-size:.66rem;color:var(--text-sec);margin-top:1px }
+.form-error { font-size:.66rem;color:var(--error);margin-top:1px;display:none }
+.form-input.invalid, .form-select.invalid, .form-textarea.invalid {
+  border-color:rgba(155,58,58,.4);
+}
+.form-input.invalid:focus, .form-select.invalid:focus, .form-textarea.invalid:focus {
+  box-shadow:0 0 0 3px rgba(155,58,58,.08);
+}
+
+/* Priority toggle */
+.priority-row { display:flex;gap:8px;flex-wrap:wrap }
+.priority-opt { position:relative }
+.priority-opt input[type=radio] { position:absolute;opacity:0;width:0;height:0 }
+.priority-label {
+  display:flex;align-items:center;gap:5px;
+  padding:6px 14px;background:var(--cream);
+  border:1px solid var(--border);border-radius:var(--radius);
+  font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-sec);cursor:pointer;transition:all .2s;
+  user-select:none;
+}
+.priority-label:hover { border-color:var(--gold);color:var(--gold) }
+.priority-opt input:checked + .priority-label { background:var(--ink);color:var(--gold-l);border-color:var(--ink) }
+.priority-dot { width:7px;height:7px;border-radius:50% }
+
+/* File upload */
+.file-drop {
+  border:1.5px dashed var(--border);border-radius:var(--radius);
+  padding:22px;text-align:center;cursor:pointer;
+  transition:all .2s;background:var(--cream);
+}
+.file-drop:hover, .file-drop.dragover { border-color:var(--gold);background:rgba(184,147,90,.03) }
+.file-drop-icon { width:36px;height:36px;margin:0 auto 8px;background:rgba(184,147,90,.08);border-radius:8px;display:flex;align-items:center;justify-content:center }
+.file-drop-icon svg { width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.6 }
+.file-drop-title { font-size:.8rem;color:var(--ink);margin-bottom:3px }
+.file-drop-sub { font-size:.68rem;color:var(--text-sec) }
+.file-drop-sub span { color:var(--gold);cursor:pointer }
+.file-list { margin-top:12px;display:flex;flex-direction:column;gap:6px }
+.file-chip {
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius);
+}
+.file-chip-name { font-size:.74rem;color:var(--ink);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap }
+.file-chip-size { font-size:.66rem;color:var(--text-sec);flex-shrink:0 }
+.file-chip-rm { cursor:pointer;padding:1px;flex-shrink:0 }
+.file-chip-rm svg { width:13px;height:13px;stroke:var(--text-sec);fill:none;stroke-width:2;transition:stroke .2s }
+.file-chip-rm:hover svg { stroke:var(--error) }
+
+/* Submit */
+.btn-submit {
+  padding:12px 28px;background:var(--ink);
+  color:var(--gold-l);border:none;
+  font-family:'DM Sans',sans-serif;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;border-radius:var(--radius);transition:all .22s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-submit:hover { background:var(--charcoal) }
+.btn-submit:disabled { opacity:.6;cursor:not-allowed }
+.btn-submit svg { width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0 }
+
+/* Form success state */
+.form-success {
+  display:none;padding:36px 24px;text-align:center;
+}
+.form-success-icon {
+  width:56px;height:56px;margin:0 auto 16px;
+  border-radius:50%;background:rgba(74,103,65,.1);
+  border:1px solid rgba(74,103,65,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.form-success-icon svg { width:26px;height:26px;stroke:var(--sage);fill:none;stroke-width:2 }
+.form-success-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:6px;
+}
+.form-success-desc { font-size:.8rem;color:var(--text-sec);margin-bottom:20px;line-height:1.6 }
+.ticket-id {
+  display:inline-block;padding:8px 20px;
+  background:rgba(184,147,90,.08);border:1px solid var(--border);
+  border-radius:var(--radius);
+  font-family:monospace;font-size:.9rem;letter-spacing:.1em;color:var(--gold);
+  margin-bottom:20px;
+}
+
+/* ═══════════════════════════════════
+   TICKET HISTORY TABLE
+═══════════════════════════════════ */
+.tbl-wrap { overflow-x:auto }
+.tbl-wrap::-webkit-scrollbar { height:3px }
+.tbl-wrap::-webkit-scrollbar-thumb { background:var(--gold) }
+table.dtbl { width:100%;border-collapse:collapse;font-size:.78rem;min-width:560px }
+.dtbl th {
+  padding:10px 14px;background:var(--parchment);
+  color:var(--text-sec);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:400;
+  border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;
+}
+.dtbl td {
+  padding:12px 14px;border-bottom:1px solid rgba(184,147,90,.07);
+  color:var(--ink);vertical-align:middle;
+}
+.dtbl tbody tr:last-child td { border-bottom:none }
+.dtbl tbody tr:hover td { background:rgba(184,147,90,.025) }
+.td-sub { font-size:.66rem;color:var(--text-sec) }
+.badge {
+  display:inline-block;padding:3px 9px;border-radius:100px;
+  font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+}
+.b-open    { background:rgba(74,103,65,.1);   color:var(--sage);  border:1px solid rgba(74,103,65,.2) }
+.b-pending { background:rgba(184,147,90,.1);  color:var(--gold);  border:1px solid var(--border) }
+.b-closed  { background:rgba(28,28,28,.06);   color:var(--text-sec); border:1px solid rgba(28,28,28,.1) }
+.b-urgent  { background:rgba(155,58,58,.08);  color:#9b3a3a;      border:1px solid rgba(155,58,58,.18) }
+
+/* ═══════════════════════════════════
+   TICKET TABLE — MOBILE CARD VIEW
+═══════════════════════════════════ */
+@media(max-width:639px) {
+  .tbl-wrap { overflow-x:unset }
+  table.dtbl { min-width:unset;display:block;font-size:.78rem }
+  .dtbl thead { display:none }
+  .dtbl tbody { display:block }
+  .dtbl tbody tr {
+    display:block;padding:14px 16px;
+    border-bottom:1px solid var(--border);
   }
+  .dtbl tbody tr:last-child { border-bottom:none }
+  .dtbl tbody tr:hover td { background:transparent }
+  .dtbl td {
+    display:flex;justify-content:space-between;align-items:center;
+    padding:5px 0;border-bottom:none;font-size:.76rem;gap:8px;
+  }
+  .dtbl td::before {
+    content:attr(data-label);
+    font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text-sec);font-weight:400;flex-shrink:0;white-space:nowrap;
+  }
+  .dtbl td:last-child {
+    justify-content:flex-end;margin-top:6px;padding-top:10px;
+    border-top:1px solid rgba(184,147,90,.08);
+  }
+  .dtbl td:last-child::before { display:none }
+}
+
+/* ═══════════════════════════════════
+   TOAST
+═══════════════════════════════════ */
+#toast {
+  position:fixed;top:20px;left:50%;
+  transform:translateX(-50%) translateY(-90px);
+  background:rgba(28,28,28,.97);
+  border:1px solid rgba(184,147,90,.3);border-radius:10px;
+  padding:11px 24px;z-index:9000;color:var(--gold);
+  font-size:.75rem;letter-spacing:.06em;
+  box-shadow:0 8px 28px rgba(0,0,0,.15);
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+  white-space:normal;word-break:break-word;
+  max-width:calc(100vw - 32px);text-align:center;
+  pointer-events:none;
+}
+#toast.show { transform:translateX(-50%) translateY(0) }
+#toast.ok   { border-color:rgba(74,103,65,.4);color:var(--sage-l) }
+#toast.err  { border-color:rgba(155,58,58,.4);color:#c97070 }
+
+/* ═══════════════════════════════════
+   OVERLAY
+═══════════════════════════════════ */
+.sb-overlay {
+  display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:350;
+  background:rgba(28,28,28,.4);
+}
+.sb-overlay.show { display:block }
+@media(max-width:1023px) {
+  .sb-overlay.show { left:220px }
+}
+
+/* ═══════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════ */
+.reveal { opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease }
+.reveal.vis { opacity:1;transform:none }
+
+/* Btn ghost */
+.btn-ghost {
+  padding:7px 16px;background:transparent;color:var(--charcoal);
+  border:1px solid var(--border);font-family:'DM Sans',sans-serif;
+  font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;border-radius:var(--radius);transition:all .22s;
+}
+.btn-ghost:hover { border-color:var(--gold);color:var(--gold) }
+
+/* Two-col layout */
+.two-col { display:grid;gap:16px;grid-template-columns:1fr }
+@media(min-width:1024px) { .two-col { grid-template-columns:1.35fr 1fr } }
+
+/* ═══════════════════════════════════
+   FORM LOCK OVERLAY
+═══════════════════════════════════ */
+.form-lock-wrap {
+  position:relative;
+}
+.form-lock-overlay {
+  position:absolute;inset:0;z-index:10;
+  background:rgba(246,241,233,0.88);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:32px 24px;text-align:center;
+}
+.lock-icon-wrap {
+  width:58px;height:58px;border-radius:50%;
+  background:rgba(155,58,58,.08);border:1.5px solid rgba(155,58,58,.18);
+  display:flex;align-items:center;justify-content:center;
+  animation:lockPulse 2.4s ease-in-out infinite;
+}
+.lock-icon-wrap svg {
+  width:24px;height:24px;stroke:#9b5a3a;fill:none;stroke-width:1.8;
+}
+@keyframes lockPulse {
+  0%,100% { box-shadow:0 0 0 0 rgba(155,90,58,0); transform:scale(1) }
+  50%      { box-shadow:0 0 0 10px rgba(155,90,58,0.08); transform:scale(1.04) }
+}
+.lock-chains {
+  display:flex;gap:6px;margin-top:-4px;
+}
+.lock-chain-dot {
+  width:5px;height:5px;border-radius:50%;background:rgba(155,90,58,.3);
+  animation:chainBlink 1.6s ease-in-out infinite;
+}
+.lock-chain-dot:nth-child(2){ animation-delay:.25s }
+.lock-chain-dot:nth-child(3){ animation-delay:.5s }
+@keyframes chainBlink{0%,100%{opacity:.3}50%{opacity:1}}
+.lock-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:400;color:var(--ink);
+}
+.lock-message {
+  font-size:.76rem;color:var(--text-sec);line-height:1.65;
+  max-width:260px;font-weight:300;
+}
+.lock-region-tag {
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(155,58,58,.06);border:1px solid rgba(155,58,58,.16);
+  border-radius:100px;padding:5px 14px;
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#9b5a3a;
+}
+.lock-region-tag svg { width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0 }
+
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE — < 640px
+═══════════════════════════════════ */
+@media(max-width:639px) {
+
+  /* Header */
+  .top-header { padding:0 12px; gap:8px; height:54px }
+  .btn-logout  { display:none }
+  .back-pill   { padding:5px 10px 5px 8px; font-size:.6rem; letter-spacing:.05em }
+  .notif-btn   { width:30px; height:30px }
+
+  /* Content area */
+  .content { padding:18px 14px 52px }
+
+  /* Page header */
+  .sec-title { font-size:1.45rem }
+
+  /* Search — full width */
+  .support-search-wrap { max-width:100% }
+  .support-search      { font-size:.8rem; padding:11px 16px 11px 38px }
+
+  /* Contact options — 1 column on very small screens */
+  .support-grid { grid-template-columns:1fr }
+
+  /* Support option cards — side-by-side icon+text row on mobile */
+  .support-opt { padding:14px 14px; gap:12px; flex-direction:row; align-items:center; flex-wrap:wrap }
+  .support-opt-icon { width:34px; height:34px; flex-shrink:0 }
+  .support-opt > div { flex:1; min-width:0 }
+  .support-opt-badge { margin-left:auto }
+
+  /* Cards */
+  .card-body  { padding:16px }
+  .card-head  { padding:14px 16px }
+
+  /* FAQ */
+  .faq-trigger { padding:14px 16px; font-size:.8rem }
+  .faq-answer  { margin:0 14px 14px; padding-left:12px; font-size:.77rem }
+  .faq-pill    { padding:5px 13px; font-size:.63rem }
+
+  /* Two-col already stacks, just fix gap */
+  .two-col { gap:28px }
+
+  /* Form */
+  .form-textarea { min-height:110px }
+  .priority-row  { gap:6px; flex-wrap:wrap }
+  .priority-label { padding:5px 11px; font-size:.68rem }
+  .btn-submit    { width:100%; justify-content:center; padding:13px 20px }
+
+  /* Section headers */
+  .divider { margin:22px 0 }
+
+  /* Ticket history header */
+  #ticket-history-section > div:first-child { margin-bottom:12px }
+
+  /* Lock overlay */
+  .form-lock-overlay { padding:24px 16px; gap:10px }
+  .lock-title        { font-size:1rem }
+  .lock-message      { font-size:.72rem }
+}
+
+/* ═══════════════════════════════════
+   MOBILE — 640px to 767px
+═══════════════════════════════════ */
+@media(min-width:640px) and (max-width:767px) {
+  .content     { padding:22px 18px 52px }
+  .card-body   { padding:20px }
+  .btn-logout  { display:none }
+  .support-grid { grid-template-columns:1fr 1fr }
+}
+
+/* ═══════════════════════════════════
+   EXTRA SMALL — ≤ 360px
+═══════════════════════════════════ */
+@media(max-width:360px) {
+  .top-header { padding:0 10px; gap:6px }
+  .back-pill span:last-child { display:none } /* hide text, keep arrow */
+  .back-pill { padding:5px 8px }
+  .content { padding:14px 12px 52px }
+  .support-opt { flex-direction:column; align-items:flex-start }
+  .priority-label { padding:5px 9px; font-size:.64rem }
+}
+
+/* ═══════════════════════════════════
+   TOUCH — improve tap targets
+═══════════════════════════════════ */
+@media(hover:none) and (pointer:coarse) {
+  .sb-item        { padding:13px 22px; min-height:44px }
+  .faq-trigger    { min-height:48px }
+  .faq-pill       { min-height:36px }
+  .btn-submit     { min-height:48px }
+  .priority-label { min-height:36px }
+  .support-opt    { -webkit-tap-highlight-color:rgba(184,147,90,.12) }
+  .sb-item        { -webkit-tap-highlight-color:rgba(184,147,90,.12) }
+}
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement">
-  <span>✦ Free Shipping on Orders Over ৳2,000</span>
-  <span>|</span>
-  <span>Premium Saffron — Now 15% Off</span>
-  <span>|</span>
-  <span>Wholesale Inquiries: +880-1800-ECLAT</span>
-</div>
+<!-- Toast -->
+<div id="toast">✓</div>
+<!-- Sidebar overlay -->
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
 
-<!-- NAVBAR -->
-<nav>
-  <div class="nav-top">
-    <a href="#" class="logo">
-      <div class="logo-icon">🫙</div>
-      <div class="logo-text">
-        <span class="logo-name">Éclat Pantry</span>
-        <span class="logo-tagline">Heritage in Every Jar</span>
-      </div>
-    </a>
-    <div class="nav-search">
-      <input type="text" placeholder="Search saffron, nuts, spices, herbs…">
-      <button>Search</button>
-    </div>
-    <div class="nav-actions">
-      <a href="#" class="nav-btn"><span class="icon">🌐</span></a>
-      <a href="#" class="nav-btn"><span class="icon">🤍</span> Wishlist</a>
-      <a href="#" class="nav-btn" style="position:relative;"><span class="icon">🛒</span> Cart <span class="badge">3</span></a>
-      <a href="#" class="nav-btn nav-btn-primary">Sign In</a>
-    </div>
-  </div>
-  <div class="nav-bottom" style="max-width:1380px;margin:0 auto;">
-    <a href="#" class="nav-link categories">☰ All Categories</a>
-    <a href="#" class="nav-link active">Home</a>
-    <a href="#" class="nav-link">Shop</a>
-    <a href="#" class="nav-link">Flash Sale <span class="nav-badge">HOT</span></a>
-    <a href="#" class="nav-link">Bulk Orders</a>
-    <a href="#" class="nav-link">Saffron Collection</a>
-    <a href="#" class="nav-link">Spices & Herbs</a>
-    <a href="#" class="nav-link">Nuts & Dried Fruits</a>
-    <a href="#" class="nav-link">Truffles <span class="nav-badge">NEW</span></a>
-    <a href="#" class="nav-link">Blog</a>
-    <a href="#" class="nav-link">Contact</a>
-  </div>
-</nav>
+<!-- ═══════════════════════════════════
+     LAYOUT
+════════════════════════════════════ -->
+<div class="layout">
 
-<!-- CATEGORY STRIP -->
-<div class="cat-strip">
-  <div class="cat-strip-inner">
-    <a href="#" class="cat-item"><span class="cat-item-icon">🌸</span><span class="cat-item-name">Saffron</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🌶️</span><span class="cat-item-name">Spices</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🫘</span><span class="cat-item-name">Lentils</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🥜</span><span class="cat-item-name">Nuts</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🍇</span><span class="cat-item-name">Dried Fruits</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🌿</span><span class="cat-item-name">Herbs</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🍄</span><span class="cat-item-name">Truffles</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🫙</span><span class="cat-item-name">Pantry</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🧂</span><span class="cat-item-name">Sea Salts</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🌰</span><span class="cat-item-name">Chestnuts</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🫖</span><span class="cat-item-name">Herbal Tea</span></a>
-    <a href="#" class="cat-item"><span class="cat-item-icon">🍯</span><span class="cat-item-name">Honey</span></a>
-  </div>
-</div>
+  <!-- ╔════════════════╗
+       ║    SIDEBAR     ║
+       ╚════════════════╝ -->
+  <aside class="sidebar" id="sidebar">
 
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-  <div class="hero-left">
-    <div class="hero-badge">New Season Collection 2026</div>
-    <h1 class="hero-title">
-      Rare Flavours,
-      <em>Ancient Origins</em>
-      Exquisite Pantry
-    </h1>
-    <p class="hero-desc">
-      Sourced from the finest estates across Kashmir, Persia, Anatolia &amp; the Mediterranean — every jar carries centuries of culinary heritage.
-    </p>
-    <div class="hero-cta">
-      <a href="#" class="btn-gold">Explore Collection →</a>
-      <a href="#" class="btn-outline">Wholesale Enquiry</a>
-    </div>
-    <div class="hero-dots">
-      <button class="hero-dot active"></button>
-      <button class="hero-dot"></button>
-      <button class="hero-dot"></button>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>500+</strong><span>Artisan Products</span></div>
-      <div class="hero-stat"><strong>32</strong><span>Countries Sourced</span></div>
-      <div class="hero-stat"><strong>12K+</strong><span>Happy Customers</span></div>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-product-showcase">
-      <div class="hero-glow"></div>
-      <div class="hero-jar-main">🫙</div>
-      <div class="hero-tag hero-tag-1">
-        <strong>Kashmir Saffron</strong>
-        <span>Grade A · ৳4,800 / gram</span>
-      </div>
-      <div class="hero-tag hero-tag-2">
-        <strong>✓ Origin Certified</strong>
-        <span>Lab tested &amp; verified</span>
-      </div>
-      <div class="hero-tag hero-tag-3">
-        <strong>⚡ Flash Deal</strong>
-        <span>15% Off Today</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROMO STRIP -->
-<section style="padding: 32px 0; background: var(--mahogany-light); border-bottom: 1px solid var(--border);">
-  <div class="section-inner">
-    <div class="promo-grid">
-      <div class="promo-card hot">
-        <span class="promo-emoji">🔥</span>
-        <div class="promo-info">
-          <strong>Flash Sale — Up to 40% Off</strong>
-          <span>Limited stock, seasonal specials</span>
-        </div>
-        <a href="#" class="promo-link">View →</a>
-      </div>
-      <div class="promo-card new-arr">
-        <span class="promo-emoji">✨</span>
-        <div class="promo-info">
-          <strong>New Arrivals This Week</strong>
-          <span>Truffle salt, Persian herbs &amp; more</span>
-        </div>
-        <a href="#" class="promo-link">View →</a>
-      </div>
-      <div class="promo-card bulk-p">
-        <span class="promo-emoji">📦</span>
-        <div class="promo-info">
-          <strong>Wholesale Bulk Orders</strong>
-          <span>Tiered pricing from 1kg to 100kg+</span>
-        </div>
-        <a href="#" class="promo-link">View →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FLASH SALE SECTION -->
-<section class="section" style="padding-bottom: 0;">
-  <div class="section-inner">
-    <div class="flash-sale-bar">
-      <span class="flash-icon">⚡</span>
-      <div class="flash-text">
-        <strong>Today's Flash Sale</strong>
-        <span>Handpicked daily deals — ends at midnight</span>
-      </div>
-      <div class="countdown">
-        <div class="count-box"><strong id="h">08</strong><span>Hours</span></div>
-        <span class="count-sep">:</span>
-        <div class="count-box"><strong id="m">34</strong><span>Mins</span></div>
-        <span class="count-sep">:</span>
-        <div class="count-box"><strong id="s">22</strong><span>Secs</span></div>
-      </div>
-      <a href="#" class="btn-gold" style="white-space:nowrap;">All Deals →</a>
-    </div>
-
-    <!-- FLASH PRODUCTS -->
-    <div class="product-grid">
-      <!-- Card 1 -->
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-sale">-40%</span></div>
-          <div class="product-actions">
-            <button class="act-btn" title="Wishlist">🤍</button>
-            <button class="act-btn" title="Quick View">👁</button>
-            <button class="act-btn" title="Compare">⚖️</button>
-          </div>
-          🌸
-          <div class="stock-bar">
-            <div class="stock-dots">
-              <div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot"></div><div class="stock-dot"></div>
-            </div>
-            Only 3 jars left
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇮🇳 Kashmir, India</div>
-          <div class="product-name">Premium Kashmiri Saffron — Grade AAA</div>
-          <div class="product-weight">
-            <span class="weight-opt active">1g</span>
-            <span class="weight-opt">2g</span>
-            <span class="weight-opt">5g</span>
-            <span class="weight-opt">10g</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳4,800</span>
-            <span class="price-old">৳8,000</span>
-            <span class="price-discount">-40%</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(147)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-new">New</span><span class="tag-bulk">Bulk</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-            <button class="act-btn">⚖️</button>
-          </div>
-          🍄
-          <div class="stock-bar">
-            <div class="stock-dots">
-              <div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot filled"></div><div class="stock-dot"></div>
-            </div>
-            8 units left
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇫🇷 Périgord, France</div>
-          <div class="product-name">Black Périgord Truffle — Shaved Flakes</div>
-          <div class="product-weight">
-            <span class="weight-opt active">10g</span>
-            <span class="weight-opt">25g</span>
-            <span class="weight-opt">50g</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳12,500</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
-            <span class="star-count">(63)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-sale">-25%</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-            <button class="act-btn">⚖️</button>
-          </div>
-          🥜
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇮🇷 Isfahan, Iran</div>
-          <div class="product-name">Persian Pistachios — Roasted & Salted</div>
-          <div class="product-weight">
-            <span class="weight-opt active">250g</span>
-            <span class="weight-opt">500g</span>
-            <span class="weight-opt">1kg</span>
-            <span class="weight-opt">5kg</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳1,200</span>
-            <span class="price-old">৳1,600</span>
-            <span class="price-discount">-25%</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(284)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-new">New</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-            <button class="act-btn">⚖️</button>
-          </div>
-          🌶️
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇪🇸 La Vera, Spain</div>
-          <div class="product-name">Smoked Pimentón de la Vera — Sweet</div>
-          <div class="product-weight">
-            <span class="weight-opt active">75g</span>
-            <span class="weight-opt">150g</span>
-            <span class="weight-opt">500g</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳980</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(112)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top: 36px;">
-      <a href="#" class="btn-outline">View All Flash Deals</a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED BENTO -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-head fade-up">
-      <div class="section-label">Curated Collections</div>
-      <h2 class="section-title">Explore Our <em>Heritage Catalogue</em></h2>
-      <p class="section-sub">Centuries-old recipes rediscovered — from Persian bazaars to French markets</p>
-    </div>
-    <div class="bento fade-up">
-      <div class="bento-card span-2" style="background: linear-gradient(135deg, #1A0808, #2A1010);">
-        <div class="bento-bg">🌸</div>
-        <div class="bento-overlay" style="background: radial-gradient(ellipse at center, rgba(26,8,8,0.2), rgba(26,8,8,0.85));"></div>
-        <div class="bento-content">
-          <div class="bento-label">The Crown Jewel</div>
-          <div class="bento-title">Kashmir & Persian<br>Saffron Collection</div>
-          <div class="bento-price" style="font-size:15px;">From ৳4,800 · Grade AAA Certified</div>
-          <a href="#" class="btn-gold" style="margin-top:18px; display:inline-flex;">Shop Saffron →</a>
-        </div>
-      </div>
-      <div class="bento-card" style="background: linear-gradient(135deg, #0A1A10, #162A1A);">
-        <div class="bento-bg">🌿</div>
-        <div class="bento-overlay"></div>
-        <div class="bento-content">
-          <div class="bento-label">Herbs</div>
-          <div class="bento-title">Mediterranean Dried Herbs</div>
-          <div class="bento-price">From ৳350 / jar</div>
-        </div>
-      </div>
-      <div class="bento-card" style="background: linear-gradient(135deg, #1A1A0A, #2A2810);">
-        <div class="bento-bg">🥜</div>
-        <div class="bento-overlay"></div>
-        <div class="bento-content">
-          <div class="bento-label">Nuts</div>
-          <div class="bento-title">Estate Pistachios & Almonds</div>
-          <div class="bento-price">From ৳900 / 250g</div>
-        </div>
-      </div>
-      <div class="bento-card span-col-2" style="background: linear-gradient(135deg, #1A0A18, #2A1028);">
-        <div class="bento-bg">🍄</div>
-        <div class="bento-overlay"></div>
-        <div class="bento-content">
-          <div class="bento-label">Rare & Luxurious</div>
-          <div class="bento-title">Truffle & Wild Mushroom Collection — France & Italy</div>
-          <div class="bento-price">From ৳8,500 · Limited Seasonal Stock</div>
-        </div>
-      </div>
-      <div class="bento-card" style="background: linear-gradient(135deg, #0A1818, #102828);">
-        <div class="bento-bg">🍇</div>
-        <div class="bento-overlay"></div>
-        <div class="bento-content">
-          <div class="bento-label">Dried Fruits</div>
-          <div class="bento-title">Barberries, Apricots & Mulberries</div>
-          <div class="bento-price">From ৳650 / 200g</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BULK DEALS -->
-<section class="section" style="padding-top: 0;">
-  <div class="section-inner">
-    <div class="section-head fade-up">
-      <div class="section-label">Wholesale</div>
-      <h2 class="section-title">Bulk & <em>Wholesale Pricing</em></h2>
-      <p class="section-sub">The more you order, the more you save — tiered pricing starting at 500g</p>
-    </div>
-    <div class="bulk-grid fade-up">
-      <div class="bulk-card">
-        <span class="bulk-emoji">🌸</span>
-        <div class="bulk-info">
-          <div class="bulk-name">Premium Saffron Bulk</div>
-          <div class="bulk-tiers">
-            <span class="tier-badge">5g → ৳22,000</span>
-            <span class="tier-badge">10g → ৳40,000</span>
-            <span class="tier-badge">50g → ৳180,000</span>
-          </div>
-          <div class="bulk-note">All grades: Grade-1, AAA, Super Negin available</div>
-        </div>
-        <div class="bulk-action">Order Now →</div>
-      </div>
-      <div class="bulk-card">
-        <span class="bulk-emoji">🥜</span>
-        <div class="bulk-info">
-          <div class="bulk-name">Nuts & Dried Fruits Bulk</div>
-          <div class="bulk-tiers">
-            <span class="tier-badge">1kg → 5% off</span>
-            <span class="tier-badge">5kg → 12% off</span>
-            <span class="tier-badge">25kg → 20% off</span>
-          </div>
-          <div class="bulk-note">Mixed pallet orders accepted · MOQ 1kg per SKU</div>
-        </div>
-        <div class="bulk-action">Get Quote →</div>
-      </div>
-      <div class="bulk-card">
-        <span class="bulk-emoji">🌶️</span>
-        <div class="bulk-info">
-          <div class="bulk-name">Spices & Herbs Wholesale</div>
-          <div class="bulk-tiers">
-            <span class="tier-badge">500g → 8% off</span>
-            <span class="tier-badge">2kg → 15% off</span>
-            <span class="tier-badge">10kg → 25% off</span>
-          </div>
-          <div class="bulk-note">Custom packaging & private labeling available</div>
-        </div>
-        <div class="bulk-action">Enquire →</div>
-      </div>
-      <div class="bulk-card" style="background: linear-gradient(135deg, var(--mahogany-light), #2A1E10); border-color: var(--gold-dark);">
-        <span class="bulk-emoji">📦</span>
-        <div class="bulk-info">
-          <div class="bulk-name">100kg+ Enterprise Orders</div>
-          <div class="bulk-tiers">
-            <span class="tier-badge" style="border-color:var(--gold);">Custom Pricing</span>
-            <span class="tier-badge" style="border-color:var(--gold);">Private Label</span>
-            <span class="tier-badge" style="border-color:var(--gold);">Export Ready</span>
-          </div>
-          <div class="bulk-note">Dedicated account manager · Flexible payment terms</div>
-        </div>
-        <div class="bulk-action">Contact Us →</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRENDING PRODUCTS -->
-<section class="section" style="padding-top: 0;">
-  <div class="section-inner">
-    <div class="section-head fade-up">
-      <div class="section-label">Best Sellers</div>
-      <h2 class="section-title">Trending <em>This Month</em></h2>
-    </div>
-    <div class="product-grid">
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-sale">Hot</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-          </div>
-          🧂
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇵🇰 Khewra, Pakistan</div>
-          <div class="product-name">Himalayan Pink Salt — Fine Ground</div>
-          <div class="product-weight">
-            <span class="weight-opt active">500g</span>
-            <span class="weight-opt">1kg</span>
-            <span class="weight-opt">5kg</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳420</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(389)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-          </div>
-          🍯
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇹🇷 Anatolian Highlands</div>
-          <div class="product-name">Raw Anatolian Thyme Honey</div>
-          <div class="product-weight">
-            <span class="weight-opt active">350g</span>
-            <span class="weight-opt">700g</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳2,200</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(201)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-new">New</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-          </div>
-          🌰
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇮🇹 Tuscany, Italy</div>
-          <div class="product-name">Organic Italian Chestnuts — Dried</div>
-          <div class="product-weight">
-            <span class="weight-opt active">200g</span>
-            <span class="weight-opt">500g</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳1,650</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
-            <span class="star-count">(78)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-      <div class="product-card fade-up">
-        <div class="product-card-img">
-          <div class="product-tags"><span class="tag-bulk">Bulk</span></div>
-          <div class="product-actions">
-            <button class="act-btn">🤍</button>
-            <button class="act-btn">👁</button>
-          </div>
-          🫘
-        </div>
-        <div class="product-body">
-          <div class="product-origin">🇫🇷 Puy-en-Velay, France</div>
-          <div class="product-name">Lentilles du Puy — AOC Certified Green</div>
-          <div class="product-weight">
-            <span class="weight-opt active">500g</span>
-            <span class="weight-opt">1kg</span>
-            <span class="weight-opt">5kg</span>
-          </div>
-          <div class="product-price">
-            <span class="price-main">৳1,100</span>
-          </div>
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span class="star-count">(155)</span>
-          </div>
-          <button class="btn-add-cart">+ Add to Cart</button>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:36px;">
-      <a href="#" class="btn-gold">View Full Catalogue →</a>
-    </div>
-  </div>
-</section>
-
-<!-- WHY ÉCLAT -->
-<section class="section" style="padding-top: 0; padding-bottom: 40px;">
-  <div class="section-inner">
-    <div class="section-head fade-up">
-      <div class="section-label">Our Promise</div>
-      <h2 class="section-title">Why Choose <em>Éclat Pantry</em></h2>
-    </div>
-    <div class="why-grid fade-up">
-      <div class="why-card">
-        <div class="why-icon">🔬</div>
-        <div class="why-title">Lab Certified</div>
-        <div class="why-desc">Every batch tested for authenticity, purity & safety. Certificates available on request.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌍</div>
-        <div class="why-title">Origin Sourced</div>
-        <div class="why-desc">Direct from estates & co-ops across 32 countries. No middlemen, maximum freshness.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🚚</div>
-        <div class="why-title">Fast Delivery</div>
-        <div class="why-desc">Same-day delivery in Dhaka. Nationwide coverage within 48–72 hours. Cash on delivery available.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">📦</div>
-        <div class="why-title">Heritage Packaging</div>
-        <div class="why-desc">Apothecary-grade glass jars, sealed for maximum shelf life. Gift-ready presentation.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section" style="padding-top: 40px;">
-  <div class="section-inner">
-    <div class="section-head fade-up">
-      <div class="section-label">Customer Stories</div>
-      <h2 class="section-title">Words of <em>Connoisseurs</em></h2>
-    </div>
-    <div class="testimonial-grid fade-up">
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">The Kashmir saffron from Éclat Pantry is unlike anything I've tasted before. The aroma, the colour — it's genuinely world-class. Our restaurant now exclusively uses it.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👨‍🍳</div>
-          <div>
-            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-            <div class="testi-name">Chef Arif Hossain</div>
-            <div class="testi-role">Executive Chef, Le Meridien Dhaka</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">I've been ordering in bulk for my cafe for two years. The tiered pricing is fair, delivery is always on time, and the quality is extraordinarily consistent.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👩‍💼</div>
-          <div>
-            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-            <div class="testi-name">Sabrina Chowdhury</div>
-            <div class="testi-role">Owner, Maison Brûlée Café</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">The French truffles arrived beautifully packed and smelled divine. Gifting them feels like giving someone a piece of Europe. Absolutely worth every taka.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👨‍💻</div>
-          <div>
-            <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-            <div class="testi-name">Rahim Uddin</div>
-            <div class="testi-role">Food Enthusiast, Chittagong</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter-section">
-  <div class="newsletter-inner">
-    <div class="frame-deco">✦ ✦ ✦</div>
-    <h2 class="newsletter-title">Join the Inner Circle</h2>
-    <p class="newsletter-sub">Receive exclusive offers, seasonal arrivals & heritage recipes before everyone else.</p>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input class="newsletter-input" type="email" placeholder="Your email address…">
-      <button class="newsletter-btn">Subscribe</button>
-    </form>
-    <p style="font-size:11px; color:var(--text-muted); margin-top:14px;">No spam. Unsubscribe anytime. Your privacy is sacred to us.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a class="logo" href="#">
-        <div class="logo-icon">🫙</div>
-        <div class="logo-text">
-          <span class="logo-name">Éclat Pantry</span>
-          <span class="logo-tagline">Heritage in Every Jar</span>
-        </div>
+    <div class="sb-top">
+      <a href="#" style="text-decoration:none;display:flex;align-items:center">
+        <div class="sb-logo-mark"></div>
+        <span class="sb-logo-text" style="margin-left:9px">Vault<span>X</span></span>
       </a>
-      <p class="footer-desc" style="margin-top:14px;">
-        Bangladesh's premier destination for artisanal dry foods. We source from the world's finest estates so your pantry holds only the exceptional.
-      </p>
-      <div class="footer-socials">
-        <a href="#" class="social-btn">📘</a>
-        <a href="#" class="social-btn">📷</a>
-        <a href="#" class="social-btn">💬</a>
-        <a href="#" class="social-btn">▶️</a>
-      </div>
     </div>
-    <div class="footer-col">
-      <h4>Shop</h4>
-      <ul class="footer-links">
-        <li><a href="#">→ Saffron Collection</a></li>
-        <li><a href="#">→ Spices & Herbs</a></li>
-        <li><a href="#">→ Nuts & Dried Fruits</a></li>
-        <li><a href="#">→ Truffles & Mushrooms</a></li>
-        <li><a href="#">→ Gourmet Lentils</a></li>
-        <li><a href="#">→ Bulk / Wholesale</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Account</h4>
-      <ul class="footer-links">
-        <li><a href="#">→ My Account</a></li>
-        <li><a href="#">→ Order History</a></li>
-        <li><a href="#">→ Track My Order</a></li>
-        <li><a href="#">→ Wishlist</a></li>
-        <li><a href="#">→ Returns & Refunds</a></li>
-        <li><a href="#">→ Coupons & Offers</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="footer-contact-item">
-        <span class="icon">📍</span>
-        <span>House 42, Road 11, Banani, Dhaka-1213, Bangladesh</span>
-      </div>
-      <div class="footer-contact-item">
-        <span class="icon">📞</span>
-        <span>+880-1800-ECLAT<br>+880-1700-PANTRY</span>
-      </div>
-      <div class="footer-contact-item">
-        <span class="icon">✉️</span>
-        <span>hello@eclatpantry.com.bd</span>
-      </div>
-      <div style="margin-top:6px; font-size:11px; color:var(--text-muted); letter-spacing:0.5px; text-transform:uppercase; margin-bottom:8px;">Accepted Payments</div>
-      <div class="footer-payments">
-        <span class="pay-badge">bKash</span>
-        <span class="pay-badge">Nagad</span>
-        <span class="pay-badge">COD</span>
-        <span class="pay-badge">Stripe</span>
-        <span class="pay-badge">USD</span>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom" style="max-width:1380px;">
-    <span>© 2026 Éclat Pantry. All rights reserved. | Crafted with love in Bangladesh 🇧🇩</span>
-    <span>Privacy Policy · Terms · Sitemap</span>
-  </div>
-</footer>
 
-<!-- CHAT FLOAT -->
-<div class="chat-float">
-  <div class="chat-options">
-    <a href="#" class="chat-option wa">💬 WhatsApp</a>
-    <a href="#" class="chat-option fb">💬 Messenger</a>
-    <a href="#" class="chat-option ig">💬 Instagram</a>
-  </div>
-  <button class="chat-main-btn" title="Chat with us">💬</button>
-</div>
+    <nav class="sb-nav">
+      <a class="sb-item" href="user-dashboard.html" onclick="goToDashboard(event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+
+      <a class="sb-item" href="#" onclick="setNav(this,event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Seasons
+      </a>
+
+      <a class="sb-item" href="#" onclick="setNav(this,event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Deposit
+      </a>
+
+      <a class="sb-item" href="#" onclick="setNav(this,event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Withdraw
+      </a>
+
+      <a class="sb-item" href="#" onclick="setNav(this,event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Referral
+      </a>
+
+      <a class="sb-item active" href="#" onclick="setNav(this,event)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Support
+      </a>
+    </nav>
+
+    <div class="sb-bottom">
+      <div class="sb-user">
+        <div class="sb-avatar">RK</div>
+        <div>
+          <div class="sb-uname">Rafiqul M.</div>
+          <div class="sb-role">Season 4 Investor</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+
+  <!-- ╔═══════════════════════╗
+       ║      MAIN AREA        ║
+       ╚═══════════════════════╝ -->
+  <div class="main-area">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="ham-btn" id="ham-btn" onclick="openSidebar()">
+        <span></span><span></span><span></span>
+      </div>
+
+      <a class="back-pill" href="user-dashboard.html" onclick="goToDashboard(event)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Dashboard
+      </a>
+
+      <span class="header-page-title">Support Center</span>
+
+      <div class="header-right">
+        <div class="notif-btn" onclick="showToast('No new notifications')">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <div class="notif-dot"></div>
+        </div>
+        <div class="header-avatar">JD</div>
+        <div class="header-uinfo">
+          <div class="header-uname">James Durant</div>
+          <div class="header-role">Investor</div>
+        </div>
+        <button class="btn-logout" onclick="showToast('Logging out…','err')">Logout</button>
+      </div>
+    </header>
+
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- PAGE HEADER -->
+      <div class="reveal" style="margin-bottom:26px">
+        <span class="sec-label">Help Center</span>
+        <h1 class="sec-title">Support</h1>
+        <p class="sec-sub">Find answers instantly or get in touch with our team.</p>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="reveal" style="margin-bottom:28px">
+        <div class="support-search-wrap">
+          <div class="support-search-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <input class="support-search" id="faq-search" type="text"
+            placeholder="Search FAQs…"
+            oninput="searchFAQ(this.value)">
+          <div class="search-clear" id="search-clear" onclick="clearSearch()">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUPPORT OPTIONS -->
+      <div class="reveal" style="margin-bottom:28px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <div>
+            <span class="sec-label" style="margin-bottom:2px">Quick Access</span>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ink)">Contact Options</div>
+          </div>
+        </div>
+        <div class="support-grid">
+
+          <!-- Live Chat -->
+          <div class="support-opt" onclick="showToast('⚠ Live chat is currently unavailable.','err')" style="opacity:.75;cursor:not-allowed">
+            <div class="support-opt-icon" style="background:rgba(155,58,58,.07)">
+              <svg viewBox="0 0 24 24" style="stroke:#9b6a6a"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div>
+              <div class="support-opt-title">Live Chat</div>
+              <div class="support-opt-desc">Chat with our support team in real time.</div>
+            </div>
+            <span class="support-opt-badge offline">
+              <span style="width:6px;height:6px;border-radius:50%;background:#9b6a6a;display:inline-block;margin-right:4px"></span>
+              Not Available
+            </span>
+          </div>
+
+          <!-- Email Support -->
+          <div class="support-opt" onclick="openEmail()">
+            <div class="support-opt-icon" style="background:rgba(184,147,90,.1)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--gold)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="support-opt-title">Email Support</div>
+              <div class="support-opt-desc">Send us an email and get a reply within 24 hours.</div>
+            </div>
+            <span class="support-opt-badge"><span class="live-dot"></span>Available</span>
+          </div>
+
+          <!-- Telegram -->
+          <div class="support-opt" onclick="openTelegram()">
+            <div class="support-opt-icon" style="background:rgba(184,147,90,.08)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--gold-d)"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+            <div>
+              <div class="support-opt-title">Telegram Support</div>
+              <div class="support-opt-desc">Reach us instantly on our official Telegram channel.</div>
+            </div>
+            <span class="support-opt-badge"><span class="live-dot"></span>Active</span>
+          </div>
+
+          <!-- Ticket History -->
+          <div class="support-opt" onclick="scrollToTickets()">
+            <div class="support-opt-icon" style="background:rgba(28,28,28,.06)">
+              <svg viewBox="0 0 24 24" style="stroke:var(--charcoal)"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div>
+              <div class="support-opt-title">Ticket History</div>
+              <div class="support-opt-desc">View all your past support tickets and their status.</div>
+            </div>
+            <span class="support-opt-badge" style="background:rgba(28,28,28,.06);color:var(--text-sec);border-color:rgba(28,28,28,.1)">4 Tickets</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="divider reveal"></div>
+
+      <!-- FAQ + CONTACT FORM (two-col) -->
+      <div class="two-col">
+
+        <!-- ── FAQ SECTION ── -->
+        <div class="reveal">
+          <div style="margin-bottom:18px">
+            <span class="sec-label" style="margin-bottom:2px">Self-Service</span>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:10px">Frequently Asked Questions</div>
+
+            <!-- FAQ Category Filter -->
+            <div class="faq-filter-row" id="faq-filters">
+              <button class="faq-pill active" data-cat="all"     onclick="filterFAQ('all',this)">All</button>
+              <button class="faq-pill"         data-cat="account" onclick="filterFAQ('account',this)">Account</button>
+              <button class="faq-pill"         data-cat="invest"  onclick="filterFAQ('invest',this)">Investing</button>
+              <button class="faq-pill"         data-cat="finance" onclick="filterFAQ('finance',this)">Finance</button>
+              <button class="faq-pill"         data-cat="referral" onclick="filterFAQ('referral',this)">Referral</button>
+              <button class="faq-pill"         data-cat="security" onclick="filterFAQ('security',this)">Security</button>
+            </div>
+          </div>
+
+          <div class="card" style="overflow:visible">
+            <div class="faq-list" id="faq-list">
+              <!-- rendered by JS -->
+            </div>
+            <div class="faq-empty" id="faq-empty">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              No results found. Try a different search term or category.
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTACT FORM ── -->
+        <div class="reveal">
+          <div style="margin-bottom:18px">
+            <span class="sec-label" style="margin-bottom:2px">Get Help</span>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink)">Submit a Support Ticket</div>
+          </div>
+
+          <div class="form-lock-wrap">
+
+            <!-- LOCK OVERLAY -->
+            <div class="form-lock-overlay">
+              <div class="lock-icon-wrap">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              </div>
+              <div class="lock-chains">
+                <div class="lock-chain-dot"></div>
+                <div class="lock-chain-dot"></div>
+                <div class="lock-chain-dot"></div>
+              </div>
+              <div class="lock-title">Service Unavailable</div>
+              <div class="lock-message">
+                Support ticket submission is not available in your country or region at this time.
+              </div>
+              <div class="lock-region-tag">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                Region Restricted
+              </div>
+            </div>
+
+            <!-- FORM (blurred behind overlay) -->
+            <div class="card" style="filter:blur(2px);pointer-events:none;user-select:none">
+
+              <!-- Form -->
+              <div id="contact-form-wrap" class="card-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="f-category">Category <span>*</span></label>
+                    <select class="form-select" id="f-category">
+                      <option value="" disabled selected>Select a category…</option>
+                      <option value="deposit">Deposit Issue</option>
+                      <option value="withdrawal">Withdrawal Issue</option>
+                      <option value="investment">Investment / Season</option>
+                      <option value="referral">Referral & Commission</option>
+                      <option value="account">Account & Security</option>
+                      <option value="kyc">KYC Verification</option>
+                      <option value="technical">Technical Problem</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <div class="form-error" id="err-category">Please select a category.</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="f-subject">Subject <span>*</span></label>
+                    <input class="form-input" id="f-subject" type="text"
+                      placeholder="Brief description of your issue…" maxlength="120">
+                    <div class="form-error" id="err-subject">Subject is required.</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Priority</label>
+                    <div class="priority-row">
+                      <label class="priority-opt"><input type="radio" name="priority" value="low" checked><span class="priority-label"><span class="priority-dot" style="background:#6a8c60"></span> Low</span></label>
+                      <label class="priority-opt"><input type="radio" name="priority" value="medium"><span class="priority-label"><span class="priority-dot" style="background:var(--gold)"></span> Medium</span></label>
+                      <label class="priority-opt"><input type="radio" name="priority" value="high"><span class="priority-label"><span class="priority-dot" style="background:#9b3a3a"></span> High</span></label>
+                      <label class="priority-opt"><input type="radio" name="priority" value="urgent"><span class="priority-label"><span class="priority-dot" style="background:#6b2020"></span> Urgent</span></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="f-message">Message <span>*</span></label>
+                    <textarea class="form-textarea" id="f-message" placeholder="Describe your issue in detail…"></textarea>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+                      <div class="form-error" id="err-message">Message must be at least 20 characters.</div>
+                      <div class="form-hint" id="char-count" style="margin-left:auto">0 / 2000</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:flex-end;padding-top:4px">
+                    <button class="btn-submit" id="submit-btn">
+                      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                      Submit Ticket
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Success state -->
+              <div class="form-success" id="form-success">
+                <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="form-success-title">Ticket Submitted</div>
+                <div class="ticket-id" id="ticket-id-display">#TKT-000000</div>
+              </div>
+
+            </div><!-- /card -->
+          </div><!-- /form-lock-wrap -->
+        </div>
+
+      </div>
+
+      <div class="divider reveal"></div>
+
+      <!-- ── TICKET HISTORY ── -->
+      <div class="reveal" id="ticket-history-section">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+          <div>
+            <span class="sec-label" style="margin-bottom:2px">My Requests</span>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink)">Ticket History</div>
+          </div>
+          <button class="btn-ghost" onclick="showToast('Exporting ticket history…')">Export</button>
+        </div>
+
+        <div class="card">
+          <div class="tbl-wrap">
+            <table class="dtbl">
+              <thead>
+                <tr>
+                  <th>Ticket ID</th>
+                  <th>Subject</th>
+                  <th>Category</th>
+                  <th>Priority</th>
+                  <th>Submitted</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="ticket-tbody">
+                <!-- rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main-area -->
+</div><!-- /layout -->
+
 
 <script>
-// COUNTDOWN
-function updateCountdown(){
-  let now = new Date();
-  let midnight = new Date(); midnight.setHours(24,0,0,0);
-  let diff = midnight - now;
-  let h = Math.floor(diff/3600000);
-  let m = Math.floor((diff%3600000)/60000);
-  let s = Math.floor((diff%60000)/1000);
-  document.getElementById('h').textContent = String(h).padStart(2,'0');
-  document.getElementById('m').textContent = String(m).padStart(2,'0');
-  document.getElementById('s').textContent = String(s).padStart(2,'0');
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+function openSidebar()  { document.getElementById('sidebar').classList.add('open');    document.getElementById('sb-overlay').classList.add('show') }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sb-overlay').classList.remove('show') }
+function goToDashboard(e) {
+  e.preventDefault();
+  if (window.innerWidth < 1024) closeSidebar();
+  window.location.href = "user-dashboard.html";
 }
-updateCountdown(); setInterval(updateCountdown,1000);
 
-// FADE IN ON SCROLL
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
-},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+function setNav(el, e) {
+  e.preventDefault();
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  if (window.innerWidth < 1024) closeSidebar();
+}
 
-// WEIGHT OPTION TOGGLE
-document.querySelectorAll('.product-weight').forEach(w=>{
-  w.querySelectorAll('.weight-opt').forEach(opt=>{
-    opt.addEventListener('click',()=>{
-      w.querySelectorAll('.weight-opt').forEach(o=>o.classList.remove('active'));
-      opt.classList.add('active');
+/* ═══════════════════════════════════
+   TOAST
+═══════════════════════════════════ */
+let _tt;
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (type ? ' ' + type : '');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => { t.className = '' }, 2800);
+}
+
+/* ═══════════════════════════════════
+   FAQ DATA
+═══════════════════════════════════ */
+const faqs = [
+  {
+    cat:'finance', q:'How do I make a deposit?',
+    a:'Navigate to the <strong>Deposit</strong> page from your dashboard. Select your preferred payment method (USDT-TRC20, USDT-ERC20, or BEP20), enter the amount, and transfer funds to the displayed wallet address. Deposits are credited within 15–30 minutes after 1 network confirmation.'
+  },
+  {
+    cat:'finance', q:'How long does a withdrawal take to process?',
+    a:'Withdrawal requests are reviewed by our team within <strong>2–3 business days</strong>. Once approved, funds are sent to your registered wallet address. Processing time on the blockchain is typically 5–30 minutes depending on network congestion.'
+  },
+  {
+    cat:'invest', q:'What is a Season and how does it work?',
+    a:'A Season is a fixed-duration investment pool with a predetermined ROI. You deposit USDT into an active Season, and at the end of the season period your principal plus ROI is returned to your account balance. Each Season has a maximum pool size — once filled, new entries are closed.'
+  },
+  {
+    cat:'invest', q:'Can I withdraw my investment before a Season ends?',
+    a:'Investments in an active Season are <strong>locked for the full duration</strong>. Early withdrawals are not permitted to protect the integrity of returns for all participants. You can however withdraw your available balance (earnings and past returns) at any time.'
+  },
+  {
+    cat:'invest', q:'What is the minimum investment amount?',
+    a:'The minimum investment per Season entry is <strong>$100 USDT</strong>. There is no hard maximum, however each Season has a total pool cap. We recommend diversifying across multiple Seasons when larger amounts are involved.'
+  },
+  {
+    cat:'referral', q:'How does the referral program work?',
+    a:'You earn <strong>5% commission</strong> on every USDT investment made by users you refer. Share your unique referral link or code — when a referred user registers and invests, your commission is automatically credited within 2–3 business days. Commissions are lifetime and apply to every investment your referral makes across all Seasons.'
+  },
+  {
+    cat:'referral', q:'When is my referral commission paid out?',
+    a:'Referral commissions are added to your <strong>Pending Commission</strong> balance once a referred user\'s investment is confirmed. Funds move to your available balance within 2–3 business days and can then be withdrawn freely.'
+  },
+  {
+    cat:'account', q:'How do I verify my identity (KYC)?',
+    a:'Go to <strong>Settings → Identity Verification</strong>. You will need to upload a government-issued photo ID (passport, national ID, or driver\'s license) and a selfie holding your document. Verification is completed within 24–48 hours. KYC is required for withdrawals above $1,000 USDT.'
+  },
+  {
+    cat:'account', q:'Can I change my registered email address?',
+    a:'Yes. Visit <strong>Settings → Account</strong> and request an email change. A confirmation link will be sent to both your old and new email addresses. You must verify both within 24 hours for the change to take effect.'
+  },
+  {
+    cat:'security', q:'What should I do if I suspect unauthorised access?',
+    a:'Immediately <a href="#">change your password</a>, enable two-factor authentication (2FA), and <a href="#">contact our support team</a>. We recommend using a unique, strong password and enabling login notifications in your account settings.'
+  },
+  {
+    cat:'security', q:'How do I enable two-factor authentication (2FA)?',
+    a:'Go to <strong>Settings → Security</strong> and click <em>Enable 2FA</em>. Scan the QR code with Google Authenticator or Authy, then enter the 6-digit code to confirm. Once enabled, 2FA is required at every login and for withdrawal requests.'
+  },
+  {
+    cat:'finance', q:'Are there any fees for deposits or withdrawals?',
+    a:'SeasonRise does not charge platform fees on deposits. For withdrawals, a small <strong>network gas fee</strong> is deducted depending on the blockchain used (TRC20 is cheapest). This fee covers blockchain transaction costs and is displayed before you confirm a withdrawal.'
+  },
+];
+
+let currentCat    = 'all';
+let currentSearch = '';
+let openIndex     = null;
+
+function getVisible() {
+  return faqs.filter((f, i) => {
+    const catMatch = currentCat === 'all' || f.cat === currentCat;
+    const q = currentSearch.toLowerCase();
+    const textMatch = !q || f.q.toLowerCase().includes(q) || f.a.toLowerCase().includes(q);
+    return catMatch && textMatch;
+  });
+}
+
+function renderFAQ() {
+  const list    = document.getElementById('faq-list');
+  const empty   = document.getElementById('faq-empty');
+  const visible = getVisible();
+
+  if (!visible.length) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = visible.map((f, i) => {
+    const catLabels = { account:'Account', invest:'Investing', finance:'Finance', referral:'Referral', security:'Security' };
+    return `
+      <div class="faq-item" id="faq-${i}">
+        <button class="faq-trigger" onclick="toggleFAQ(${i})" aria-expanded="false" id="faq-btn-${i}">
+          <span class="faq-q-text">${highlight(f.q, currentSearch)}</span>
+          <span class="faq-cat-tag">${catLabels[f.cat] || f.cat}</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-body" id="faq-body-${i}">
+          <div class="faq-answer">${highlight(f.a, currentSearch)}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Re-open if same index exists
+  if (openIndex !== null && openIndex < visible.length) {
+    const btn  = document.getElementById(`faq-btn-${openIndex}`);
+    const body = document.getElementById(`faq-body-${openIndex}`);
+    if (btn && body) { btn.classList.add('open'); body.classList.add('open') }
+  }
+}
+
+function toggleFAQ(i) {
+  const btn  = document.getElementById(`faq-btn-${i}`);
+  const body = document.getElementById(`faq-body-${i}`);
+  const isOpen = btn.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-trigger').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+    openIndex = i;
+  } else {
+    openIndex = null;
+  }
+}
+
+function filterFAQ(cat, btn) {
+  currentCat = cat;
+  openIndex  = null;
+  document.querySelectorAll('.faq-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFAQ();
+}
+
+function searchFAQ(val) {
+  currentSearch = val;
+  openIndex = null;
+  document.getElementById('search-clear').style.display = val ? 'block' : 'none';
+  renderFAQ();
+}
+
+function clearSearch() {
+  document.getElementById('faq-search').value = '';
+  searchFAQ('');
+}
+
+function highlight(text, term) {
+  if (!term) return text;
+  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${escaped})`, 'gi'),
+    '<mark style="background:rgba(184,147,90,.25);border-radius:2px;padding:0 1px">$1</mark>');
+}
+
+/* ═══════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════ */
+const uploadedFiles = [];
+
+// Char counter
+document.getElementById('f-message').addEventListener('input', function() {
+  const len = this.value.length;
+  document.getElementById('char-count').textContent = `${len} / 2000`;
+  if (len > 2000) this.value = this.value.slice(0, 2000);
+});
+
+function validateForm() {
+  let valid = true;
+  const fields = [
+    { id:'f-category',  errId:'err-category',  check: v => v !== '' },
+    { id:'f-subject',   errId:'err-subject',   check: v => v.trim().length > 2 },
+    { id:'f-message',   errId:'err-message',   check: v => v.trim().length >= 20 },
+  ];
+  fields.forEach(f => {
+    const el  = document.getElementById(f.id);
+    const err = document.getElementById(f.errId);
+    const ok  = f.check(el.value);
+    el.classList.toggle('invalid', !ok);
+    err.style.display = ok ? 'none' : 'block';
+    if (!ok) valid = false;
+  });
+  return valid;
+}
+
+// Clear invalid on input
+['f-category','f-subject','f-message'].forEach(id => {
+  const el = document.getElementById(id);
+  const event = id === 'f-category' ? 'change' : 'input';
+  el.addEventListener(event, () => {
+    el.classList.remove('invalid');
+    document.getElementById('err-' + id.replace('f-','')).style.display = 'none';
+  });
+});
+
+function submitForm() {
+  if (!validateForm()) { showToast('Please fill in all required fields.','err'); return; }
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" style="animation:spin .8s linear infinite"><polyline points="23 4 23 11 16 11"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 11"/></svg> Sending…';
+
+  setTimeout(() => {
+    const tid = 'TKT-' + Math.random().toString(36).slice(2,8).toUpperCase();
+    document.getElementById('ticket-id-display').textContent = '#' + tid;
+    document.getElementById('contact-form-wrap').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+    showToast('✓ Support ticket submitted!', 'ok');
+
+    // Add to ticket history
+    addTicketToHistory({
+      id:       '#' + tid,
+      subject:  document.getElementById('f-subject').value,
+      category: document.getElementById('f-category').options[document.getElementById('f-category').selectedIndex].text,
+      priority: document.querySelector('input[name=priority]:checked').value,
+      date:     'Just now',
+      status:   'open'
     });
-  });
-});
 
-// ADD TO CART ANIMATION
-document.querySelectorAll('.btn-add-cart').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    const orig = this.textContent;
-    this.textContent = '✓ Added!';
-    this.style.background = 'var(--gold)';
-    this.style.color = 'var(--mahogany)';
-    setTimeout(()=>{
-      this.textContent = orig;
-      this.style.background = '';
-      this.style.color = '';
-    }, 1500);
-  });
-});
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Ticket';
+  }, 1600);
+}
 
-// HERO DOTS
-const dots = document.querySelectorAll('.hero-dot');
-let currentDot = 0;
-setInterval(()=>{
-  dots[currentDot].classList.remove('active');
-  currentDot = (currentDot+1)%dots.length;
-  dots[currentDot].classList.add('active');
-}, 3500);
-dots.forEach((d,i)=>d.addEventListener('click',()=>{
-  dots[currentDot].classList.remove('active');
-  currentDot=i; d.classList.add('active');
-}));
+function resetForm() {
+  document.getElementById('f-category').value = '';
+  document.getElementById('f-subject').value  = '';
+  document.getElementById('f-message').value  = '';
+  document.getElementById('char-count').textContent = '0 / 2000';
+  uploadedFiles.length = 0;
+  document.getElementById('file-list').innerHTML = '';
+  document.querySelector('input[name=priority][value=low]').checked = true;
+  document.getElementById('contact-form-wrap').style.display = 'block';
+  document.getElementById('form-success').style.display = 'none';
+}
 
-// SMOOTH NAV ACTIVE
-document.querySelectorAll('.nav-link').forEach(link=>{
-  link.addEventListener('click',function(e){
-    document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-    this.classList.add('active');
+// Spin keyframe
+const style = document.createElement('style');
+style.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
+
+/* ═══════════════════════════════════
+   FILE UPLOAD
+═══════════════════════════════════ */
+function handleDragOver(e) {
+  e.preventDefault();
+  document.getElementById('file-drop').classList.add('dragover');
+}
+function handleDragLeave(e) {
+  document.getElementById('file-drop').classList.remove('dragover');
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('file-drop').classList.remove('dragover');
+  handleFiles(e.dataTransfer.files);
+}
+function handleFiles(files) {
+  const list = document.getElementById('file-list');
+  Array.from(files).forEach(f => {
+    if (uploadedFiles.length >= 5) { showToast('Max 5 attachments allowed.','err'); return; }
+    if (f.size > 10 * 1024 * 1024) { showToast(`${f.name} exceeds 10 MB limit.`,'err'); return; }
+    const uid = Date.now() + Math.random();
+    uploadedFiles.push({ uid, file:f });
+    const size = f.size > 1024*1024 ? (f.size/1024/1024).toFixed(1)+' MB' : Math.round(f.size/1024)+' KB';
+    const chip = document.createElement('div');
+    chip.className = 'file-chip';
+    chip.id = 'chip-'+uid;
+    chip.innerHTML = `
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="file-chip-name">${f.name}</span>
+      <span class="file-chip-size">${size}</span>
+      <span class="file-chip-rm" onclick="removeFile(${uid})">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </span>`;
+    list.appendChild(chip);
+    showToast(`📎 ${f.name} attached`, 'ok');
   });
-});
+}
+function removeFile(uid) {
+  const idx = uploadedFiles.findIndex(f => f.uid === uid);
+  if (idx > -1) uploadedFiles.splice(idx, 1);
+  const chip = document.getElementById('chip-'+uid);
+  if (chip) chip.remove();
+}
+
+/* ═══════════════════════════════════
+   TICKET HISTORY
+═══════════════════════════════════ */
+const ticketData = [
+  { id:'#TKT-A9X2K1', subject:'Withdrawal pending for 5 days',        category:'Withdrawal Issue', priority:'high',   date:'28 Mar 2025', status:'closed'  },
+  { id:'#TKT-B3M7P2', subject:'Referral commission not credited',      category:'Referral',         priority:'medium', date:'15 Mar 2025', status:'closed'  },
+  { id:'#TKT-C1L4Q8', subject:'Unable to complete KYC verification',   category:'KYC',              priority:'medium', date:'02 Mar 2025', status:'closed'  },
+  { id:'#TKT-D6R2W5', subject:'Season 6 ROI calculation discrepancy',  category:'Investment',       priority:'low',    date:'18 Feb 2025', status:'closed'  },
+];
+
+function addTicketToHistory(t) {
+  ticketData.unshift(t);
+  renderTickets();
+}
+
+function renderTickets() {
+  document.getElementById('ticket-tbody').innerHTML = ticketData.map(t => {
+    const priColor = { low:'var(--sage)', medium:'var(--gold)', high:'#9b3a3a', urgent:'#6b2020' };
+    const priBg    = { low:'rgba(74,103,65,.08)', medium:'rgba(184,147,90,.08)', high:'rgba(155,58,58,.07)', urgent:'rgba(107,32,32,.07)' };
+    const priBd    = { low:'rgba(74,103,65,.2)',  medium:'var(--border)', high:'rgba(155,58,58,.18)', urgent:'rgba(107,32,32,.2)' };
+    const statusBadge = t.status === 'open'
+      ? '<span class="badge b-open">Open</span>'
+      : t.status === 'pending'
+        ? '<span class="badge b-pending">Pending</span>'
+        : '<span class="badge b-closed">Closed</span>';
+    return `
+      <tr>
+        <td data-label="Ticket ID"><span style="font-family:monospace;font-size:.72rem;color:var(--gold)">${t.id}</span></td>
+        <td data-label="Subject"><span style="font-size:.78rem;font-weight:500;color:var(--ink)">${t.subject}</span></td>
+        <td data-label="Category"><span class="td-sub">${t.category}</span></td>
+        <td data-label="Priority">
+          <span style="display:inline-block;padding:2px 9px;border-radius:100px;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:${priBg[t.priority]};color:${priColor[t.priority]};border:1px solid ${priBd[t.priority]}">
+            ${t.priority}
+          </span>
+        </td>
+        <td data-label="Submitted"><span class="td-sub">${t.date}</span></td>
+        <td data-label="Status">${statusBadge}</td>
+        <td>
+          <button class="btn-ghost" style="padding:4px 12px;font-size:.62rem"
+            onclick="showToast('Opening ticket ${t.id}…')">View</button>
+        </td>
+      </tr>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════
+   SUPPORT OPTION ACTIONS
+═══════════════════════════════════ */
+function startChat()      { showToast('🟢 Connecting to live chat…','ok') }
+function openEmail()      { showToast('📧 Opening email support…') }
+function openTelegram()   { window.open('https://t.me/SeasonRise','_blank'); showToast('📤 Opening Telegram…') }
+function scrollToTickets(){ document.getElementById('ticket-history-section').scrollIntoView({ behavior:'smooth',block:'start' }) }
+
+/* ═══════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis') });
+}, { threshold:0.06 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════
+   INIT
+═══════════════════════════════════ */
+renderFAQ();
+renderTickets();
 </script>
 </body>
 </html>
