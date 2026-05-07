@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sign In — Zestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #F6F1E9;
+  --bg2:       #EDE6DA;
+  --panel:     #F0EAE0;
+  --card:      #FAF7F2;
+  --green:     #2B4A1D;
+  --green-mid: #4C7A32;
+  --green-lt:  #8AB56A;
+  --spice:     #9B4F1A;
+  --spice-lt:  #C8784A;
+  --brown:     #3A2410;
+  --text:      #261A0E;
+  --muted:     #7C6A54;
+  --light:     #B5A48C;
+  --border:    rgba(43,74,29,0.10);
+  --border2:   rgba(43,74,29,0.20);
+  --cream:     #FBF8F3;
+  --shadow-sm: 0 2px 12px rgba(38,26,14,0.07);
+  --shadow-md: 0 8px 32px rgba(38,26,14,0.10);
+  --shadow-lg: 0 20px 60px rgba(38,26,14,0.13);
+  --shadow-green: 0 12px 36px rgba(43,74,29,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; height: 100%; }
+body {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN TEXTURE ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════ */
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ════════════════════════════════════════
+   LEFT PANEL — Brand
+════════════════════════════════════════ */
+.brand-panel {
+  background: var(--brown);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 3.5rem;
+  min-height: 100vh;
+}
+
+/* Botanical SVG leaves */
+.brand-panel .leaf {
+  position: absolute;
+  opacity: 0.07;
+  transform-origin: center bottom;
+}
+.brand-panel .leaf svg { width: 100%; height: 100%; }
+.bl-1 { width: 280px; height: 360px; top: -60px; left: -80px; animation: leafSway1 9s ease-in-out infinite; }
+.bl-2 { width: 220px; height: 280px; bottom: -50px; right: -60px; animation: leafSway2 12s ease-in-out infinite; transform: scaleX(-1); }
+.bl-3 { width: 160px; height: 210px; top: 38%; right: -30px; animation: leafSway1 15s ease-in-out infinite; opacity: 0.05; transform: scaleX(-1); }
+.bl-4 { width: 130px; height: 170px; bottom: 30%; left: -20px; animation: leafSway2 11s ease-in-out infinite; opacity: 0.05; }
+
+@keyframes leafSway1 {
+  0%,100% { transform: rotate(-4deg) translateY(0); }
+  50%      { transform: rotate(4deg) translateY(-12px); }
+}
+@keyframes leafSway2 {
+  0%,100% { transform: rotate(3deg) translateY(0); }
+  50%      { transform: rotate(-5deg) translateY(-8px); }
+}
+
+/* Floating spice dots */
+.spice-dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.sd-1 { width: 320px; height: 320px; background: var(--green-mid); top: -80px; right: -80px; }
+.sd-2 { width: 200px; height: 200px; background: var(--spice); bottom: 60px; left: -60px; }
+.sd-3 { width: 120px; height: 120px; background: var(--green-lt); top: 50%; left: 30%; opacity: 0.05; }
+
+/* Brand panel content */
+.brand-top {
+  position: relative; z-index: 2;
+  opacity: 0;
+  animation: slideUp 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.brand-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.brand-logo svg { width: 28px; height: 35px; fill: var(--green-lt); flex-shrink: 0; }
+.brand-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+
+.brand-mid {
+  position: relative; z-index: 2;
+  opacity: 0;
+  animation: slideUp 0.7s 0.25s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.brand-tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.18;
+  margin-bottom: 1.4rem;
+}
+.brand-tagline em {
+  font-style: italic;
+  color: var(--green-lt);
+}
+.brand-sub {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.45);
+  max-width: 320px;
+  margin-bottom: 2.8rem;
+}
+
+/* Feature list */
+.brand-features { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.brand-features li {
+  display: flex; align-items: flex-start; gap: 0.9rem;
+}
+.feat-icon {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(138,181,106,0.14);
+  border: 1px solid rgba(138,181,106,0.22);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.feat-icon svg { width: 16px; stroke: var(--green-lt); fill: none; stroke-width: 1.9; }
+.feat-text strong { display: block; font-size: 0.84rem; font-weight: 600; color: #fff; margin-bottom: 0.18rem; }
+.feat-text span { font-size: 0.74rem; color: rgba(255,255,255,0.42); line-height: 1.5; }
+
+/* Testimonial quote */
+.brand-quote {
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 1.6rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  line-height: 0.6;
+  color: var(--green-lt);
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+}
+.quote-author { display: flex; align-items: center; gap: 0.8rem; }
+.quote-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 0.9rem; color: #fff;
+  flex-shrink: 0;
+}
+.quote-name { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.65); }
+.quote-loc { font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 1px; }
+
+/* ════════════════════════════════════════
+   RIGHT PANEL — Form
+════════════════════════════════════════ */
+.form-panel {
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+/* Subtle pattern */
+.form-panel::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(43,74,29,0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.form-wrap {
+  width: 100%;
+  max-width: 420px;
+  position: relative; z-index: 1;
+}
+
+/* Mobile logo (hidden on desktop) */
+.mobile-logo {
+  display: none;
+  align-items: center; gap: 8px;
+  margin-bottom: 2.4rem;
+  text-decoration: none;
+}
+.mobile-logo svg { width: 22px; height: 28px; fill: var(--green); }
+.mobile-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem; font-weight: 700;
+  color: var(--green); letter-spacing: 0.04em;
+}
+
+/* Form heading */
+.form-heading-row {
+  margin-bottom: 2.2rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.2s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.form-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--spice);
+}
+.eyebrow-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+.form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  color: var(--brown);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+.form-title em { font-style: italic; color: var(--green); }
+.form-sub {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.form-sub a {
+  color: var(--green);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border2);
+  transition: border-color 0.25s, color 0.25s;
+}
+.form-sub a:hover { color: var(--green-mid); border-color: var(--green-mid); }
+
+/* Social logins */
+.social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.btn-social {
+  display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+  padding: 0.72rem 1rem;
+  background: var(--cream);
+  border: 1.5px solid var(--border2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.28s cubic-bezier(0.22,1,0.36,1);
+  white-space: nowrap;
+}
+.btn-social:hover {
+  border-color: var(--green);
+  background: rgba(43,74,29,0.04);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-social svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+/* Divider */
+.divider {
+  display: flex; align-items: center; gap: 0.9rem;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.35s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+.divider-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--light);
+  white-space: nowrap;
+}
+
+/* Form fields */
+.form-fields {
+  display: flex; flex-direction: column; gap: 1.1rem;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.field-group { display: flex; flex-direction: column; gap: 0.45rem; }
+.field-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+.field-wrap {
+  position: relative;
+}
+.field-icon {
+  position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+  display: flex; align-items: center;
+}
+.field-icon svg { width: 16px; stroke: var(--light); fill: none; stroke-width: 1.8; transition: stroke 0.25s; }
+.field-input {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.7rem;
+  background: var(--cream);
+  border: 1.5px solid var(--border2);
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.28s, box-shadow 0.28s, background 0.28s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.field-input::placeholder { color: var(--light); }
+.field-input:focus {
+  border-color: var(--green);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(43,74,29,0.08);
+}
+.field-input:focus + .field-icon svg,
+.field-wrap:focus-within .field-icon svg { stroke: var(--green); }
+
+/* Password toggle */
+.pw-toggle {
+  position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; padding: 0.2rem;
+  display: flex; align-items: center;
+  color: var(--light);
+  transition: color 0.25s;
+}
+.pw-toggle:hover { color: var(--green); }
+.pw-toggle svg { width: 17px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+/* Remember / Forgot row */
+.extras-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: slideUp 0.7s 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.check-wrap {
+  display: flex; align-items: center; gap: 0.55rem;
+  cursor: pointer;
+}
+.check-input { display: none; }
+.check-box {
+  width: 17px; height: 17px;
+  border: 1.5px solid var(--border2);
+  border-radius: 3px;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.22s;
+}
+.check-input:checked + .check-box {
+  background: var(--green);
+  border-color: var(--green);
+}
+.check-input:checked + .check-box::after {
+  content: '';
+  display: block;
+  width: 9px; height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.check-label { font-size: 0.78rem; color: var(--muted); user-select: none; }
+.forgot-link {
+  font-size: 0.78rem;
+  color: var(--green);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s;
+}
+.forgot-link:hover { border-color: var(--green); }
+
+/* Submit button */
+.btn-submit {
+  width: 100%;
+  padding: 1rem;
+  background: var(--green);
+  color: #fff;
+  border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; gap: 0.65rem;
+  transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+  position: relative; overflow: hidden;
+  opacity: 0;
+  animation: slideUp 0.7s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.btn-submit::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn-submit:hover {
+  background: var(--green-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-green);
+}
+.btn-submit:active { transform: translateY(0); }
+.btn-submit svg { width: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+
+/* Loading spinner */
+.spinner {
+  display: none;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+.btn-submit.loading .spinner { display: block; }
+.btn-submit.loading .btn-text { display: none; }
+.btn-submit.loading .btn-arrow { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Sign-up link */
+.signup-row {
+  text-align: center;
+  margin-top: 1.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  opacity: 0;
+  animation: slideUp 0.7s 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.signup-row a {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border2);
+  transition: border-color 0.25s, color 0.25s;
+}
+.signup-row a:hover { color: var(--green-mid); border-color: var(--green-mid); }
+
+/* Error state */
+.field-input.error { border-color: var(--spice); background: rgba(155,79,26,0.04); }
+.field-error {
+  font-size: 0.68rem;
+  color: var(--spice);
+  display: none;
+  align-items: center; gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+.field-error.show { display: flex; }
+.field-error svg { width: 12px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--green); color: #fff;
+  padding: 0.85rem 1.6rem;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+  border-radius: 4px;
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
+  z-index: 9000; pointer-events: none;
+  box-shadow: 0 8px 24px rgba(43,74,29,0.3);
+  max-width: calc(100vw - 4rem);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* Keyframes */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .page { grid-template-columns: 1fr; }
+
+  .brand-panel {
+    min-height: auto;
+    padding: 2.4rem 5%;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-top { opacity: 1; animation: none; }
+  .brand-mid { opacity: 1; animation: none; display: none; }
+  .brand-quote { display: none; }
+
+  .brand-panel .bl-1, .brand-panel .bl-2,
+  .brand-panel .bl-3, .brand-panel .bl-4 { display: none; }
+  .sd-1, .sd-2, .sd-3 { display: none; }
+
+  .mobile-logo { display: flex; }
+  .form-panel { padding: 3rem 5%; }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 600px)
+════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .brand-panel { display: none; }
+  .form-panel { padding: 2.4rem 5% 3rem; align-items: flex-start; }
+  .form-wrap { max-width: 100%; }
+  .mobile-logo { margin-bottom: 2rem; }
+
+  .form-title { font-size: 2rem; }
+  .social-row { grid-template-columns: 1fr 1fr; }
+
+  .toast { bottom: 1rem; right: 1rem; left: 1rem; text-align: center; max-width: none; }
+}
+
+@media (max-width: 400px) {
+  .social-row { grid-template-columns: 1fr; }
+  .btn-social { width: 100%; }
+  .extras-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════ BRAND PANEL (Left) ══════════ -->
+  <aside class="brand-panel">
+    <!-- Decorative elements -->
+    <div class="spice-dot sd-1"></div>
+    <div class="spice-dot sd-2"></div>
+    <div class="spice-dot sd-3"></div>
+
+    <div class="leaf bl-1">
+      <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 250 C100 250 10 180 5 100 C0 20 80 0 100 10 C120 0 200 20 195 100 C190 180 100 250 100 250Z" fill="#8AB56A"/>
+        <path d="M100 250 L100 10" stroke="#4C7A32" stroke-width="2" fill="none"/>
+        <path d="M100 200 C70 160 30 140 10 80" stroke="#4C7A32" stroke-width="1.2" fill="none"/>
+        <path d="M100 200 C130 160 170 140 190 80" stroke="#4C7A32" stroke-width="1.2" fill="none"/>
+        <path d="M100 160 C75 130 40 120 20 70" stroke="#4C7A32" stroke-width="0.8" fill="none"/>
+        <path d="M100 160 C125 130 160 120 180 70" stroke="#4C7A32" stroke-width="0.8" fill="none"/>
+      </svg>
+    </div>
+    <div class="leaf bl-2">
+      <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 250 C100 250 10 180 5 100 C0 20 80 0 100 10 C120 0 200 20 195 100 C190 180 100 250 100 250Z" fill="#2B4A1D"/>
+        <path d="M100 250 L100 10" stroke="#1D3314" stroke-width="2" fill="none"/>
+        <path d="M100 200 C70 160 30 140 10 80" stroke="#1D3314" stroke-width="1.2" fill="none"/>
+        <path d="M100 200 C130 160 170 140 190 80" stroke="#1D3314" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+    <div class="leaf bl-3">
+      <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70 170 C70 170 5 120 3 70 C1 20 55 5 70 12 C85 5 139 20 137 70 C135 120 70 170 70 170Z" fill="#4C7A32"/>
+        <path d="M70 170 L70 12" stroke="#2B4A1D" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="leaf bl-4">
+      <svg viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70 170 C70 170 5 120 3 70 C1 20 55 5 70 12 C85 5 139 20 137 70 C135 120 70 170 70 170Z" fill="#8AB56A"/>
+        <path d="M70 170 L70 12" stroke="#4C7A32" stroke-width="1.2" fill="none"/>
+        <path d="M70 130 C50 100 22 85 8 48" stroke="#4C7A32" stroke-width="0.7" fill="none"/>
+        <path d="M70 130 C90 100 118 85 132 48" stroke="#4C7A32" stroke-width="0.7" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Logo -->
+    <div class="brand-top">
+      <a href="index.html" class="brand-logo">
+        <svg viewBox="0 0 30 38" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 36 C15 36 2 26 1 14 C0 2 11 0 15 3 C19 0 30 2 29 14 C28 26 15 36 15 36Z"/>
+          <path d="M15 36 L15 3" stroke="#2B4A1D" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="brand-logo-text">Zestopia</span>
+      </a>
+    </div>
+
+    <!-- Middle: headline + features -->
+    <div class="brand-mid">
+      <h1 class="brand-tagline">
+        Welcome <em>back</em> to<br>Pure Flavours
+      </h1>
+      <p class="brand-sub">Sign in to manage your spice collection, track orders, and discover new arrivals from our curated selection of pure masalas and dry foods.</p>
+
+      <ul class="brand-features">
+        <li>
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>Order History</strong>
+            <span>Revisit & reorder your favourite blends anytime</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>Saved Wishlist</strong>
+            <span>Your curated spice wishlist, always ready</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>Live Order Tracking</strong>
+            <span>Know exactly where your package is</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="feat-text">
+            <strong>Exclusive Member Offers</strong>
+            <span>Early access to seasonal drops & discounts</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Quote -->
+    <div class="brand-quote">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">Every dish tells a story — Zestopia gives me the authentic flavours to tell mine the right way.</p>
+      <div class="quote-author">
+        <div class="quote-av">S</div>
+        <div>
+          <div class="quote-name">Sumaiya Rahman</div>
+          <div class="quote-loc">Dhaka, Bangladesh</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════ FORM PANEL (Right) ══════════ -->
+  <main class="form-panel">
+    <div class="form-wrap">
+
+      <!-- Mobile-only logo -->
+      <a href="index.html" class="mobile-logo">
+        <svg viewBox="0 0 30 38" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 36 C15 36 2 26 1 14 C0 2 11 0 15 3 C19 0 30 2 29 14 C28 26 15 36 15 36Z"/>
+          <path d="M15 36 L15 3" stroke="#1D3314" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="mobile-logo-text">Zestopia</span>
+      </a>
+
+      <!-- Heading -->
+      <div class="form-heading-row">
+        <div class="form-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-label">Member Access</span>
+        </div>
+        <h2 class="form-title">Sign <em>in</em> to<br>your account</h2>
+        <p class="form-sub" style="margin-top:0.6rem;">
+          Don't have an account? <a href="#">Create one free</a>
+        </p>
+      </div>
+
+      <!-- Social login -->
+      <div class="social-row">
+        <a href="#" class="btn-social" onclick="handleSocial('Google');return false;">
+          <!-- Google icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google
+        </a>
+        <a href="#" class="btn-social" onclick="handleSocial('Facebook');return false;">
+          <!-- Facebook icon -->
+          <svg viewBox="0 0 24 24" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span class="divider-text">or sign in with email</span>
+      </div>
+
+      <!-- Form fields -->
+      <div class="form-fields">
+        <!-- Email -->
+        <div class="field-group">
+          <label class="field-label" for="email">Email Address</label>
+          <div class="field-wrap">
+            <input
+              class="field-input"
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              oninput="clearError('email')"
+            />
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            </span>
+          </div>
+          <span class="field-error" id="email-err">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Please enter a valid email address.
+          </span>
+        </div>
+
+        <!-- Password -->
+        <div class="field-group">
+          <label class="field-label" for="password">Password</label>
+          <div class="field-wrap">
+            <input
+              class="field-input"
+              id="password"
+              type="password"
+              placeholder="Your password"
+              autocomplete="current-password"
+              oninput="clearError('password')"
+            />
+            <span class="field-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </span>
+            <button class="pw-toggle" type="button" id="pwToggle" onclick="togglePw()" aria-label="Toggle password visibility">
+              <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="password-err">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Password must be at least 6 characters.
+          </span>
+        </div>
+      </div>
+
+      <!-- Remember / Forgot -->
+      <div class="extras-row">
+        <label class="check-wrap">
+          <input type="checkbox" class="check-input" id="remember"/>
+          <span class="check-box"></span>
+          <span class="check-label">Remember me</span>
+        </label>
+        <a href="#" class="forgot-link" onclick="showToast('Password reset link sent to your email!');return false;">Forgot password?</a>
+      </div>
+
+      <!-- Submit -->
+      <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">
+        <span class="spinner"></span>
+        <span class="btn-text">Sign In</span>
+        <svg class="btn-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+
+      <!-- Sign up link -->
+      <p class="signup-row">
+        New to Zestopia? <a href="#">Create a free account</a>
+      </p>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─ Password toggle ─ */
+let pwVisible = false;
+function togglePw() {
+  const inp = document.getElementById('password');
+  const icon = document.getElementById('eyeIcon');
+  pwVisible = !pwVisible;
+  inp.type = pwVisible ? 'text' : 'password';
+  icon.innerHTML = pwVisible
+    ? `<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>`
+    : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+}
+
+/* ─ Validation ─ */
+function clearError(field) {
+  const inp = document.getElementById(field);
+  const err = document.getElementById(field + '-err');
+  inp.classList.remove('error');
+  err.classList.remove('show');
+}
+
+function validateForm() {
+  let ok = true;
+  const email = document.getElementById('email');
+  const pw = document.getElementById('password');
+
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email.value.trim())) {
+    email.classList.add('error');
+    document.getElementById('email-err').classList.add('show');
+    ok = false;
+  }
+  if (pw.value.length < 6) {
+    pw.classList.add('error');
+    document.getElementById('password-err').classList.add('show');
+    ok = false;
+  }
+  return ok;
+}
+
+/* ─ Submit ─ */
+function handleSubmit() {
+  if (!validateForm()) return;
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    showToast('Welcome back! Signing you in…');
+  }, 1800);
+}
+
+/* ─ Social login ─ */
+function handleSocial(provider) {
+  showToast('Connecting with ' + provider + '…');
+}
+
+/* ─ Toast ─ */
+let _toastT;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(_toastT);
+  _toastT = setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
