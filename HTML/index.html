@@ -1346,13 +1346,14 @@ footer{
     Zestopia
   </a>
   <ul class="nav-links">
-    <li><a href="#products">Shop</a></li>
-    <li><a href="#categories">Categories</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="index.html#categories">Categories</a></li>
     <li><a href="#story">Our Story</a></li>
     <li><a href="#testi">Reviews</a></li>
   </ul>
-  <div class="nav-right">
-    <button  href="signin.html" class="btn-nav">Sign In</button>
+  <div  class="nav-right">
+    <button  class="btn-nav">Sign In</button>
     <div class="cart-btn" onclick="showToast('Cart opened')">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cart-count" id="cartN">0</span>
@@ -1366,14 +1367,14 @@ footer{
 <!-- ═══ MOBILE MENU ═══ -->
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="#products" onclick="closeMenu()">Shop</a></li>
+    <li><a href="shop.html" onclick="closeMenu()">Shop</a></li>
     <li><a href="#categories" onclick="closeMenu()">Categories</a></li>
     <li><a href="#story" onclick="closeMenu()">Our Story</a></li>
     <li><a href="#testi" onclick="closeMenu()">Reviews</a></li>
     <li><a href="signin.html" onclick="closeMenu()">Sign In</a></li>
   </ul>
   <div class="mobile-menu-footer">
-    <button class="btn-nav" style="border-radius:2px;">Sign In</button>
+    <button  class="btn-nav" style="border-radius:2px;">Sign In</button>
     <div class="cart-btn" style="flex-shrink:0;" onclick="showToast('Cart opened');closeMenu();">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
     </div>
