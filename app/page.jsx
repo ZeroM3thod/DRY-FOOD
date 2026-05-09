@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 /* ════════════════════════════════════════
    PRODUCT ILLUSTRATIONS (SVG strings)
