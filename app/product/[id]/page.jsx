@@ -249,9 +249,19 @@ export default function ProductDetailPage() {
   const toastTimer                = useRef(null)
   const [stickyVisible, setStickyVisible] = useState(false)
   const heroRef                   = useRef(null)
+  const tabsSectionRef            = useRef(null)
 
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
   const relatedProds = (product.related || [1,2,3,4]).map(id => ALL_PRODS_BRIEF.find(p => p.id === id)).filter(Boolean).slice(0,4)
+
+  const switchTab = (key) => {
+    setActiveTab(key)
+    if (tabsSectionRef.current) {
+      const navHeight = 70
+      const top = tabsSectionRef.current.getBoundingClientRect().top + window.scrollY - navHeight
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
 
   const showToast = useCallback((msg) => {
     setToast({ msg, show: true })
@@ -473,13 +483,13 @@ export default function ProductDetailPage() {
       </div>
 
       {/* ════ TABS ════ */}
-      <div className="pd-tabs-section">
+      <div className="pd-tabs-section" ref={tabsSectionRef}>
         <nav className="pd-tabs-nav">
           {TABS.map(t => (
             <button
               key={t.key}
               className={`pd-tab-btn${activeTab === t.key ? ' active' : ''}`}
-              onClick={() => setActiveTab(t.key)}
+              onClick={() => switchTab(t.key)}
             >
               {t.label}
             </button>
